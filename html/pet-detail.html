@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Detail | I Choose You</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-layout">
+
+    <nav class="top-nav">
+        <div class="nav-logo">
+            <i class="fa-solid fa-paw"></i>
+            <span>I Choose You</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="#">Tutorial</a></li>
+        </ul>
+        <div class="nav-logout">
+            <a href="login.html" id="logoutBtn">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="back-nav">
+            <button id="backBtn" class="back-btn">
+                <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
+            </button>
+        </div>
+
+        <section class="pet-profile-header">
+            <div class="pet-profile-img">
+                <img id="detailImage" src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=150&q=80" alt="Pet Image">
+            </div>
+            <div class="pet-profile-info">
+                <h1 id="detailName">Loading...</h1>
+                <span class="pet-type-badge">
+                    <i id="detailIcon" class="fa-solid fa-paw"></i> <span id="detailSpecies">Pet</span>
+                </span>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="action-grid">
+            <div class="action-card" id="vaccineBtn">
+                <i class="fa-solid fa-syringe action-icon"></i>
+                <p>Vaccine Schedule</p>
+            </div>
+            <div class="action-card" id="feedingBtn">
+                <i class="fa-solid fa-utensils action-icon"></i>
+                <p>Feeding Schedule</p>
+            </div>
+            <div class="action-card" id="groomingBtn">
+                <i class="fa-solid fa-scissors action-icon"></i>
+                <p>Grooming Schedule</p>
+            </div>
+            <div class="action-card" id="editBtn">
+                <i class="fa-solid fa-pen action-icon"></i>
+                <p>Edit Pet Data</p>
+            </div>
+            <div class="action-card" id="tutorialBtn">
+                <i class="fa-solid fa-circle-question action-icon"></i>
+                <p>Tutorial</p>
+                <small>How to use this page</small>
+            </div>
+            <div class="action-card delete-card" id="deleteBtn">
+                <i class="fa-solid fa-trash action-icon"></i>
+                <p>Delete Pet</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="../js/pet-detail.js"></script>
+</body>
+</html>

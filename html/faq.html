@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | I Choose You</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="faq-body">
+
+    <nav class="top-nav">
+        <div class="nav-logo">
+            <i class="fa-solid fa-paw"></i>
+            <span>I Choose You</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="faq.html" class = "active">FAQ</a></li>
+            <li><a href="#">Tutorial</a></li>
+        </ul>
+        <div class="nav-logout">
+            <a href="login.html" id="logoutBtn">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+        </div>
+    </nav>
+
+    <main class="faq-page">
+        <section class="faq-intro">
+            <h1>Frequently Asked Questions</h1>
+            <p>Find gentle guidance and answers to help you care for your new companion.</p>
+
+            <div class="faq-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="search" id="faqSearch" placeholder="Search questions...">
+            </div>
+
+            <div class="faq-categories">
+                <button type="button" class="category-btn active">Cat</button>
+                <button type="button" class="category-btn">Dog</button>
+                <button type="button" class="category-btn">Fish</button>
+                <button type="button" class="category-btn">Bird</button>
+                <button type="button" class="category-btn">Bunny</button>
+            </div>
+        </section>
+
+        <section class="faq-list">
+            <div class="faq-item">
+                <button type="button" class="faq-question">
+                    <span>How often should I feed my cat?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <p class="faq-answer">Most adult cats do well with two measured meals a day. Kittens usually need smaller meals more often.</p>
+            </div>
+
+            <div class="faq-item">
+                <button type="button" class="faq-question">
+                    <span>How do I introduce a new cat to my home?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <p class="faq-answer">Start with one quiet room, let your cat explore slowly, and keep food, water, litter, and hiding spots easy to reach.</p>
+            </div>
+
+            <div class="faq-item">
+                <button type="button" class="faq-question">
+                    <span>Why is my cat scratching the furniture?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <p class="faq-answer">Scratching is natural. Offer sturdy scratchers near favorite furniture and reward your cat when they use them.</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="../js/faq.js"></script>
+</body>
+</html>
