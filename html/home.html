@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="dashboard-layout">
-
     <nav class="top-nav">
         <div class="nav-logo">
             <i class="fa-solid fa-paw"></i>
@@ -17,15 +16,14 @@
         </div>
         <ul class="nav-links">
             <li><a href="#" class="active">Home</a></li>
-            <li><a href="calendar.html">Calendar</a></li>
-            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="#">Calendar</a></li>
+            <li><a href="#">FAQ</a></li>
             <li><a href="#">Tutorial</a></li>
         </ul>
         <div class="nav-logout">
             <a href="login.html" id="logoutBtn">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
         </div>
     </nav>
-
     <main class="main-content">
         <section class="welcome-section">
             <h1>Welcome back, Pet Parent!</h1>
@@ -34,82 +32,71 @@
                 <i class="fa-solid fa-plus"></i> Add Pet
             </button>
         </section>
-
-        <section class="pet-grid">
-            <div class="pet-card card-pink">
-                <div class="card-shape"></div>
-                <div class="card-header">
-                    <div class="pet-icon-wrapper">
-                        <i class="fa-solid fa-dog"></i>
-                    </div>
-                    <div class="pet-info">
-                        <h2>Luna</h2>
-                        <span class="pet-breed badge-pink">Golden Retriever</span>
-                    </div>
-                    <button class="menu-btn"><i class="fa-solid fa-ellipsis"></i></button>
-                </div>
-                <div class="card-stats">
-                    <div class="stat-box">
-                        <span class="stat-label">Next Meal</span>
-                        <span class="stat-value">5:00 PM</span>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-label">Activity</span>
-                        <span class="stat-value">Walked 2mi</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pet-card card-green">
-                <div class="card-shape"></div>
-                <div class="card-header">
-                    <div class="pet-icon-wrapper">
-                        <i class="fa-solid fa-fish"></i>
-                    </div>
-                    <div class="pet-info">
-                        <h2>Bubbles</h2>
-                        <span class="pet-breed badge-green">Betta Fish</span>
-                    </div>
-                    <button class="menu-btn"><i class="fa-solid fa-ellipsis"></i></button>
-                </div>
-                <div class="card-stats">
-                    <div class="stat-box">
-                        <span class="stat-label">Tank Temp</span>
-                        <span class="stat-value">78°F</span>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-label">Cleaning</span>
-                        <span class="stat-value">In 3 Days</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pet-card card-yellow">
-                <div class="card-shape"></div>
-                <div class="card-header">
-                    <div class="pet-icon-wrapper">
-                        <i class="fa-solid fa-cat"></i>
-                    </div>
-                    <div class="pet-info">
-                        <h2>Milo</h2>
-                        <span class="pet-breed badge-yellow">Domestic Shorthair</span>
-                    </div>
-                    <button class="menu-btn"><i class="fa-solid fa-ellipsis"></i></button>
-                </div>
-                <div class="card-stats">
-                    <div class="stat-box">
-                        <span class="stat-label">Next Meal</span>
-                        <span class="stat-value">6:00 PM</span>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-label">Status</span>
-                        <span class="stat-value">Napping</span>
-                    </div>
-                </div>
-            </div>
+        
+        <section class="pet-grid" id="petGrid">
         </section>
+        
+        <div id="addPetModal" class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-icon">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <button class="close-modal-btn" id="closeModalBtn">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h2>Add a New Friend</h2>
+                    <p class="modal-subtitle">Tell us a little about the newest member of your family.</p>
+                    <form id="addPetForm">
+                        <div class="input-group">
+                            <label>What is their name?</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-pen icon"></i>
+                                <input type="text" id="newPetName" placeholder="e.g. Bella, Charlie..." required>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label>What kind of animal are they?</label>
+                            <div class="animal-type-selector">
+                                <label>
+                                    <input type="radio" name="animalType" value="Dog" checked>
+                                    <span>Dog</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="animalType" value="Cat">
+                                    <span>Cat</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="animalType" value="Fish">
+                                    <span>Fish</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="animalType" value="Bird">
+                                    <span>Bird</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="animalType" value="Bunny">
+                                    <span>Bunny</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label>Species or Breed <span style="color: var(--text-muted); font-weight: 400;">(Optional)</span></label>
+                            <div class="input-wrapper">
+                                <input type="text" id="newPetBreed" placeholder="e.g. Golden Retriever, Siamese...">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn-cancel" id="cancelPetBtn">Cancel</button>
+                            <button type="submit" class="btn-save">Save Friend</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </main>
-
     <script src="../js/home.js"></script>
 </body>
 </html>
