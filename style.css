@@ -570,6 +570,251 @@ body {
     background: #ffebeb;
 }
 
+.calendar-page {
+    width: min(1120px, calc(100% - 48px));
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 62px;
+    margin: 0 auto;
+    padding: 62px 0 70px;
+}
+
+.month-banner {
+    display: grid;
+    grid-template-columns: auto auto auto 1fr auto;
+    align-items: center;
+    gap: 18px;
+    min-height: 138px;
+    padding: 26px;
+    background: #c7f1cd;
+    border-radius: 14px;
+}
+
+.month-title h1 {
+    color: var(--primary-green);
+    font-size: 34px;
+    line-height: 1.05;
+}
+
+.month-arrow {
+    border: none;
+    color: var(--primary-green);
+    background: transparent;
+    cursor: pointer;
+}
+
+.month-banner p {
+    color: var(--primary-green);
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.streak-pill {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 146px;
+    padding: 16px 24px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #ff8357, #ff4d4d);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.calendar-card,
+.care-card {
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 14px 24px rgba(82, 93, 75, 0.16);
+}
+
+.calendar-card {
+    margin-top: 18px;
+    padding: 24px;
+}
+
+.weekday-row,
+.date-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.weekday-row {
+    margin-bottom: 10px;
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.date-box {
+    min-height: 82px;
+    position: relative;
+    padding: 12px;
+    border: 1px solid #eadfc8;
+    border-radius: 12px;
+    color: var(--primary-green);
+    background: #fff4dc;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: left;
+}
+
+.date-box.muted {
+    opacity: 0.5;
+}
+
+.date-box.highlight {
+    background: #ffe8e9;
+    border-color: #ffcacc;
+}
+
+.date-box.green-event {
+    background: #dff5e2;
+    border-color: #bde5c2;
+}
+
+.date-box.pink-event {
+    background: #ffe1e6;
+    border-color: #ffc7d1;
+}
+
+.date-box.yellow-event {
+    background: #fff3cb;
+    border-color: #f0dfa4;
+}
+
+.streak-pill .fa-fire {
+    color: #fffbcc;
+    font-size: 20px;
+}
+
+.date-box i {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    color: var(--primary-green);
+    font-size: 15px;
+}
+
+.care-card {
+    min-height: 610px;
+    padding: 28px 24px;
+}
+
+.care-card h2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary-green);
+    font-size: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--primary-green);
+}
+
+.care-list {
+    display: grid;
+    gap: 16px;
+    margin: 22px 0;
+}
+
+.care-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 74px;
+    padding: 14px;
+    background: #fff8e9;
+    border: 1px solid #efe3ca;
+    border-radius: 14px;
+}
+
+.care-icon {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    border-radius: 50%;
+}
+
+.care-icon.green {
+    color: var(--primary-green);
+    background: #c6e6cb;
+}
+
+.care-icon.pink {
+    color: #c94c58;
+    background: #ffdfe2;
+}
+
+.care-icon.yellow {
+    color: #7d7040;
+    background: #f5e9bd;
+}
+
+.care-item h3 {
+    color: var(--text-dark);
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.care-item p {
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.add-event-btn {
+    width: 100%;
+    min-height: 44px;
+    border: none;
+    border-radius: 999px;
+    color: #ffffff;
+    background: var(--primary-green);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+@media (max-width: 900px) {
+    .calendar-page {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    .care-card {
+        min-height: auto;
+    }
+}
+
+@media (max-width: 720px) {
+    .calendar-page {
+        width: min(100% - 32px, 1120px);
+        padding-top: 42px;
+    }
+    .month-banner {
+        grid-template-columns: auto 1fr auto;
+    }
+    .month-banner p,
+    .streak-pill {
+        grid-column: 1 / -1;
+    }
+    .date-box {
+        min-height: 58px;
+        padding: 8px;
+    }
+}
+
+.task-list .date {
+    font-size: 12px;
+    color: var(--text-muted);
+    background: #f0f0f0;
+    padding: 4px 8px;
+    border-radius: 12px;
+}
+
 .faq-body {
     background: #ffffff;
 }

@@ -48,6 +48,10 @@ document.getElementById('registerForm').addEventListener('submit', function(even
     }
 
     if (isValid) {
+<<<<<<< HEAD
+        localStorage.setItem("petUsername", fullName.value.trim());
+=======
+>>>>>>> 83ee8abcbf4baa11bbfc0f162363afc24ac03e2f
         alert(`Success! Account created for ${fullName.value}.\n\n[Simulation]: Redirecting to login.`);
         window.location.href = "login.html";
     }

@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+const username = localStorage.getItem("petUsername") || "Pet Parent";
+const usernameElement = document.getElementById("displayUsername");
+if (usernameElement) {
+  usernameElement.textContent = username;
+}
+=======
 const defaultPets = [
     { id: 1, name: 'Luna', species: 'Dog', breed: 'Golden Retriever', nextMeal: '5:00 PM', status: 'Walked 2mi' },
     { id: 2, name: 'Bubbles', species: 'Fish', breed: 'Betta Fish', nextMeal: '78°F', status: 'In 3 Days' },
@@ -149,3 +156,4 @@ document.getElementById('logoutBtn').addEventListener('click', function(e) {
     e.preventDefault();
     window.location.href = "login.html";
 });
+>>>>>>> 83ee8abcbf4baa11bbfc0f162363afc24ac03e2f
