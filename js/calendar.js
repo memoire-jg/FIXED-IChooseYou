@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const dateGrid = document.getElementById("dateGrid");
 const addEventBtn = document.querySelector(".add-event-btn");
 const careList = document.querySelector(".care-list");
@@ -31,9 +30,6 @@ const defaultEvents = [
         careColor: "yellow"
     }
 ];
-=======
-const dateGrid = document.getElementById('dateGrid');
->>>>>>> 83ee8abcbf4baa11bbfc0f162363afc24ac03e2f
 
 const dates = [
     { day: 26, muted: true },
@@ -42,11 +38,7 @@ const dates = [
     { day: 29, muted: true },
     { day: 30, muted: true },
     { day: 1 },
-<<<<<<< HEAD
-    { day: 2 },
-=======
     { day: 2, icon: 'fa-stethoscope' },
->>>>>>> 83ee8abcbf4baa11bbfc0f162363afc24ac03e2f
     { day: 3 },
     { day: 4 },
     { day: 5 },
@@ -56,17 +48,10 @@ const dates = [
     { day: 9 },
     { day: 10 },
     { day: 11 },
-<<<<<<< HEAD
-    { day: 12 },
-    { day: 13 },
-    { day: 14 },
-    { day: 15 },
-=======
     { day: 12, icon: 'fa-scissors', highlight: true },
     { day: 13 },
     { day: 14 },
     { day: 15, icon: 'fa-bowl-food' },
->>>>>>> 83ee8abcbf4baa11bbfc0f162363afc24ac03e2f
     { day: 16 },
     { day: 17 },
     { day: 18 },
@@ -91,7 +76,6 @@ const dates = [
     { day: 6, muted: true }
 ];
 
-<<<<<<< HEAD
 function getEvents() {
     const stored = localStorage.getItem(STORAGE_KEY);
 
@@ -218,27 +202,3 @@ addEventBtn.addEventListener("click", () => {
 
 renderCalendar();
 renderUpcomingSchedule();
-=======
-dates.forEach(date => {
-    const dateBox = document.createElement('button');
-    dateBox.type = 'button';
-    dateBox.className = 'date-box';
-    dateBox.textContent = date.day;
-
-    if (date.muted) {
-        dateBox.classList.add('muted');
-    }
-
-    if (date.highlight) {
-        dateBox.classList.add('highlight');
-    }
-
-    if (date.icon) {
-        const icon = document.createElement('i');
-        icon.className = `fa-solid ${date.icon}`;
-        dateBox.appendChild(icon);
-    }
-
-    dateGrid.appendChild(dateBox);
-});
->>>>>>> 83ee8abcbf4baa11bbfc0f162363afc24ac03e2f
