@@ -33,8 +33,11 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     }
 
     if (isValid) {
+<<<<<<< HEAD
         const username = email.value.trim().split("@")[0];
         localStorage.setItem("petUsername", username);
+=======
+>>>>>>> 83ee8abcbf4baa11bbfc0f162363afc24ac03e2f
         window.location.href = "home.html";
     }
 });

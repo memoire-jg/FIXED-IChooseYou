@@ -1,11 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
     const savedPetStr = localStorage.getItem('selectedPet');
     let petName = 'Luna'; 
+<<<<<<< HEAD
+=======
+    let petId = null;
+>>>>>>> 83ee8abcbf4baa11bbfc0f162363afc24ac03e2f
 
     if (savedPetStr) {
         const petData = JSON.parse(savedPetStr);
         petName = petData.name;
+<<<<<<< HEAD
 
+=======
+        petId = petData.id;
+>>>>>>> 83ee8abcbf4baa11bbfc0f162363afc24ac03e2f
         document.getElementById('detailName').innerText = petData.name;
         document.getElementById('detailSpecies').innerText = petData.species;
         document.getElementById('detailIcon').className = petData.iconClass;
@@ -40,7 +48,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('deleteBtn').addEventListener('click', function() {
         if (confirm(`Are you sure you want to delete ${petName}? This action cannot be undone.`)) {
+<<<<<<< HEAD
             alert(`[Simulation]: ${petName} has been removed from your account.`);
+=======
+            if (petId) {
+                let myPets = JSON.parse(localStorage.getItem('myPets')) || [];
+                myPets = myPets.filter(p => p.id !== petId);
+                localStorage.setItem('myPets', JSON.stringify(myPets));
+            }
+>>>>>>> 83ee8abcbf4baa11bbfc0f162363afc24ac03e2f
             window.location.href = "home.html";
         }
     });
