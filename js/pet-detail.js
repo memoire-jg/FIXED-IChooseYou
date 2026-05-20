@@ -1,23 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
     const savedPetStr = localStorage.getItem('selectedPet');
     let petName = 'Luna'; 
-<<<<<<< HEAD
-=======
     let petId = null;
->>>>>>> 83ee8abcbf4baa11bbfc0f162363afc24ac03e2f
+    let petSpecies = 'Dog';
 
     if (savedPetStr) {
         const petData = JSON.parse(savedPetStr);
         petName = petData.name;
-<<<<<<< HEAD
-
-=======
         petId = petData.id;
->>>>>>> 83ee8abcbf4baa11bbfc0f162363afc24ac03e2f
+        petSpecies = petData.species;
+        
         document.getElementById('detailName').innerText = petData.name;
         document.getElementById('detailSpecies').innerText = petData.species;
         document.getElementById('detailIcon').className = petData.iconClass;
         document.getElementById('detailImage').src = petData.imgSrc;
+        
+        document.getElementById('vaccineModalTitle').innerText = `${petSpecies} Vaccine Schedule`;
+        document.getElementById('feedingModalSubtitle').innerText = `Recommended plan for your ${petSpecies}`;
     }
 
     document.getElementById('backBtn').addEventListener('click', function() {
@@ -29,9 +28,46 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = "login.html";
     });
 
+    const vaccineModal = document.getElementById('vaccineModal');
+    const vaccineBtn = document.getElementById('vaccineBtn');
+    const closeVaccineBtn = document.getElementById('closeVaccineBtn');
+    const remindMeBtn = document.getElementById('remindMeBtn');
+    const gotItBtn = document.getElementById('gotItBtn');
+
+    vaccineBtn.addEventListener('click', function() {
+        vaccineModal.style.display = 'flex';
+    });
+
+    function closeVaccineModal() {
+        vaccineModal.style.display = 'none';
+    }
+
+    closeVaccineBtn.addEventListener('click', closeVaccineModal);
+    remindMeBtn.addEventListener('click', closeVaccineModal);
+    gotItBtn.addEventListener('click', closeVaccineModal);
+
+    const feedingModal = document.getElementById('feedingModal');
+    const feedingBtn = document.getElementById('feedingBtn');
+    const closeFeedingBtn = document.getElementById('closeFeedingBtn');
+    const feedingGotItBtn = document.getElementById('feedingGotItBtn');
+
+    feedingBtn.addEventListener('click', function() {
+        feedingModal.style.display = 'flex';
+    });
+
+    function closeFeedingModal() {
+        feedingModal.style.display = 'none';
+    }
+
+    closeFeedingBtn.addEventListener('click', closeFeedingModal);
+    feedingGotItBtn.addEventListener('click', closeFeedingModal);
+
+    window.addEventListener('click', function(e) {
+        if (e.target === vaccineModal) closeVaccineModal();
+        if (e.target === feedingModal) closeFeedingModal();
+    });
+
     const actionButtons = [
-        { id: 'vaccineBtn', message: 'Loading Vaccine Schedule...' },
-        { id: 'feedingBtn', message: 'Loading Feeding Schedule...' },
         { id: 'groomingBtn', message: 'Loading Grooming Schedule...' },
         { id: 'editBtn', message: 'Opening Edit Pet Data form...' },
         { id: 'tutorialBtn', message: 'Starting Page Tutorial...' }
@@ -48,15 +84,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('deleteBtn').addEventListener('click', function() {
         if (confirm(`Are you sure you want to delete ${petName}? This action cannot be undone.`)) {
-<<<<<<< HEAD
-            alert(`[Simulation]: ${petName} has been removed from your account.`);
-=======
             if (petId) {
                 let myPets = JSON.parse(localStorage.getItem('myPets')) || [];
                 myPets = myPets.filter(p => p.id !== petId);
                 localStorage.setItem('myPets', JSON.stringify(myPets));
             }
->>>>>>> 83ee8abcbf4baa11bbfc0f162363afc24ac03e2f
             window.location.href = "home.html";
         }
     });
