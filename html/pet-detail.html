@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="dashboard-layout">
-
     <nav class="top-nav">
         <div class="nav-logo">
             <i class="fa-solid fa-paw"></i>
@@ -17,22 +16,20 @@
         </div>
         <ul class="nav-links">
             <li><a href="home.html">Home</a></li>
-            <li><a href="calendar.html">Calendar</a></li>
-            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="#">Calendar</a></li>
+            <li><a href="#">FAQ</a></li>
             <li><a href="#">Tutorial</a></li>
         </ul>
         <div class="nav-logout">
             <a href="login.html" id="logoutBtn">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
         </div>
     </nav>
-
     <main class="main-content">
         <div class="back-nav">
             <button id="backBtn" class="back-btn">
                 <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
             </button>
         </div>
-
         <section class="pet-profile-header">
             <div class="pet-profile-img">
                 <img id="detailImage" src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=150&q=80" alt="Pet Image">
@@ -44,9 +41,7 @@
                 </span>
             </div>
         </section>
-
         <div class="divider"></div>
-
         <section class="action-grid">
             <div class="action-card" id="vaccineBtn">
                 <i class="fa-solid fa-syringe action-icon"></i>
@@ -74,8 +69,178 @@
                 <p>Delete Pet</p>
             </div>
         </section>
-    </main>
 
+        <div id="vaccineModal" class="modal-overlay">
+            <div class="modal-content vaccine-modal-content">
+                <div class="modal-header">
+                    <div style="display: flex; gap: 15px; align-items: center;">
+                        <div class="modal-icon">
+                            <i class="fa-solid fa-syringe"></i>
+                        </div>
+                        <div>
+                            <h2 style="color: var(--text-dark); font-size: 22px; margin-bottom: 4px;" id="vaccineModalTitle">Dog Vaccine Schedule</h2>
+                            <p style="color: var(--text-muted); font-size: 14px;">Recommended care for your companion.</p>
+                        </div>
+                    </div>
+                    <button class="close-modal-btn" id="closeVaccineBtn">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                
+                <div class="modal-body" style="margin-top: 25px;">
+                    <div class="info-box">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-info"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>Why Vaccinate?</h3>
+                            <p>Vaccines are crucial for protecting your pet from highly contagious and potentially fatal diseases. They help build immunity, ensuring your furry friend stays healthy and active for years to come. Following a schedule keeps their protection strong.</p>
+                        </div>
+                    </div>
+
+                    <div class="schedule-section">
+                        <h3>Core Vaccines</h3>
+                        
+                        <div class="schedule-item">
+                            <div class="schedule-left">
+                                <div class="dot"></div>
+                                <div class="schedule-item-info">
+                                    <h4>Rabies</h4>
+                                    <p>Required by law in most areas.</p>
+                                </div>
+                            </div>
+                            <div class="schedule-right">
+                                <div class="schedule-date">
+                                    <p>Last Given</p>
+                                    <p>Oct 12, 2023</p>
+                                </div>
+                                <div class="status-badge badge-good">
+                                    <i class="fa-solid fa-check"></i> Up to Date
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="schedule-item">
+                            <div class="schedule-left">
+                                <div class="dot"></div>
+                                <div class="schedule-item-info">
+                                    <h4>DHPP (Distemper, Parvo, etc.)</h4>
+                                    <p>Protects against 4 dangerous viruses.</p>
+                                </div>
+                            </div>
+                            <div class="schedule-right">
+                                <div class="schedule-date">
+                                    <p>Due Date</p>
+                                    <p>Nov 15, 2024</p>
+                                </div>
+                                <div class="status-badge badge-warn">
+                                    <i class="fa-solid fa-clock"></i> Due Soon
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-section">
+                        <h3>Lifestyle Vaccines</h3>
+                        
+                        <div class="schedule-item">
+                            <div class="schedule-left">
+                                <div class="dot" style="background: #a5a5a5;"></div>
+                                <div class="schedule-item-info">
+                                    <h4>Bordetella (Kennel Cough)</h4>
+                                    <p>Recommended if visiting parks/kennels.</p>
+                                </div>
+                            </div>
+                            <div class="schedule-right">
+                                <div class="schedule-date">
+                                    <p>Status</p>
+                                    <p>Optional</p>
+                                </div>
+                                <div class="status-badge badge-outline">
+                                    Discuss with Vet
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer" style="border-top: 1px solid #eaeaea; padding-top: 20px; margin-top: 20px;">
+                        <button type="button" class="btn-text" id="remindMeBtn">Remind Me Later</button>
+                        <button type="button" class="btn-save" id="gotItBtn">Got it</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="feedingModal" class="modal-overlay">
+            <div class="modal-content feeding-modal-content">
+                <div class="modal-header-centered">
+                    <button class="close-modal-btn" id="closeFeedingBtn" style="position: absolute; right: 25px; top: 25px;">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <div class="modal-icon badge-pink-light" style="margin: 0 auto 15px auto;">
+                        <i class="fa-solid fa-paw" style="color: #9c6c74;"></i>
+                    </div>
+                    <h2>Feeding Schedule</h2>
+                    <p class="modal-subtitle" id="feedingModalSubtitle">Recommended plan for your Dog</p>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="feeding-card bg-green-light">
+                        <div class="feeding-card-left">
+                            <div class="feeding-icon icon-sun">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                            <div class="feeding-info">
+                                <h4>Morning</h4>
+                                <p><i class="fa-regular fa-clock"></i> 7:00 AM - 8:30 AM</p>
+                            </div>
+                        </div>
+                        <div class="feeding-card-right">
+                            <i class="fa-solid fa-utensils"></i>
+                            <span>1 Cup</span>
+                        </div>
+                    </div>
+
+                    <div class="feeding-card bg-yellow-light">
+                        <div class="feeding-card-left">
+                            <div class="feeding-icon icon-moon">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <div class="feeding-info">
+                                <h4>Evening</h4>
+                                <p><i class="fa-regular fa-clock"></i> 6:00 PM - 7:30 PM</p>
+                            </div>
+                        </div>
+                        <div class="feeding-card-right">
+                            <i class="fa-solid fa-utensils"></i>
+                            <span>1 Cup</span>
+                        </div>
+                    </div>
+
+                    <div class="tips-box">
+                        <h4 class="tips-title"><i class="fa-solid fa-apple-whole"></i> Healthy Snack Tips</h4>
+                        <ul class="tips-list">
+                            <li>
+                                <i class="fa-solid fa-circle-check"></i> 
+                                <span><strong>Carrots & Green Beans:</strong> Great low-calorie, crunchy options.</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-circle-check"></i> 
+                                <span><strong>Apple Slices:</strong> A sweet treat (ensure all seeds and core are removed).</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-circle-check"></i> 
+                                <span><strong>Rule of Thumb:</strong> Treats should make up no more than 10% of daily calories.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button type="button" class="btn-save btn-full-width" id="feedingGotItBtn">Got it</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
     <script src="../js/pet-detail.js"></script>
 </body>
 </html>
