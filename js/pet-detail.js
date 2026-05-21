@@ -87,14 +87,39 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    const editModal = document.getElementById('editModal');
+    const editBtn = document.getElementById('editBtn'); 
+    const closeEditBtn = document.getElementById('closeEditBtn');
+    const cancelEditBtn = document.getElementById('cancelEditBtn');
+    const saveEditBtn = document.getElementById('saveEditBtn');
+
+    if (editBtn) {
+        editBtn.addEventListener('click', function() {
+            editModal.style.display = 'flex';
+        });
+    }
+
+    function closeEditModal() {
+        if (editModal) editModal.style.display = 'none';
+    }
+
+    if (closeEditBtn) closeEditBtn.addEventListener('click', closeEditModal);
+    if (cancelEditBtn) cancelEditBtn.addEventListener('click', closeEditModal);
+    
+    if (saveEditBtn) {
+        saveEditBtn.addEventListener('click', function() {
+            closeEditModal();
+        });
+    }
+
     window.addEventListener('click', function(e) {
         if (e.target === vaccineModal) closeVaccineModal();
         if (e.target === feedingModal) closeFeedingModal();
         if (e.target === groomingModal) closeGroomingModal();
+        if (e.target === editModal) closeEditModal();
     });
 
     const actionButtons = [
-        { id: 'editBtn', message: 'Opening Edit Pet Data form...' },
         { id: 'tutorialBtn', message: 'Starting Page Tutorial...' }
     ];
 

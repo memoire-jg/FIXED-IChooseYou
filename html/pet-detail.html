@@ -308,6 +308,64 @@
             </div>
         </div>
 
+        <div id="editModal" class="modal-overlay">
+            <div class="modal-content edit-modal-content">
+                
+                <div class="edit-modal-header">
+                    <h2>Edit Pet Profile</h2>
+                    <button class="close-modal-btn" id="closeEditBtn">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                
+                <div class="modal-body edit-modal-body">
+                    <div class="photo-upload-section">
+                        <div class="photo-preview">
+                            <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=150&q=80" alt="Pet Profile">
+                        </div>
+                        <p class="photo-hint">Tap to change photo</p>
+                    </div>
+
+                    <form id="editPetForm">
+                        <div class="input-group">
+                            <label>Pet Name</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-paw icon"></i>
+                                <input type="text" id="editPetName" value="Luna" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label>Pet Type</label>
+                                <div class="input-wrapper">
+                                    <select id="editPetType" class="custom-select">
+                                        <option value="Dog" selected>Dog</option>
+                                        <option value="Cat">Cat</option>
+                                        <option value="Fish">Fish</option>
+                                        <option value="Bird">Bird</option>
+                                        <option value="Bunny">Bunny</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label>Weight</label>
+                                <div class="input-wrapper">
+                                    <input type="text" id="editPetWeight" value="3 kg">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="edit-modal-footer">
+                    <button type="button" class="btn-cancel" id="cancelEditBtn">Cancel</button>
+                    <button type="button" class="btn-save" id="saveEditBtn">Save Changes</button>
+                </div>
+                
+            </div>
+        </div>
+
     </main>
     <script src="../js/pet-detail.js"></script>
 </body>
