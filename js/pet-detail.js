@@ -62,13 +62,38 @@ document.addEventListener('DOMContentLoaded', function() {
     closeFeedingBtn.addEventListener('click', closeFeedingModal);
     feedingGotItBtn.addEventListener('click', closeFeedingModal);
 
+    const groomingModal = document.getElementById('groomingModal');
+    const groomingBtn = document.getElementById('groomingBtn');
+    const closeGroomingBtn = document.getElementById('closeGroomingBtn');
+    const addToCalendarBtn = document.getElementById('addToCalendarBtn');
+
+    if (groomingBtn) {
+        groomingBtn.addEventListener('click', function() {
+            groomingModal.style.display = 'flex';
+        });
+    }
+
+    function closeGroomingModal() {
+        if (groomingModal) groomingModal.style.display = 'none';
+    }
+
+    if (closeGroomingBtn) {
+        closeGroomingBtn.addEventListener('click', closeGroomingModal);
+    }
+
+    if (addToCalendarBtn) {
+        addToCalendarBtn.addEventListener('click', function() {
+            window.location.href = "calendar.html"; 
+        });
+    }
+
     window.addEventListener('click', function(e) {
         if (e.target === vaccineModal) closeVaccineModal();
         if (e.target === feedingModal) closeFeedingModal();
+        if (e.target === groomingModal) closeGroomingModal();
     });
 
     const actionButtons = [
-        { id: 'groomingBtn', message: 'Loading Grooming Schedule...' },
         { id: 'editBtn', message: 'Opening Edit Pet Data form...' },
         { id: 'tutorialBtn', message: 'Starting Page Tutorial...' }
     ];
