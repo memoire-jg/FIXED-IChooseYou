@@ -378,6 +378,8 @@ body {
     padding: 4px 10px;
     border-radius: 12px;
     font-weight: 500;
+    white-space: nowrap; 
+    width: fit-content;
 }
 
 .menu-btn {
@@ -399,6 +401,7 @@ body {
     gap: 15px;
     position: relative;
     z-index: 2;
+    margin-top: 20px; 
 }
 
 .stat-box {
