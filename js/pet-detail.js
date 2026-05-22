@@ -119,19 +119,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.target === editModal) closeEditModal();
     });
 
-    const actionButtons = [
-        { id: 'tutorialBtn', message: 'Starting Page Tutorial...' }
-    ];
-
-    actionButtons.forEach(btnData => {
-        const btn = document.getElementById(btnData.id);
-        if (btn) {
-            btn.addEventListener('click', function() {
-                alert(`[Simulation]: ${btnData.message}`);
-            });
-        }
-    });
-
     document.getElementById('deleteBtn').addEventListener('click', function() {
         if (confirm(`Are you sure you want to delete ${petName}? This action cannot be undone.`)) {
             if (petId) {
