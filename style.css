@@ -1636,3 +1636,168 @@ body {
     border-bottom-left-radius: 24px;
     border-bottom-right-radius: 24px;
 }
+
+/* ── Tutorial Modal ───────────────────────────────────────────── */
+.tut-modal-content {
+    background: var(--main-bg);
+    width: min(820px, calc(100vw - 40px));
+    border-radius: 24px;
+    padding: 36px 40px 28px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.tut-close-btn {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.tut-close-btn:hover { color: var(--text-dark); }
+
+.tut-body {
+    display: flex;
+    gap: 32px;
+    align-items: stretch;
+}
+
+/* Left preview panel */
+.tut-left {
+    flex: 0 0 300px;
+    background: #e8e4db;
+    border-radius: 16px;
+    padding: 24px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tut-preview-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--light-green);
+    margin-bottom: 4px;
+}
+
+.tut-preview-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.tut-row-active {
+    background: var(--primary-green);
+    color: #fff;
+}
+.tut-row-active i { color: #fff; }
+
+.tut-row-outline {
+    background: transparent;
+    border: 1.5px solid #c9c3b5;
+    color: var(--text-muted);
+}
+.tut-row-outline i { color: var(--text-muted); }
+
+.tut-row-arrow { margin-left: auto; font-size: 11px; }
+
+.tut-preview-spacer {
+    flex: 1;
+    background: #dedad1;
+    border-radius: 10px;
+    min-height: 80px;
+}
+
+/* Right text panel */
+.tut-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8px 0;
+}
+
+.tut-step-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #8e6c71;
+    margin-bottom: 12px;
+}
+
+.tut-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.25;
+    margin-bottom: 18px;
+}
+
+.tut-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+/* Footer */
+.tut-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tut-dots {
+    display: flex;
+    gap: 7px;
+    align-items: center;
+}
+
+.tut-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #d0cdc5;
+    transition: background 0.2s;
+}
+.tut-dot-active {
+    width: 24px;
+    border-radius: 4px;
+    background: var(--primary-green);
+}
+
+.tut-btn-ghost {
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 10px 4px;
+    transition: color 0.2s;
+}
+.tut-btn-ghost:hover { color: var(--text-dark); }
+
+.tut-btn-primary {
+    background: var(--primary-green);
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 32px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+.tut-btn-primary:hover { opacity: 0.88; }
