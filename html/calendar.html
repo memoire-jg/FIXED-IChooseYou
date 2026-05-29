@@ -69,12 +69,12 @@
         <aside class="care-card">
             <h2><i class="fa-solid fa-calendar-day"></i> Upcoming Care</h2>
 
-            <div class="care-list">
+            <div class="care-list" id="careList">
                 <article class="care-item">
                     <span class="care-icon green"><i class="fa-solid fa-stethoscope"></i></span>
                     <div>
                         <h3>Annual Checkup</h3>
-                        <p>Oct 2 - 10:00 AM</p>
+                        <p>May 2 - 10:00 AM</p>
                     </div>
                 </article>
 
@@ -82,7 +82,7 @@
                     <span class="care-icon pink"><i class="fa-solid fa-scissors"></i></span>
                     <div>
                         <h3>Grooming Appointment</h3>
-                        <p>Oct 12 - 2:30 PM</p>
+                        <p>May 12 - 2:30 PM</p>
                     </div>
                 </article>
 
@@ -90,15 +90,79 @@
                     <span class="care-icon yellow"><i class="fa-solid fa-bowl-food"></i></span>
                     <div>
                         <h3>Buy New Food</h3>
-                        <p>Oct 15 - All Day</p>
+                        <p>May 15 - All Day</p>
                     </div>
                 </article>
             </div>
 
-            <button type="button" class="add-event-btn">
+            <button type="button" class="add-event-btn" id="openAddEventBtn">
                 <i class="fa-solid fa-plus"></i> Add Event
             </button>
         </aside>
+
+        <div id="addEventModal" class="modal-overlay">
+            <div class="modal-content add-event-modal-content">
+                
+                <div class="edit-modal-header">
+                    <h2>Add New Event</h2>
+                    <button class="close-modal-btn" id="closeAddEventBtn">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                
+                <div class="modal-body edit-modal-body">
+                    <form id="addEventForm">
+                        <div class="input-group">
+                            <label>Event Name</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-pen icon"></i>
+                                <input type="text" id="newEventName" placeholder="e.g., Vet Checkup, Buy Food..." required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label>Date (May 2026)</label>
+                                <div class="input-wrapper">
+                                    <select id="newEventDate" class="custom-select">
+                                        </select>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label>Time</label>
+                                <div class="input-wrapper">
+                                    <input type="time" id="newEventTime" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-group" style="margin-top: 5px;">
+                            <label>Event Category</label>
+                            <div class="animal-type-selector">
+                                <label>
+                                    <input type="radio" name="eventType" value="checkup" checked>
+                                    <span><i class="fa-solid fa-stethoscope" style="margin-right: 4px;"></i> Checkup</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="eventType" value="grooming">
+                                    <span><i class="fa-solid fa-scissors" style="margin-right: 4px;"></i> Grooming</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="eventType" value="food">
+                                    <span><i class="fa-solid fa-bowl-food" style="margin-right: 4px;"></i> Food</span>
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="edit-modal-footer">
+                    <button type="button" class="btn-cancel" id="cancelAddEventBtn">Cancel</button>
+                    <button type="button" class="btn-save" id="saveAddEventBtn">Save Event</button>
+                </div>
+                
+            </div>
+        </div>
     </main>
 
     <script src="../js/calendar.js"></script>

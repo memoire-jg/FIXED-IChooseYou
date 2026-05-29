@@ -1,6 +1,6 @@
 const dateGrid = document.getElementById("dateGrid");
-const addEventBtn = document.querySelector(".add-event-btn");
-const careList = document.querySelector(".care-list");
+const openAddEventBtn = document.getElementById("openAddEventBtn");
+const careList = document.getElementById("careList");
 
 const STORAGE_KEY = "petCalendarEvents";
 
@@ -38,7 +38,7 @@ const dates = [
     { day: 29, muted: true },
     { day: 30, muted: true },
     { day: 1 },
-    { day: 2, icon: 'fa-stethoscope' },
+    { day: 2 },
     { day: 3 },
     { day: 4 },
     { day: 5 },
@@ -48,10 +48,10 @@ const dates = [
     { day: 9 },
     { day: 10 },
     { day: 11 },
-    { day: 12, icon: 'fa-scissors', highlight: true },
+    { day: 12 },
     { day: 13 },
     { day: 14 },
-    { day: 15, icon: 'fa-bowl-food' },
+    { day: 15 },
     { day: 16 },
     { day: 17 },
     { day: 18 },
@@ -78,11 +78,9 @@ const dates = [
 
 function getEvents() {
     const stored = localStorage.getItem(STORAGE_KEY);
-
     if (stored) {
         return JSON.parse(stored);
     }
-
     localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultEvents));
     return defaultEvents;
 }
@@ -103,16 +101,14 @@ function renderCalendar() {
 
         if (date.muted) {
             dateBox.classList.add("muted");
-        }
-
-        const event = events.find(item => item.day === date.day && !date.muted);
-
-        if (event) {
-            dateBox.classList.add(event.color);
-
-            const icon = document.createElement("i");
-            icon.className = `fa-solid ${event.icon}`;
-            dateBox.appendChild(icon);
+        } else {
+            const event = events.find(item => item.day === date.day);
+            if (event) {
+                dateBox.classList.add(event.color);
+                const icon = document.createElement("i");
+                icon.className = `fa-solid ${event.icon}`;
+                dateBox.appendChild(icon);
+            }
         }
 
         dateGrid.appendChild(dateBox);
@@ -141,22 +137,67 @@ function renderUpcomingSchedule() {
     });
 }
 
-addEventBtn.addEventListener("click", () => {
-    const day = Number(prompt("Enter date for the event (1-31):"));
+const addEventModal = document.getElementById("addEventModal");
+const closeAddEventBtn = document.getElementById("closeAddEventBtn");
+const cancelAddEventBtn = document.getElementById("cancelAddEventBtn");
+const saveAddEventBtn = document.getElementById("saveAddEventBtn");
+const newEventDateSelect = document.getElementById("newEventDate");
+const newEventTimeInput = document.getElementById("newEventTime");
 
-    if (!day || day < 1 || day > 31) {
-        alert("Please enter a valid day.");
-        return;
+for (let i = 1; i <= 31; i++) {
+    const option = document.createElement('option');
+    option.value = i;
+    option.textContent = i;
+    newEventDateSelect.appendChild(option);
+}
+
+if (newEventTimeInput) {
+    newEventTimeInput.addEventListener('click', function() {
+        if (typeof this.showPicker === 'function') {
+            try {
+                this.showPicker();
+            } catch (e) {}
+        }
+    });
+}
+
+function closeAddEventModal() {
+    addEventModal.style.display = 'none';
+    document.getElementById("addEventForm").reset();
+}
+
+openAddEventBtn.addEventListener("click", () => {
+    addEventModal.style.display = 'flex';
+});
+
+closeAddEventBtn.addEventListener('click', closeAddEventModal);
+cancelAddEventBtn.addEventListener('click', closeAddEventModal);
+
+window.addEventListener('click', function(e) {
+    if (e.target === addEventModal) {
+        closeAddEventModal();
     }
+});
 
-    const eventName = prompt("Enter event name:");
+saveAddEventBtn.addEventListener('click', () => {
+    const eventName = document.getElementById("newEventName").value;
+    const eventDay = parseInt(document.getElementById("newEventDate").value);
+    const rawTime = document.getElementById("newEventTime").value; 
+    const eventType = document.querySelector('input[name="eventType"]:checked').value;
 
     if (!eventName) {
+        alert("Please enter an event name.");
         return;
     }
 
-    const eventTime = prompt("Enter event time:", "All Day") || "All Day";
-    const eventType = (prompt("Choose event type: checkup / grooming / food", "checkup") || "checkup").toLowerCase();
+    let formattedTime = "All Day";
+    if (rawTime) {
+        const [hours, minutes] = rawTime.split(':');
+        let h = parseInt(hours, 10);
+        const ampm = h >= 12 ? 'PM' : 'AM';
+        h = h % 12 || 12; 
+        formattedTime = `${h}:${minutes} ${ampm}`;
+    }
 
     const typeMap = {
         checkup: {
@@ -176,18 +217,13 @@ addEventBtn.addEventListener("click", () => {
         }
     };
 
-    const selectedType = typeMap[eventType] || {
-        icon: "fa-paw",
-        color: "green-event",
-        careColor: "green"
-    };
-
+    const selectedType = typeMap[eventType];
     const events = getEvents();
 
     events.push({
-        day,
+        day: eventDay,
         name: eventName,
-        time: eventTime,
+        time: formattedTime,
         icon: selectedType.icon,
         color: selectedType.color,
         careColor: selectedType.careColor
@@ -196,8 +232,7 @@ addEventBtn.addEventListener("click", () => {
     saveEvents(events);
     renderCalendar();
     renderUpcomingSchedule();
-
-    alert(`Event "${eventName}" added on May ${day}!`);
+    closeAddEventModal();
 });
 
 renderCalendar();
