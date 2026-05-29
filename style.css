@@ -784,6 +784,11 @@ body {
     cursor: pointer;
 }
 
+.add-event-modal-content {
+    width: 550px;
+    padding: 0; 
+}
+
 @media (max-width: 900px) {
     .calendar-page {
         grid-template-columns: 1fr;
