@@ -784,11 +784,6 @@ body {
     cursor: pointer;
 }
 
-.add-event-modal-content {
-    width: 550px;
-    padding: 0; 
-}
-
 @media (max-width: 900px) {
     .calendar-page {
         grid-template-columns: 1fr;
@@ -1642,7 +1637,6 @@ body {
     border-bottom-right-radius: 24px;
 }
 
-/* ── Tutorial Modal ───────────────────────────────────────────── */
 .tut-modal-content {
     background: var(--main-bg);
     width: min(820px, calc(100vw - 40px));
@@ -1666,7 +1660,10 @@ body {
     cursor: pointer;
     transition: color 0.2s;
 }
-.tut-close-btn:hover { color: var(--text-dark); }
+
+.tut-close-btn:hover { 
+    color: var(--text-dark); 
+}
 
 .tut-body {
     display: flex;
@@ -1674,7 +1671,6 @@ body {
     align-items: stretch;
 }
 
-/* Left preview panel */
 .tut-left {
     flex: 0 0 300px;
     background: #e8e4db;
@@ -1707,16 +1703,25 @@ body {
     background: var(--primary-green);
     color: #fff;
 }
-.tut-row-active i { color: #fff; }
+
+.tut-row-active i { 
+    color: #fff; 
+}
 
 .tut-row-outline {
     background: transparent;
     border: 1.5px solid #c9c3b5;
     color: var(--text-muted);
 }
-.tut-row-outline i { color: var(--text-muted); }
 
-.tut-row-arrow { margin-left: auto; font-size: 11px; }
+.tut-row-outline i { 
+    color: var(--text-muted); 
+}
+
+.tut-row-arrow { 
+    margin-left: auto; 
+    font-size: 11px; 
+}
 
 .tut-preview-spacer {
     flex: 1;
@@ -1725,7 +1730,6 @@ body {
     min-height: 80px;
 }
 
-/* Right text panel */
 .tut-right {
     flex: 1;
     display: flex;
@@ -1756,7 +1760,6 @@ body {
     line-height: 1.7;
 }
 
-/* Footer */
 .tut-footer {
     display: flex;
     align-items: center;
@@ -1776,6 +1779,7 @@ body {
     background: #d0cdc5;
     transition: background 0.2s;
 }
+
 .tut-dot-active {
     width: 24px;
     border-radius: 4px;
@@ -1792,7 +1796,10 @@ body {
     padding: 10px 4px;
     transition: color 0.2s;
 }
-.tut-btn-ghost:hover { color: var(--text-dark); }
+
+.tut-btn-ghost:hover { 
+    color: var(--text-dark); 
+}
 
 .tut-btn-primary {
     background: var(--primary-green);
@@ -1805,4 +1812,43 @@ body {
     cursor: pointer;
     transition: opacity 0.2s;
 }
-.tut-btn-primary:hover { opacity: 0.88; }
+
+.tut-btn-primary:hover { 
+    opacity: 0.88; 
+}
+
+.add-event-modal-content {
+    width: 550px;
+    padding: 0; 
+}
+
+.delete-event-btn {
+    background: #ffebeb;
+    border: none;
+    color: #d9534f;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0; 
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.care-item:hover .delete-event-btn {
+    opacity: 1; 
+}
+
+.delete-event-btn:hover {
+    background: #d9534f;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .delete-event-btn { 
+        opacity: 1; 
+    }
+}

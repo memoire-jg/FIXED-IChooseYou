@@ -2,84 +2,29 @@ const dateGrid = document.getElementById("dateGrid");
 const openAddEventBtn = document.getElementById("openAddEventBtn");
 const careList = document.getElementById("careList");
 
+const prevMonthBtn = document.getElementById("prevMonthBtn");
+const nextMonthBtn = document.getElementById("nextMonthBtn");
+const monthYearDisplay = document.getElementById("monthYearDisplay");
+const addEventMonthLabel = document.getElementById("addEventMonthLabel");
+
 const STORAGE_KEY = "petCalendarEvents";
+let currentDate = new Date(2026, 4, 1); 
 
 const defaultEvents = [
-    {
-        day: 2,
-        name: "Annual Checkup",
-        time: "10:00 AM",
-        icon: "fa-stethoscope",
-        color: "green-event",
-        careColor: "green"
-    },
-    {
-        day: 12,
-        name: "Grooming Appointment",
-        time: "2:30 PM",
-        icon: "fa-scissors",
-        color: "pink-event",
-        careColor: "pink"
-    },
-    {
-        day: 15,
-        name: "Buy New Food",
-        time: "All Day",
-        icon: "fa-bowl-food",
-        color: "yellow-event",
-        careColor: "yellow"
-    }
-];
-
-const dates = [
-    { day: 26, muted: true },
-    { day: 27, muted: true },
-    { day: 28, muted: true },
-    { day: 29, muted: true },
-    { day: 30, muted: true },
-    { day: 1 },
-    { day: 2 },
-    { day: 3 },
-    { day: 4 },
-    { day: 5 },
-    { day: 6 },
-    { day: 7 },
-    { day: 8 },
-    { day: 9 },
-    { day: 10 },
-    { day: 11 },
-    { day: 12 },
-    { day: 13 },
-    { day: 14 },
-    { day: 15 },
-    { day: 16 },
-    { day: 17 },
-    { day: 18 },
-    { day: 19 },
-    { day: 20 },
-    { day: 21 },
-    { day: 22 },
-    { day: 23 },
-    { day: 24 },
-    { day: 25 },
-    { day: 26 },
-    { day: 27 },
-    { day: 28 },
-    { day: 29 },
-    { day: 30 },
-    { day: 31 },
-    { day: 1, muted: true },
-    { day: 2, muted: true },
-    { day: 3, muted: true },
-    { day: 4, muted: true },
-    { day: 5, muted: true },
-    { day: 6, muted: true }
+    { day: 2, month: 4, year: 2026, name: "Annual Checkup", time: "10:00 AM", icon: "fa-stethoscope", color: "green-event", careColor: "green" },
+    { day: 12, month: 4, year: 2026, name: "Grooming Appointment", time: "2:30 PM", icon: "fa-scissors", color: "pink-event", careColor: "pink" },
+    { day: 15, month: 4, year: 2026, name: "Buy New Food", time: "All Day", icon: "fa-bowl-food", color: "yellow-event", careColor: "yellow" }
 ];
 
 function getEvents() {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) {
-        return JSON.parse(stored);
+        let parsed = JSON.parse(stored);
+        return parsed.map(e => ({
+            ...e,
+            month: e.month !== undefined ? e.month : 4,
+            year: e.year !== undefined ? e.year : 2026
+        }));
     }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultEvents));
     return defaultEvents;
@@ -89,11 +34,109 @@ function saveEvents(events) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(events));
 }
 
+function updateDateDropdown(daysInMonth) {
+    const newEventDateSelect = document.getElementById("newEventDate");
+    if(newEventDateSelect) {
+        newEventDateSelect.innerHTML = "";
+        for (let i = 1; i <= daysInMonth; i++) {
+            const option = document.createElement('option');
+            option.value = i;
+            option.textContent = i;
+            newEventDateSelect.appendChild(option);
+        }
+    }
+}
+
+function deleteEvent(idToDelete) {
+    if (confirm("Are you sure you want to delete this event?")) {
+        let events = getEvents();
+        
+        events = events.filter(event => {
+            const eventId = event.id || `${event.name}-${event.day}-${event.month}-${event.year}`;
+            return eventId.toString() !== idToDelete.toString();
+        });
+        
+        saveEvents(events);
+        renderCalendar();
+    }
+}
+
+function renderUpcomingSchedule() {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+    
+    const events = getEvents()
+        .filter(e => e.month === month && e.year === year)
+        .sort((a, b) => a.day - b.day);
+        
+    careList.innerHTML = "";
+
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const monthShort = monthNames[month];
+
+    events.forEach(event => {
+        const item = document.createElement("article");
+        item.className = "care-item";
+
+        const eventId = event.id || `${event.name}-${event.day}-${event.month}-${event.year}`;
+
+        item.innerHTML = `
+            <span class="care-icon ${event.careColor}">
+                <i class="fa-solid ${event.icon}"></i>
+            </span>
+            <div style="flex: 1;">
+                <h3>${event.name}</h3>
+                <p>${monthShort} ${event.day} - ${event.time}</p>
+            </div>
+            <button class="delete-event-btn" data-id="${eventId}">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+        `;
+
+        careList.appendChild(item);
+    });
+
+    document.querySelectorAll('.delete-event-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const idToDelete = this.getAttribute('data-id');
+            deleteEvent(idToDelete);
+        });
+    });
+}
+
 function renderCalendar() {
     dateGrid.innerHTML = "";
-    const events = getEvents();
+    
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
 
-    dates.forEach(date => {
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    
+    if(monthYearDisplay) monthYearDisplay.innerHTML = `${monthNames[month]}<br>${year}`;
+    if(addEventMonthLabel) addEventMonthLabel.innerText = `Date (${monthNames[month]} ${year})`;
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const daysInPrevMonth = new Date(year, month, 0).getDate();
+
+    let generatedDates = [];
+
+    for (let i = firstDay - 1; i >= 0; i--) {
+        generatedDates.push({ day: daysInPrevMonth - i, muted: true });
+    }
+
+    for (let i = 1; i <= daysInMonth; i++) {
+        generatedDates.push({ day: i, muted: false });
+    }
+
+    const remainingCells = 42 - generatedDates.length;
+    for (let i = 1; i <= remainingCells; i++) {
+        generatedDates.push({ day: i, muted: true });
+    }
+
+    const events = getEvents().filter(e => e.month === month && e.year === year);
+
+    generatedDates.forEach(date => {
         const dateBox = document.createElement("button");
         dateBox.type = "button";
         dateBox.className = "date-box";
@@ -113,43 +156,26 @@ function renderCalendar() {
 
         dateGrid.appendChild(dateBox);
     });
+
+    renderUpcomingSchedule();
+    updateDateDropdown(daysInMonth);
 }
 
-function renderUpcomingSchedule() {
-    const events = getEvents().sort((a, b) => a.day - b.day);
-    careList.innerHTML = "";
+prevMonthBtn.addEventListener("click", () => {
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    renderCalendar();
+});
 
-    events.forEach(event => {
-        const item = document.createElement("article");
-        item.className = "care-item";
-
-        item.innerHTML = `
-            <span class="care-icon ${event.careColor}">
-                <i class="fa-solid ${event.icon}"></i>
-            </span>
-            <div>
-                <h3>${event.name}</h3>
-                <p>May ${event.day} - ${event.time}</p>
-            </div>
-        `;
-
-        careList.appendChild(item);
-    });
-}
+nextMonthBtn.addEventListener("click", () => {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    renderCalendar();
+});
 
 const addEventModal = document.getElementById("addEventModal");
 const closeAddEventBtn = document.getElementById("closeAddEventBtn");
 const cancelAddEventBtn = document.getElementById("cancelAddEventBtn");
 const saveAddEventBtn = document.getElementById("saveAddEventBtn");
-const newEventDateSelect = document.getElementById("newEventDate");
 const newEventTimeInput = document.getElementById("newEventTime");
-
-for (let i = 1; i <= 31; i++) {
-    const option = document.createElement('option');
-    option.value = i;
-    option.textContent = i;
-    newEventDateSelect.appendChild(option);
-}
 
 if (newEventTimeInput) {
     newEventTimeInput.addEventListener('click', function() {
@@ -221,7 +247,10 @@ saveAddEventBtn.addEventListener('click', () => {
     const events = getEvents();
 
     events.push({
+        id: Date.now(),
         day: eventDay,
+        month: currentDate.getMonth(),
+        year: currentDate.getFullYear(),
         name: eventName,
         time: formattedTime,
         icon: selectedType.icon,
@@ -231,9 +260,7 @@ saveAddEventBtn.addEventListener('click', () => {
 
     saveEvents(events);
     renderCalendar();
-    renderUpcomingSchedule();
     closeAddEventModal();
 });
 
 renderCalendar();
-renderUpcomingSchedule();
