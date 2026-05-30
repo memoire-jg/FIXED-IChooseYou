@@ -49,7 +49,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
 
     if (isValid) {
         localStorage.setItem("petUsername", fullName.value.trim());
-        alert(`Success! Account created for ${fullName.value}.\n\n[Simulation]: Redirecting to login.`);
+        localStorage.setItem('pendingToast', 'Register successful!');
         window.location.href = "login.html";
     }
 });

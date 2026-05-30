@@ -16,7 +16,6 @@ const defaultEvents = [
     { day: 15, month: 4, year: 2026, name: "Buy New Food", time: "All Day", icon: "fa-bowl-food", color: "yellow-event", careColor: "yellow" }
 ];
 
-// ── Toast helper ─────────────────────────────────────────────────
 function showToast(message, type = 'success', duration = 3000) {
     const existing = document.getElementById('appToast');
     if (existing) existing.remove();
@@ -80,6 +79,7 @@ function deleteEvent(idToDelete) {
         
         saveEvents(events);
         renderCalendar();
+        showToast('Event deleted successfully');
     }
 }
 

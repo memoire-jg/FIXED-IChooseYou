@@ -1,3 +1,32 @@
+function showToast(message, type = 'success', duration = 3000) {
+    const existing = document.getElementById('appToast');
+    if (existing) existing.remove();
+
+    const icon = type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark';
+    const toast = document.createElement('div');
+    toast.id = 'appToast';
+    toast.className = `toast toast-${type}`;
+    toast.innerHTML = `<i class="fa-solid ${icon}"></i> ${message}`;
+    document.body.appendChild(toast);
+
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => toast.classList.add('show'));
+    });
+
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+    }, duration);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const incomingMessage = localStorage.getItem('pendingToast');
+    if (incomingMessage) {
+        showToast(incomingMessage, 'success');
+        localStorage.removeItem('pendingToast'); 
+    }
+});
+
 document.getElementById('loginForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -35,6 +64,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     if (isValid) {
         const username = email.value.trim().split("@")[0];
         localStorage.setItem("petUsername", username);
+        localStorage.setItem('pendingToast', 'Login successful!');
         window.location.href = "home.html";
     }
 });
