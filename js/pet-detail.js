@@ -1,3 +1,25 @@
+// ── Toast helper ─────────────────────────────────────────────────
+function showToast(message, type = 'success', duration = 3000) {
+    const existing = document.getElementById('appToast');
+    if (existing) existing.remove();
+
+    const icon = type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark';
+    const toast = document.createElement('div');
+    toast.id = 'appToast';
+    toast.className = `toast toast-${type}`;
+    toast.innerHTML = `<i class="fa-solid ${icon}"></i> ${message}`;
+    document.body.appendChild(toast);
+
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => toast.classList.add('show'));
+    });
+
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+    }, duration);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const savedPetStr = localStorage.getItem('selectedPet');
     let petName = 'Luna'; 
@@ -109,6 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (saveEditBtn) {
         saveEditBtn.addEventListener('click', function() {
             closeEditModal();
+            showToast('Saved changes');
         });
     }
 
@@ -117,16 +140,30 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.target === feedingModal) closeFeedingModal();
         if (e.target === groomingModal) closeGroomingModal();
         if (e.target === editModal) closeEditModal();
+        if (e.target === deleteModal) deleteModal.style.display = 'none';
     });
 
+    const deleteModal = document.getElementById('deleteModal');
+    const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+
     document.getElementById('deleteBtn').addEventListener('click', function() {
-        if (confirm(`Are you sure you want to delete ${petName}? This action cannot be undone.`)) {
-            if (petId) {
-                let myPets = JSON.parse(localStorage.getItem('myPets')) || [];
-                myPets = myPets.filter(p => p.id !== petId);
-                localStorage.setItem('myPets', JSON.stringify(myPets));
-            }
-            window.location.href = "home.html";
+        document.getElementById('deleteModalPetName').textContent = petName;
+        deleteModal.style.display = 'flex';
+    });
+
+    cancelDeleteBtn.addEventListener('click', function() {
+        deleteModal.style.display = 'none';
+    });
+
+    confirmDeleteBtn.addEventListener('click', function() {
+        if (petId) {
+            let myPets = JSON.parse(localStorage.getItem('myPets')) || [];
+            myPets = myPets.filter(p => p.id !== petId);
+            localStorage.setItem('myPets', JSON.stringify(myPets));
         }
+        localStorage.setItem('pendingToast', `${petName} deleted successfully`);
+        window.location.href = "home.html";
     });
 });
+ 

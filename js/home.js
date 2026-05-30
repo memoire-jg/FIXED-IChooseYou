@@ -11,6 +11,28 @@ const defaultPets = [
     { id: 3, name: 'Milo', species: 'Cat', breed: 'Domestic Shorthair', nextMeal: '6:00 PM', status: 'Napping' }
 ];
 
+// ── Toast helper ─────────────────────────────────────────────────
+function showToast(message, type = 'success', duration = 3000) {
+    const existing = document.getElementById('appToast');
+    if (existing) existing.remove();
+
+    const icon = type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark';
+    const toast = document.createElement('div');
+    toast.id = 'appToast';
+    toast.className = `toast toast-${type}`;
+    toast.innerHTML = `<i class="fa-solid ${icon}"></i> ${message}`;
+    document.body.appendChild(toast);
+
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => toast.classList.add('show'));
+    });
+
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+    }, duration);
+}
+
 let myPets = JSON.parse(localStorage.getItem('myPets'));
 if (!myPets) {
     myPets = defaultPets;
@@ -122,6 +144,7 @@ addPetForm.addEventListener('submit', function(e) {
     
     renderPets();
     closeModal();
+    showToast(`${newName} added successfully`);
 });
 
 petGrid.addEventListener('click', function(e) {
@@ -157,3 +180,9 @@ document.getElementById('logoutBtn').addEventListener('click', function(e) {
     e.preventDefault();
     window.location.href = "login.html";
 });
+
+const pendingToast = localStorage.getItem('pendingToast');
+if (pendingToast) {
+    showToast(pendingToast);
+    localStorage.removeItem('pendingToast');
+}
