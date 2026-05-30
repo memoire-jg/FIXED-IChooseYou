@@ -2,7 +2,7 @@ const username = localStorage.getItem("petUsername") || "Pet Parent";
 const usernameElement = document.getElementById("displayUsername");
 
 if (usernameElement) {
-  usernameElement.textContent = username;
+    usernameElement.textContent = username;
 }
 
 const defaultPets = [
@@ -11,7 +11,6 @@ const defaultPets = [
     { id: 3, name: 'Milo', species: 'Cat', breed: 'Domestic Shorthair', nextMeal: '6:00 PM', status: 'Napping' }
 ];
 
-// ── Toast helper ─────────────────────────────────────────────────
 function showToast(message, type = 'success', duration = 3000) {
     const existing = document.getElementById('appToast');
     if (existing) existing.remove();
@@ -32,6 +31,14 @@ function showToast(message, type = 'success', duration = 3000) {
         setTimeout(() => toast.remove(), 300);
     }, duration);
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const pendingToast = localStorage.getItem('pendingToast');
+    if (pendingToast) {
+        showToast(pendingToast);
+        localStorage.removeItem('pendingToast');
+    }
+});
 
 let myPets = JSON.parse(localStorage.getItem('myPets'));
 if (!myPets) {
@@ -105,7 +112,6 @@ const cancelPetBtn = document.getElementById('cancelPetBtn');
 const addPetForm = document.getElementById('addPetForm');
 
 addPetBtn.addEventListener('click', function(){
-    console.log("Masuk");
     modal.style.display = 'flex';
 });
 
@@ -180,9 +186,3 @@ document.getElementById('logoutBtn').addEventListener('click', function(e) {
     e.preventDefault();
     window.location.href = "login.html";
 });
-
-const pendingToast = localStorage.getItem('pendingToast');
-if (pendingToast) {
-    showToast(pendingToast);
-    localStorage.removeItem('pendingToast');
-}
