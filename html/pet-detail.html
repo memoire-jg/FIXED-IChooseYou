@@ -112,7 +112,7 @@
                             <div class="schedule-right">
                                 <div class="schedule-date">
                                     <p>Last Given</p>
-                                    <p>Oct 12, 2023</p>
+                                    <p>Oct 12, 2025</p>
                                 </div>
                                 <div class="status-badge badge-good">
                                     <i class="fa-solid fa-check"></i> Up to Date
@@ -131,7 +131,7 @@
                             <div class="schedule-right">
                                 <div class="schedule-date">
                                     <p>Due Date</p>
-                                    <p>Nov 15, 2024</p>
+                                    <p>Nov 15, 2026</p>
                                 </div>
                                 <div class="status-badge badge-warn">
                                     <i class="fa-solid fa-clock"></i> Due Soon
@@ -367,6 +367,24 @@
         </div>
 
     </main>
+        <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 420px; text-align: center; padding: 40px;">
+            <div class="modal-icon" style="background: #ffebeb; margin: 0 auto 18px auto;">
+                <i class="fa-solid fa-trash" style="color: #d9534f;"></i>
+            </div>
+            <h2 style="font-size: 20px; margin-bottom: 10px;">Delete Pet?</h2>
+            <p style="color: var(--text-muted); font-size: 14px; line-height: 1.6; margin-bottom: 28px;">
+                Are you sure you want to delete <strong id="deleteModalPetName"></strong>? 
+                This action cannot be undone.
+            </p>
+            <div style="display: flex; gap: 12px; justify-content: center;">
+                <button class="btn-cancel" id="cancelDeleteBtn">Cancel</button>
+                <button class="btn-save" id="confirmDeleteBtn" 
+                    style="background: #d9534f; border-color: #d9534f;">Delete</button>
+            </div>
+        </div>
+    </div>
     <script src="../js/pet-detail.js"></script>
     <script src="../js/tutorial.js"></script>
 </body>

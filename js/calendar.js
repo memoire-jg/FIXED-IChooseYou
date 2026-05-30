@@ -16,6 +16,28 @@ const defaultEvents = [
     { day: 15, month: 4, year: 2026, name: "Buy New Food", time: "All Day", icon: "fa-bowl-food", color: "yellow-event", careColor: "yellow" }
 ];
 
+// ── Toast helper ─────────────────────────────────────────────────
+function showToast(message, type = 'success', duration = 3000) {
+    const existing = document.getElementById('appToast');
+    if (existing) existing.remove();
+
+    const icon = type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark';
+    const toast = document.createElement('div');
+    toast.id = 'appToast';
+    toast.className = `toast toast-${type}`;
+    toast.innerHTML = `<i class="fa-solid ${icon}"></i> ${message}`;
+    document.body.appendChild(toast);
+
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => toast.classList.add('show'));
+    });
+
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+    }, duration);
+}
+
 function getEvents() {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) {
@@ -261,6 +283,7 @@ saveAddEventBtn.addEventListener('click', () => {
     saveEvents(events);
     renderCalendar();
     closeAddEventModal();
+    showToast('Event added successfully');
 });
 
 renderCalendar();
