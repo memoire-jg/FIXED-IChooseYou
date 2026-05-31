@@ -19,14 +19,14 @@ function injectTutorialModal() {
                         <i class="fa-solid fa-chevron-right tut-row-arrow"></i>
                     </div>
                     <div id="tut-preview-2" class="tut-preview-row">
-                        <i class="fa-solid fa-syringe"></i>
-                        <span>Vaccine Schedule</span>
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <span>Care Calendar</span>
                         <i class="fa-solid fa-chevron-right tut-row-arrow"></i>
                     </div>
                     <div class="tut-preview-spacer"></div>
                     <div id="tut-preview-3" class="tut-preview-row">
-                        <i class="fa-solid fa-utensils"></i>
-                        <span>Feeding Schedule</span>
+                        <i class="fa-solid fa-circle-question"></i>
+                        <span>FAQ</span>
                         <i class="fa-solid fa-chevron-right tut-row-arrow"></i>
                     </div>
                 </div>
@@ -55,26 +55,26 @@ function injectTutorialModal() {
     const stepsData = [
         {
             step: "STEP 1 OF 4",
-            title: "Welcome to Pet Profile",
-            desc: "This dashboard gives you a complete overview of your pet's daily needs. Let's take a quick tour of how to use these features to keep your companion happy.",
+            title: "Your Pet's Dashboard",
+            desc: "Welcome to your companion's central hub! Here you can easily access their daily care schedules, update their personal data, or manage the profile settings.",
             activePreviewId: "tut-preview-1"
         },
         {
             step: "STEP 2 OF 4",
-            title: "Keeping Track of Health",
-            desc: "The Vaccine Schedule button is your quick access to all upcoming and past immunizations. We'll remind you when it's time for the next booster, keeping your companion safe without the stress of remembering.",
+            title: "Stay on Track",
+            desc: "Click on 'Calendar' in the top navigation to view your monthly care schedule. You can track your daily streaks and see upcoming events for feeding, vaccines, and grooming!",
             activePreviewId: "tut-preview-2"
         },
         {
             step: "STEP 3 OF 4",
-            title: "Feeding Routine",
-            desc: "Never miss a meal! Check the Feeding Schedule to see portion sizes and daily timing so your furry friend stays perfectly fed.",
+            title: "Helpful Resources",
+            desc: "Have a question about your pet? Visit the 'FAQ' page to search for expert advice, filter by animal type, and learn the best tips for keeping your companion healthy and happy.",
             activePreviewId: "tut-preview-3"
         },
         {
             step: "STEP 4 OF 4",
             title: "You're All Set!",
-            desc: "You can also manage grooming, edit pet details, or delete profiles using the other buttons. Click Finish to get started with your companion!",
+            desc: "You can also manage grooming, edit pet details, or delete profiles using the dashboard controls. Click Finish to begin exploring!",
             activePreviewId: null
         }
     ];
