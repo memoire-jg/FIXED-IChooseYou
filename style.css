@@ -1840,6 +1840,7 @@ body {
 #editPetWeight,
 #newPetWeight,
 #newPetBreed,
-#editPetBreed {
+#editPetBreed,
+#newPetAge {
     padding-left: 16px;
 }
