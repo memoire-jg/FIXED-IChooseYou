@@ -1836,3 +1836,10 @@ body {
     opacity: 1;
     transform: translateY(0);
 }
+
+#editPetWeight,
+#newPetWeight,
+#newPetBreed,
+#editPetBreed {
+    padding-left: 16px;
+}
