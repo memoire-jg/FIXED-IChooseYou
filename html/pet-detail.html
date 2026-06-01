@@ -24,12 +24,14 @@
             <a href="login.html" id="logoutBtn">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
         </div>
     </nav>
+
     <main class="main-content">
         <div class="back-nav">
             <button id="backBtn" class="back-btn">
                 <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
             </button>
         </div>
+        
         <section class="pet-profile-header">
             <div class="pet-profile-img">
                 <img id="detailImage" src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=150&q=80" alt="Pet Image">
@@ -41,7 +43,9 @@
                 </span>
             </div>
         </section>
+        
         <div class="divider"></div>
+        
         <section class="action-grid">
             <div class="action-card" id="vaccineBtn">
                 <i class="fa-solid fa-syringe action-icon"></i>
@@ -70,6 +74,7 @@
             </div>
         </section>
 
+        <!-- VACCINE MODAL -->
         <div id="vaccineModal" class="modal-overlay">
             <div class="modal-content vaccine-modal-content">
                 <div class="modal-header">
@@ -78,7 +83,7 @@
                             <i class="fa-solid fa-syringe"></i>
                         </div>
                         <div>
-                            <h2 style="color: var(--text-dark); font-size: 22px; margin-bottom: 4px;" id="vaccineModalTitle">Dog Vaccine Schedule</h2>
+                            <h2 style="color: var(--text-dark); font-size: 22px; margin-bottom: 4px;" id="vaccineModalTitle">Vaccine Schedule</h2>
                             <p style="color: var(--text-muted); font-size: 14px;">Recommended care for your companion.</p>
                         </div>
                     </div>
@@ -93,75 +98,13 @@
                             <i class="fa-solid fa-info"></i>
                         </div>
                         <div class="info-text">
-                            <h3>Why Vaccinate?</h3>
-                            <p>Vaccines are crucial for protecting your pet from highly contagious and potentially fatal diseases. They help build immunity, ensuring your furry friend stays healthy and active for years to come. Following a schedule keeps their protection strong.</p>
+                            <h3>Expert Guideline</h3>
+                            <p id="vaccineAdviceText">Loading advice...</p>
                         </div>
                     </div>
 
-                    <div class="schedule-section">
-                        <h3>Core Vaccines</h3>
-                        
-                        <div class="schedule-item">
-                            <div class="schedule-left">
-                                <div class="dot"></div>
-                                <div class="schedule-item-info">
-                                    <h4>Rabies</h4>
-                                    <p>Required by law in most areas.</p>
-                                </div>
-                            </div>
-                            <div class="schedule-right">
-                                <div class="schedule-date">
-                                    <p>Last Given</p>
-                                    <p>Oct 12, 2025</p>
-                                </div>
-                                <div class="status-badge badge-good">
-                                    <i class="fa-solid fa-check"></i> Up to Date
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="schedule-item">
-                            <div class="schedule-left">
-                                <div class="dot"></div>
-                                <div class="schedule-item-info">
-                                    <h4>DHPP (Distemper, Parvo, etc.)</h4>
-                                    <p>Protects against 4 dangerous viruses.</p>
-                                </div>
-                            </div>
-                            <div class="schedule-right">
-                                <div class="schedule-date">
-                                    <p>Due Date</p>
-                                    <p>Nov 15, 2026</p>
-                                </div>
-                                <div class="status-badge badge-warn">
-                                    <i class="fa-solid fa-clock"></i> Due Soon
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="schedule-section">
-                        <h3>Lifestyle Vaccines</h3>
-                        
-                        <div class="schedule-item">
-                            <div class="schedule-left">
-                                <div class="dot" style="background: #a5a5a5;"></div>
-                                <div class="schedule-item-info">
-                                    <h4>Bordetella (Kennel Cough)</h4>
-                                    <p>Recommended if visiting parks/kennels.</p>
-                                </div>
-                            </div>
-                            <div class="schedule-right">
-                                <div class="schedule-date">
-                                    <p>Status</p>
-                                    <p>Optional</p>
-                                </div>
-                                <a href="https://www.halodoc.com/tanya-dokter/kategori/dokter-hewan?srsltid=AfmBOoqrcojCp0IP4DqS3VxUkhdthm5CkGhAbaAphXDJ51IWvZxKhuoP" target="_blank" class="status-badge badge-outline" style="text-decoration: none;">
-                                    Discuss with Vet
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Dynamic List Container -->
+                    <div id="vaccineDynamicList"></div>
 
                     <div class="modal-footer" style="border-top: 1px solid #eaeaea; padding-top: 20px; margin-top: 20px;">
                         <button type="button" class="btn-text" id="remindMeBtn">Remind Me Later</button>
@@ -171,6 +114,7 @@
             </div>
         </div>
 
+        <!-- FEEDING MODAL -->
         <div id="feedingModal" class="modal-overlay">
             <div class="modal-content feeding-modal-content">
                 <div class="modal-header-centered">
@@ -181,41 +125,22 @@
                         <i class="fa-solid fa-paw" style="color: #9c6c74;"></i>
                     </div>
                     <h2>Feeding Schedule</h2>
-                    <p class="modal-subtitle" id="feedingModalSubtitle">Recommended plan for your Dog</p>
+                    <p class="modal-subtitle" id="feedingModalSubtitle">Recommended plan</p>
                 </div>
                 
                 <div class="modal-body">
-                    <div class="feeding-card bg-green-light">
-                        <div class="feeding-card-left">
-                            <div class="feeding-icon icon-sun">
-                                <i class="fa-solid fa-sun"></i>
-                            </div>
-                            <div class="feeding-info">
-                                <h4>Morning</h4>
-                                <p><i class="fa-regular fa-clock"></i> 7:00 AM - 8:30 AM</p>
-                            </div>
+                    <div class="info-box" style="margin-bottom: 20px;">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-info"></i>
                         </div>
-                        <div class="feeding-card-right">
-                            <i class="fa-solid fa-utensils"></i>
-                            <span>1 Cup</span>
+                        <div class="info-text">
+                            <h3>Expert Guideline</h3>
+                            <p id="feedingAdviceText">Loading advice...</p>
                         </div>
                     </div>
 
-                    <div class="feeding-card bg-yellow-light">
-                        <div class="feeding-card-left">
-                            <div class="feeding-icon icon-moon">
-                                <i class="fa-solid fa-moon"></i>
-                            </div>
-                            <div class="feeding-info">
-                                <h4>Evening</h4>
-                                <p><i class="fa-regular fa-clock"></i> 6:00 PM - 7:30 PM</p>
-                            </div>
-                        </div>
-                        <div class="feeding-card-right">
-                            <i class="fa-solid fa-utensils"></i>
-                            <span>1 Cup</span>
-                        </div>
-                    </div>
+                    <!-- Dynamic List Container -->
+                    <div id="feedingDynamicList"></div>
 
                     <div class="tips-box">
                         <h4 class="tips-title"><i class="fa-solid fa-apple-whole"></i> Healthy Snack Tips</h4>
@@ -240,11 +165,12 @@
             </div>
         </div>
 
+        <!-- GROOMING MODAL -->
         <div id="groomingModal" class="modal-overlay">
             <div class="modal-content grooming-modal-content">
                 
                 <div class="modal-header-flex">
-                    <span class="pet-breed badge-pink">Dog Care</span>
+                    <span class="pet-breed badge-pink">Care Routine</span>
                     <button class="close-modal-btn" id="closeGroomingBtn">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
@@ -253,53 +179,18 @@
                 <h2 class="grooming-title">Grooming Schedule</h2>
                 <p class="modal-subtitle">Recommended routine to keep your friend happy and healthy.</p>
 
-                <div class="grooming-list">
-                    
-                    <div class="grooming-item">
-                        <div class="grooming-icon icon-bg-green">
-                            <i class="fa-solid fa-brush"></i>
-                        </div>
-                        <div class="grooming-info">
-                            <h4>Brushing</h4>
-                            <p class="frequency">Every 2 to 3 days</p>
-                            <p class="desc">Helps remove loose fur, dirt, and prevents matting. Great bonding time!</p>
-                        </div>
+                <div class="info-box" style="margin: 15px 0 25px 0;">
+                    <div class="info-icon">
+                        <i class="fa-solid fa-info"></i>
                     </div>
-
-                    <div class="grooming-item">
-                        <div class="grooming-icon icon-bg-beige">
-                            <i class="fa-solid fa-hands-bubbles"></i>
-                        </div>
-                        <div class="grooming-info">
-                            <h4>Bathing</h4>
-                            <p class="frequency">Every 4 to 6 weeks</p>
-                            <p class="desc">Use dog-specific shampoo. Avoid over-bathing to protect their natural skin oils.</p>
-                        </div>
+                    <div class="info-text">
+                        <h3>Expert Guideline</h3>
+                        <p id="groomingAdviceText">Loading advice...</p>
                     </div>
-
-                    <div class="grooming-item">
-                        <div class="grooming-icon icon-bg-pink">
-                            <i class="fa-solid fa-scissors"></i>
-                        </div>
-                        <div class="grooming-info">
-                            <h4>Nail Trimming</h4>
-                            <p class="frequency">Once a month</p>
-                            <p class="desc">If you hear clicking on the floor, it's time for a trim. Be careful not to cut the quick.</p>
-                        </div>
-                    </div>
-
-                    <div class="grooming-item">
-                        <div class="grooming-icon icon-bg-grey">
-                            <i class="fa-solid fa-tooth"></i>
-                        </div>
-                        <div class="grooming-info">
-                            <h4>Teeth Cleaning</h4>
-                            <p class="frequency">Daily or every other day</p>
-                            <p class="desc">Crucial for long-term health. Use enzymatic toothpaste designed for dogs.</p>
-                        </div>
-                    </div>
-                    
                 </div>
+
+                <!-- Dynamic List Container -->
+                <div class="grooming-list" id="groomingDynamicList"></div>
 
                 <div class="modal-footer-full">
                     <button class="btn-save btn-full-width" id="addToCalendarBtn">Add to My Calendar</button>
@@ -308,6 +199,7 @@
             </div>
         </div>
 
+        <!-- EDIT MODAL -->
         <div id="editModal" class="modal-overlay">
             <div class="modal-content edit-modal-content">
                 
@@ -321,7 +213,7 @@
                 <div class="modal-body edit-modal-body">
                     <div class="photo-upload-section">
                         <div class="photo-preview">
-                            <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=150&q=80" alt="Pet Profile">
+                            <img id="editPetImage" src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=150&q=80" alt="Pet Profile">
                         </div>
                         <p class="photo-hint">Tap to change photo</p>
                     </div>
@@ -349,7 +241,7 @@
                                 </div>
                             </div>
                             <div class="input-group">
-                                <label>Weight</label>
+                                <label>Weight (kg)</label>
                                 <div class="input-wrapper">
                                     <input type="text" id="editPetWeight" value="3 kg">
                                 </div>
@@ -367,7 +259,8 @@
         </div>
 
     </main>
-        <!-- Delete Confirmation Modal -->
+
+    <!-- Delete Confirmation Modal -->
     <div id="deleteModal" class="modal-overlay">
         <div class="modal-content" style="max-width: 420px; text-align: center; padding: 40px;">
             <div class="modal-icon" style="background: #ffebeb; margin: 0 auto 18px auto;">
@@ -385,6 +278,22 @@
             </div>
         </div>
     </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">I Choose You</div>
+            
+            <div class="footer-copyright">
+                &copy; 2026 I Choose You. All rights reserved.
+            </div>
+            
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+    </footer>
     <script src="../js/pet-detail.js"></script>
     <script src="../js/tutorial.js"></script>
 </body>

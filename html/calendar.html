@@ -44,11 +44,7 @@
                 </button>
 
                 <p>Keep track of your furry friend's schedule.</p>
-
-                <div class="streak-pill">
-                    <i class="fa-solid fa-fire"></i>
-                    <span>7 Day<br>Streak!</span>
-                </div>
+                <i class="fa-solid fa-paw" style="font-size: 80px; opacity: 0.50; color: currentColor;"></i>
             </div>
 
             <div class="calendar-card">
@@ -143,6 +139,39 @@
         </div>
     </main>
 
+        <!-- Delete Event Confirmation Modal -->
+    <div id="deleteEventModal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 420px; text-align: center; padding: 40px;">
+            <div class="modal-icon" style="background: #ffebeb; margin: 0 auto 18px auto;">
+                <i class="fa-solid fa-trash" style="color: #d9534f;"></i>
+            </div>
+            <h2 style="font-size: 20px; margin-bottom: 10px;">Delete Event?</h2>
+            <p style="color: var(--text-muted); font-size: 14px; line-height: 1.6; margin-bottom: 28px;">
+                Are you sure you want to delete <strong id="deleteEventName"></strong>? 
+                This action cannot be undone.
+            </p>
+            <div style="display: flex; gap: 12px; justify-content: center;">
+                <button class="btn-cancel" id="cancelDeleteEventBtn">Cancel</button>
+                <button class="btn-save" id="confirmDeleteEventBtn" 
+                    style="background: #d9534f; border-color: #d9534f;">Delete</button>
+            </div>
+        </div>
+    </div>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">I Choose You</div>
+            
+            <div class="footer-copyright">
+                &copy; 2026 I Choose You. All rights reserved.
+            </div>
+            
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+    </footer>
     <script src="../js/calendar.js"></script>
     <script src="../js/tutorial.js"></script>
 </body>
