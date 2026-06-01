@@ -171,8 +171,12 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('editPetName').value = petName;
         document.getElementById('editPetType').value = petSpecies;
         document.getElementById('editPetWeight').value = petWeight;
+        
+        document.getElementById('editPetImage').src = petImgSrc; 
+        
         editModal.style.display = 'flex';
     });
+    
     const closeEditModal = () => editModal.style.display = 'none';
     document.getElementById('closeEditBtn').addEventListener('click', closeEditModal);
     document.getElementById('cancelEditBtn').addEventListener('click', closeEditModal);
