@@ -172,7 +172,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('editPetType').value = petSpecies;
         document.getElementById('editPetWeight').value = petWeight;
         
-        // This updates the photo in the edit modal!
         document.getElementById('editPetImage').src = petImgSrc; 
         
         editModal.style.display = 'flex';
