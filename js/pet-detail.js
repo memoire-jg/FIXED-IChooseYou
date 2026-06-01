@@ -171,8 +171,13 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('editPetName').value = petName;
         document.getElementById('editPetType').value = petSpecies;
         document.getElementById('editPetWeight').value = petWeight;
+        
+        // This updates the photo in the edit modal!
+        document.getElementById('editPetImage').src = petImgSrc; 
+        
         editModal.style.display = 'flex';
     });
+    
     const closeEditModal = () => editModal.style.display = 'none';
     document.getElementById('closeEditBtn').addEventListener('click', closeEditModal);
     document.getElementById('cancelEditBtn').addEventListener('click', closeEditModal);
