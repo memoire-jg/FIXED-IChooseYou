@@ -68,20 +68,65 @@ function updateDateDropdown(daysInMonth) {
     }
 }
 
+// Replace this:
 function deleteEvent(idToDelete) {
     if (confirm("Are you sure you want to delete this event?")) {
         let events = getEvents();
-        
         events = events.filter(event => {
             const eventId = event.id || `${event.name}-${event.day}-${event.month}-${event.year}`;
             return eventId.toString() !== idToDelete.toString();
         });
-        
         saveEvents(events);
         renderCalendar();
         showToast('Event deleted successfully');
     }
 }
+
+// With this:
+const deleteEventModal = document.getElementById('deleteEventModal');
+const cancelDeleteEventBtn = document.getElementById('cancelDeleteEventBtn');
+const confirmDeleteEventBtn = document.getElementById('confirmDeleteEventBtn');
+let pendingDeleteId = null;
+
+function deleteEvent(idToDelete) {
+    // Find event name to show in modal
+    const events = getEvents();
+    const event = events.find(e => {
+        const eventId = e.id || `${e.name}-${e.day}-${e.month}-${e.year}`;
+        return eventId.toString() === idToDelete.toString();
+    });
+    document.getElementById('deleteEventName').textContent = event ? event.name : 'this event';
+    pendingDeleteId = idToDelete;
+    deleteEventModal.style.display = 'flex';
+}
+
+cancelDeleteEventBtn.addEventListener('click', () => {
+    deleteEventModal.style.display = 'none';
+    pendingDeleteId = null;
+});
+
+confirmDeleteEventBtn.addEventListener('click', () => {
+    if (pendingDeleteId !== null) {
+        let events = getEvents();
+        events = events.filter(e => {
+            const eventId = e.id || `${e.name}-${e.day}-${e.month}-${e.year}`;
+            return eventId.toString() !== pendingDeleteId.toString();
+        });
+        saveEvents(events);
+        renderCalendar();
+        deleteEventModal.style.display = 'none';
+        pendingDeleteId = null;
+        showToast('Event deleted successfully');
+    }
+});
+
+window.addEventListener('click', function(e) {
+    if (e.target === deleteEventModal) {
+        deleteEventModal.style.display = 'none';
+        pendingDeleteId = null;
+    }
+    if (e.target === addEventModal) closeAddEventModal();
+});
 
 function renderUpcomingSchedule() {
     const year = currentDate.getFullYear();

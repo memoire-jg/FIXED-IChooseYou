@@ -25,12 +25,19 @@ document.addEventListener('DOMContentLoaded', function() {
     let petName = 'Luna'; 
     let petId = null;
     let petSpecies = 'Dog';
+    let petBreed = '';
+    let petWeight = '';
+    let petImgSrc = '';
+    let petData = null;
 
     if (savedPetStr) {
-        const petData = JSON.parse(savedPetStr);
+        petData = JSON.parse(savedPetStr);
         petName = petData.name;
         petId = petData.id;
         petSpecies = petData.species;
+        petBreed = petData.breed || '';
+        petWeight = petData.weight || '';
+        petImgSrc = petData.imgSrc || '';
         
         document.getElementById('detailName').innerText = petData.name;
         document.getElementById('detailSpecies').innerText = petData.species;
@@ -56,14 +63,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const remindMeBtn = document.getElementById('remindMeBtn');
     const gotItBtn = document.getElementById('gotItBtn');
 
-    vaccineBtn.addEventListener('click', function() {
-        vaccineModal.style.display = 'flex';
-    });
-
-    function closeVaccineModal() {
-        vaccineModal.style.display = 'none';
-    }
-
+    vaccineBtn.addEventListener('click', function() { vaccineModal.style.display = 'flex'; });
+    function closeVaccineModal() { vaccineModal.style.display = 'none'; }
     closeVaccineBtn.addEventListener('click', closeVaccineModal);
     remindMeBtn.addEventListener('click', closeVaccineModal);
     gotItBtn.addEventListener('click', closeVaccineModal);
@@ -73,14 +74,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeFeedingBtn = document.getElementById('closeFeedingBtn');
     const feedingGotItBtn = document.getElementById('feedingGotItBtn');
 
-    feedingBtn.addEventListener('click', function() {
-        feedingModal.style.display = 'flex';
-    });
-
-    function closeFeedingModal() {
-        feedingModal.style.display = 'none';
-    }
-
+    feedingBtn.addEventListener('click', function() { feedingModal.style.display = 'flex'; });
+    function closeFeedingModal() { feedingModal.style.display = 'none'; }
     closeFeedingBtn.addEventListener('click', closeFeedingModal);
     feedingGotItBtn.addEventListener('click', closeFeedingModal);
 
@@ -90,23 +85,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const addToCalendarBtn = document.getElementById('addToCalendarBtn');
 
     if (groomingBtn) {
-        groomingBtn.addEventListener('click', function() {
-            groomingModal.style.display = 'flex';
-        });
+        groomingBtn.addEventListener('click', function() { groomingModal.style.display = 'flex'; });
     }
-
     function closeGroomingModal() {
         if (groomingModal) groomingModal.style.display = 'none';
     }
-
-    if (closeGroomingBtn) {
-        closeGroomingBtn.addEventListener('click', closeGroomingModal);
-    }
-
+    if (closeGroomingBtn) closeGroomingBtn.addEventListener('click', closeGroomingModal);
     if (addToCalendarBtn) {
-        addToCalendarBtn.addEventListener('click', function() {
-            window.location.href = "calendar.html"; 
-        });
+        addToCalendarBtn.addEventListener('click', function() { window.location.href = "calendar.html"; });
     }
 
     const editModal = document.getElementById('editModal');
@@ -117,6 +103,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (editBtn) {
         editBtn.addEventListener('click', function() {
+            // Pre-fill all fields with current pet data
+            const nameInput = document.getElementById('editPetName');
+            const typeSelect = document.getElementById('editPetType');
+            const weightInput = document.getElementById('editPetWeight');
+            const photoPreview = document.querySelector('.photo-preview img');
+
+            if (nameInput) nameInput.value = petName;
+            if (typeSelect) typeSelect.value = petSpecies;
+            if (weightInput) weightInput.value = petWeight;
+            if (photoPreview && petImgSrc) photoPreview.src = petImgSrc;
+
             editModal.style.display = 'flex';
         });
     }
@@ -130,8 +127,38 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (saveEditBtn) {
         saveEditBtn.addEventListener('click', function() {
+            const nameInput = document.getElementById('editPetName');
+            const typeSelect = document.getElementById('editPetType');
+            const weightInput = document.getElementById('editPetWeight');
+
+            if (nameInput) petName = nameInput.value || petName;
+            if (typeSelect) petSpecies = typeSelect.value;
+            if (weightInput) petWeight = weightInput.value;
+
+            // Update localStorage selectedPet
+            if (petData) {
+                petData.name = petName;
+                petData.species = petSpecies;
+                petData.weight = petWeight;
+                localStorage.setItem('selectedPet', JSON.stringify(petData));
+            }
+
+            // Update myPets list
+            let myPets = JSON.parse(localStorage.getItem('myPets')) || [];
+            myPets = myPets.map(p => {
+                if (p.id === petId) {
+                    return { ...p, name: petName, species: petSpecies, weight: petWeight };
+                }
+                return p;
+            });
+            localStorage.setItem('myPets', JSON.stringify(myPets));
+
+            // Update visible page elements
+            document.getElementById('detailName').innerText = petName;
+            document.getElementById('detailSpecies').innerText = petSpecies;
+
             closeEditModal();
-            showToast('Saved changes');
+            showToast('Changes saved successfully');
         });
     }
 
@@ -166,4 +193,3 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = "home.html";
     });
 });
- 

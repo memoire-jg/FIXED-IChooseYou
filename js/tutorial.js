@@ -15,12 +15,12 @@ function injectTutorialModal() {
                     <div class="tut-preview-avatar"></div>
                     <div id="tut-preview-1" class="tut-preview-row">
                         <i class="fa-solid fa-house"></i>
-                        <span>Dashboard Overview</span>
+                        <span>Home</span>
                         <i class="fa-solid fa-chevron-right tut-row-arrow"></i>
                     </div>
                     <div id="tut-preview-2" class="tut-preview-row">
                         <i class="fa-solid fa-calendar-days"></i>
-                        <span>Care Calendar</span>
+                        <span>Calendar</span>
                         <i class="fa-solid fa-chevron-right tut-row-arrow"></i>
                     </div>
                     <div class="tut-preview-spacer"></div>
