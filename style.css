@@ -244,6 +244,10 @@ body {
     padding-bottom: 5px;
 }
 
+.nav-links a:hover {
+    font-weight: 600;
+}
+
 .nav-links a.active {
     color: var(--primary-green);
     font-weight: 600;
@@ -793,6 +797,10 @@ body {
     font-size: 13px;
     font-weight: 700;
     cursor: pointer;
+}
+
+.add-event-btn:hover {
+    background-color: rgb(39, 88, 57);
 }
 
 @media (max-width: 900px) {
@@ -1587,7 +1595,7 @@ body {
 
 .edit-modal-footer {
     display: flex;
-    justify-content: center;
+    justify-content: right;
     gap: 15px;
     padding: 25px 35px;
     border-top: 1px solid #eaeaea;
