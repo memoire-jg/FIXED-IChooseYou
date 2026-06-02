@@ -1,11 +1,12 @@
+// ── Data & Guidelines ──────────────────────────────────────────────
 const speciesCareGuidelines = {
     'Dog': {
         feedingAdvice: "Routine meals twice a day: once in the morning and once in the evening.",
-        vaccineAdvice: "Annual routine vaccination (preceded by initial life boosters).",
+        vaccineAdvice: "Initial vaccine, followed by two boosters, then an annual routine.",
         groomingAdvice: "Bathe once a month for short-haired breeds, and every 2 weeks for long-haired breeds.",
         vaccines: [
-            { name: "Rabies", desc: "Required by law in most areas.", label: "Last Given", date: "Oct 12, 2025", status: "Up to Date", statusClass: "badge-good", statusIcon: "fa-check" },
-            { name: "DHPP", desc: "Protects against 4 dangerous viruses.", label: "Due Date", date: "Nov 15, 2026", status: "Due Soon", statusClass: "badge-warn", statusIcon: "fa-clock" }
+            { name: "Core Vaccines", desc: "Initial shot + 2 boosters, then annual.", label: "Last Given", date: "Oct 12, 2025", status: "Up to Date", statusClass: "badge-good", statusIcon: "fa-check" },
+            { name: "Rabies", desc: "Highly recommended for outdoor or hunting dogs.", label: "Due Date", date: "Nov 15, 2026", status: "Due Soon", statusClass: "badge-warn", statusIcon: "fa-clock" }
         ],
         feeding: [
             { title: "Morning", time: "7:00 AM - 8:30 AM", amount: "1 Cup", icon: "fa-sun", bg: "bg-green-light", iconBg: "icon-sun" },
@@ -20,11 +21,11 @@ const speciesCareGuidelines = {
     },
     'Cat': {
         feedingAdvice: "Routine meals twice a day: once in the morning and once in the evening.",
-        vaccineAdvice: "Annual routine vaccination (preceded by initial life boosters).",
+        vaccineAdvice: "Initial vaccine, followed by one booster, then an annual routine.",
         groomingAdvice: "Bathe once a month for short-haired breeds, and every 2 weeks for long-haired breeds.",
         vaccines: [
-            { name: "Rabies", desc: "Required by law in most areas.", label: "Last Given", date: "Oct 12, 2025", status: "Up to Date", statusClass: "badge-good", statusIcon: "fa-check" },
-            { name: "FVRCP", desc: "Feline viral rhinotracheitis, calicivirus, and panleukopenia.", label: "Due Date", date: "Nov 15, 2026", status: "Due Soon", statusClass: "badge-warn", statusIcon: "fa-clock" }
+            { name: "Core (F3/Tricat)", desc: "Initial shot + 1 booster, then annual.", label: "Last Given", date: "Oct 12, 2025", status: "Up to Date", statusClass: "badge-good", statusIcon: "fa-check" },
+            { name: "Rabies", desc: "Recommended if traveling or living in endemic areas.", label: "Due Date", date: "Nov 15, 2026", status: "Due Soon", statusClass: "badge-warn", statusIcon: "fa-clock" }
         ],
         feeding: [
             { title: "Morning", time: "7:00 AM - 8:30 AM", amount: "1/2 Cup", icon: "fa-sun", bg: "bg-green-light", iconBg: "icon-sun" },
@@ -37,8 +38,8 @@ const speciesCareGuidelines = {
     },
     'Bunny': {
         feedingAdvice: "Provide constant access to fresh hay and water, supplemented with specific pellets.",
-        vaccineAdvice: "Primary vaccination is typically only Rabies (Optional).",
-        groomingAdvice: "Minimize bathing and intense grooming. Bunnies stress very easily.",
+        vaccineAdvice: "Typically limited to the Rabies vaccine depending on the area.",
+        groomingAdvice: "Minimize bathing as they stress easily, which can lead to fatal health drops.",
         vaccines: [
             { name: "Rabies", desc: "Optional in most areas.", label: "Status", date: "Consult Vet", status: "Optional", statusClass: "badge-outline", statusIcon: "fa-user-doctor" }
         ],
@@ -56,12 +57,12 @@ const speciesCareGuidelines = {
         vaccineAdvice: "Requires AI (Avian Influenza) and ND (Newcastle Disease) vaccinations.",
         groomingAdvice: "Provide a shallow bird bath for self-cleaning; avoid forceful washing.",
         vaccines: [
-            { name: "Avian Influenza", desc: "Protects against AI.", label: "Last Given", date: "Jan 10, 2026", status: "Up to Date", statusClass: "badge-good", statusIcon: "fa-check" },
-            { name: "Newcastle Disease", desc: "Crucial for bird health.", label: "Due Date", date: "Mar 01, 2026", status: "Due Soon", statusClass: "badge-warn", statusIcon: "fa-clock" }
+            { name: "Avian Influenza (AI)", desc: "Protects against AI.", label: "Last Given", date: "Jan 10, 2026", status: "Up to Date", statusClass: "badge-good", statusIcon: "fa-check" },
+            { name: "Newcastle Disease (ND)", desc: "Crucial for bird health.", label: "Due Date", date: "Mar 01, 2026", status: "Due Soon", statusClass: "badge-warn", statusIcon: "fa-clock" }
         ],
         feeding: [
-            { title: "Morning", time: "7:00 AM", amount: "Fresh Seeds", icon: "fa-sun", bg: "bg-green-light", iconBg: "icon-sun" },
-            { title: "Evening", time: "5:00 PM", amount: "Supplements", icon: "fa-moon", bg: "bg-yellow-light", iconBg: "icon-moon" }
+            { title: "Morning", time: "7:00 AM", amount: "Fresh Seeds & Cleanup", icon: "fa-sun", bg: "bg-green-light", iconBg: "icon-sun" },
+            { title: "Evening", time: "5:00 PM", amount: "Supplements/Boosters", icon: "fa-moon", bg: "bg-yellow-light", iconBg: "icon-moon" }
         ],
         grooming: [
             { title: "Bird Bath", freq: "2-3 times a week", desc: "Provide shallow water for self-cleaning.", icon: "fa-water", bg: "icon-bg-green" },
@@ -69,21 +70,36 @@ const speciesCareGuidelines = {
         ]
     },
     'Fish': {
-        feedingAdvice: "Can be fed daily, especially to encourage physical growth.",
-        vaccineAdvice: "Not applicable. Focus on environmental health.",
-        groomingAdvice: "Strict maintenance of water pH and filtration cleanliness is required.",
-        vaccines: [],
+        feedingAdvice: "Feed daily to encourage growth, but ensure leftover food is removed immediately.",
+        vaccineAdvice: "No vaccines required. Use treatments like Methylene Blue periodically.",
+        groomingAdvice: "Strict maintenance of water pH, frequent cleaning, and excellent filtration are required.",
+        vaccines: [
+            { name: "Methylene Blue", desc: "Anti-fungal & anti-parasite treatment for the tank.", label: "Frequency", date: "Periodically", status: "Maintenance", statusClass: "badge-good", statusIcon: "fa-droplet" }
+        ],
         feeding: [
             { title: "Daily Feeding", time: "Morning or Evening", amount: "A small pinch", icon: "fa-fish-fins", bg: "bg-green-light", iconBg: "icon-sun" }
         ],
         grooming: [
-            { title: "Water Check", freq: "Weekly", desc: "Monitor pH and ammonia levels.", icon: "fa-vial", bg: "icon-bg-green" },
+            { title: "Water Quality Check", freq: "Weekly", desc: "Monitor pH and ammonia levels due to waste.", icon: "fa-vial", bg: "icon-bg-green" },
             { title: "Filter Cleaning", freq: "Monthly", desc: "Rinse filter media in old tank water.", icon: "fa-filter", bg: "icon-bg-beige" },
             { title: "Water Change", freq: "Every 2 weeks", desc: "Change 20-30% of the tank water.", icon: "fa-droplet", bg: "icon-bg-pink" }
         ]
     }
 };
 
+// ── Image Helper ─────────────────────────────────────────────────
+function getDefaultImg(species) {
+    const imgs = {
+        'Dog':   'https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=150&q=80',
+        'Cat':   'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=150&q=80',
+        'Fish':  'https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?auto=format&fit=crop&w=150&q=80',
+        'Bird':  'https://images.unsplash.com/photo-1444464666168-49d633b86797?auto=format&fit=crop&w=150&q=80',
+        'Bunny': 'https://images.unsplash.com/photo-1583301286816-f4f05e1e8b25?auto=format&fit=crop&w=150&q=80'
+    };
+    return imgs[species] || imgs['Dog'];
+}
+
+// ── Toast helper ─────────────────────────────────────────────────
 function showToast(message, type = 'success', duration = 3000) {
     const existing = document.getElementById('appToast');
     if (existing) existing.remove();
@@ -105,6 +121,7 @@ function showToast(message, type = 'success', duration = 3000) {
     }, duration);
 }
 
+// ── Main Logic ───────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function() {
     const savedPetStr = localStorage.getItem('selectedPet');
     let petName = 'Luna'; 
@@ -122,12 +139,14 @@ document.addEventListener('DOMContentLoaded', function() {
         petSpecies = petData.species;
         petBreed = petData.breed || '';
         petWeight = petData.weight || '';
-        petImgSrc = petData.imgSrc || '';
+        
+        // Make sure we have an image, or fall back to default
+        petImgSrc = petData.imgSrc || getDefaultImg(petSpecies);
         
         document.getElementById('detailName').innerText = petData.name;
         document.getElementById('detailSpecies').innerText = petData.species;
-        document.getElementById('detailIcon').className = petData.iconClass;
-        document.getElementById('detailImage').src = petData.imgSrc;
+        document.getElementById('detailIcon').className = petData.iconClass || 'fa-solid fa-paw';
+        document.getElementById('detailImage').src = petImgSrc;
         
         document.getElementById('vaccineModalTitle').innerText = `${petSpecies} Vaccine Schedule`;
         document.getElementById('feedingModalSubtitle').innerText = `Recommended plan for your ${petSpecies}`;
@@ -143,6 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
         renderGrooming(advice.grooming);
     }
 
+    // Modal Triggers
     document.getElementById('backBtn').addEventListener('click', () => window.location.href = "home.html");
     document.getElementById('logoutBtn').addEventListener('click', (e) => { e.preventDefault(); window.location.href = "login.html"; });
 
@@ -167,11 +187,11 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('addToCalendarBtn').addEventListener('click', () => window.location.href = "calendar.html");
 
     const editModal = document.getElementById('editModal');
+    
     document.getElementById('editBtn').addEventListener('click', () => {
         document.getElementById('editPetName').value = petName;
         document.getElementById('editPetType').value = petSpecies;
         document.getElementById('editPetWeight').value = petWeight;
-        
         document.getElementById('editPetImage').src = petImgSrc; 
         
         editModal.style.display = 'flex';
@@ -181,15 +201,25 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('closeEditBtn').addEventListener('click', closeEditModal);
     document.getElementById('cancelEditBtn').addEventListener('click', closeEditModal);
     
+    // --- NEW: Live Image Swapping in the Modal ---
+    document.getElementById('editPetType').addEventListener('change', (e) => {
+        const tempSpecies = e.target.value;
+        document.getElementById('editPetImage').src = getDefaultImg(tempSpecies);
+    });
+
     document.getElementById('saveEditBtn').addEventListener('click', () => {
         petName = document.getElementById('editPetName').value || petName;
         petSpecies = document.getElementById('editPetType').value;
         petWeight = document.getElementById('editPetWeight').value;
 
+        // Forcefully grab the new image based on the chosen species
+        petImgSrc = getDefaultImg(petSpecies);
+
         if (petData) {
             petData.name = petName;
             petData.species = petSpecies;
             petData.weight = petWeight;
+            petData.imgSrc = petImgSrc; // Save the updated image into the object
             localStorage.setItem('selectedPet', JSON.stringify(petData));
         }
 
@@ -197,11 +227,14 @@ document.addEventListener('DOMContentLoaded', function() {
         myPets = myPets.map(p => p.id === petId ? { ...p, name: petName, species: petSpecies, weight: petWeight } : p);
         localStorage.setItem('myPets', JSON.stringify(myPets));
 
+        // Instantly update the main page
         document.getElementById('detailName').innerText = petName;
         document.getElementById('detailSpecies').innerText = petSpecies;
+        document.getElementById('detailImage').src = petImgSrc; 
+        
         closeEditModal();
         showToast('Changes saved successfully');
-        setTimeout(() => location.reload(), 1000); // Reload to fetch new species data
+        setTimeout(() => location.reload(), 1000); 
     });
 
     window.addEventListener('click', (e) => {
@@ -229,6 +262,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// ── Dynamic Rendering Functions ──────────────────────────────────
 function renderVaccines(vaccines) {
     const container = document.getElementById('vaccineDynamicList');
     if (!container) return;
