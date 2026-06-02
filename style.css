@@ -1918,3 +1918,38 @@ body {
         gap: 16px;
     }
 }
+
+/* --- Spotlight Tour Overlay Base --- */
+#tutorial-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 9998;
+    transition: opacity 0.25s ease;
+    display: none;
+}
+
+/* --- Clean, Modular Spotlight Tooltip Card --- */
+#tutorial-tooltip {
+    position: absolute;
+    background-color: #ffffff;
+    padding: 22px;
+    border-radius: 14px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+    max-width: 340px;
+    transition: top 0.25s ease, left 0.25s ease;
+    display: none;
+}
+
+/* --- Dynamic Spotlight Element Highlight Styles --- */
+.tutorial-highlight {
+    z-index: 9999 !important;
+    position: relative !important; /* Forces static nodes to establish layout context */
+    border-radius: 20px !important;
+    box-shadow: 0 0 0 10px rgba(162, 171, 132, 0.65), 0 6px 22px rgba(0, 0, 0, 0.18) !important;
+    transition: box-shadow 0.2s ease, border-radius 0.2s ease !important;
+}
