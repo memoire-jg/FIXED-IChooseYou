@@ -6,6 +6,12 @@ const prevMonthBtn = document.getElementById("prevMonthBtn");
 const nextMonthBtn = document.getElementById("nextMonthBtn");
 const monthYearDisplay = document.getElementById("monthYearDisplay");
 const addEventMonthLabel = document.getElementById("addEventMonthLabel");
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+
+navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+});
 
 const STORAGE_KEY = "petCalendarEvents";
 let currentDate = new Date(2026, 4, 1); 

@@ -1,3 +1,10 @@
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+
+navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+});
+
 const speciesCareGuidelines = {
     'Dog': {
         feedingAdvice: "Routine meals twice a day: once in the morning and once in the evening.",

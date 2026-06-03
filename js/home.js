@@ -1,5 +1,11 @@
 const username = localStorage.getItem("petUsername") || "Pet Parent";
 const usernameElement = document.getElementById("displayUsername");
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+
+navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+});
 
 if (usernameElement) {
     usernameElement.textContent = username;

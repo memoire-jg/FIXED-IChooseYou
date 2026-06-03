@@ -14,11 +14,19 @@
             <i class="fa-solid fa-paw"></i>
             <span>I Choose You</span>
         </div>
-        <ul class="nav-links">
-            <li><a href="#" class="active">Home</a></li>
+        
+        <button class="nav-toggle" id="navToggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="home.html" class="active">Home</a></li>
             <li><a href="calendar.html">Calendar</a></li>
             <li><a href="faq.html">FAQ</a></li>
             <li><a href="#">Tutorial</a></li>
+            <li class="logout-mobile">
+                <a href="login.html" id="logoutBtn">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+            </li>
         </ul>
         <div class="nav-logout">
             <a href="login.html" id="logoutBtn">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
@@ -129,5 +137,6 @@
         </div>
     </footer>
     <script src="../js/home.js"></script>
+    <script src="../js/tutorial.js"></script>
 </body>
 </html>
