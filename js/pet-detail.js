@@ -132,6 +132,40 @@ document.addEventListener('DOMContentLoaded', function() {
     let petImgSrc = '';
     let petData = null;
 
+    function buildReminderPreset(scheduleType) {
+        const presetMap = {
+            vaccine: {
+                name: `Vaccine Schedule - ${petName}`,
+                eventType: 'checkup'
+            },
+            feeding: {
+                name: `Feeding Schedule - ${petName}`,
+                eventType: 'food'
+            },
+            grooming: {
+                name: `Grooming Schedule - ${petName}`,
+                eventType: 'grooming'
+            }
+        };
+
+        return presetMap[scheduleType] || presetMap.vaccine;
+    }
+
+    function openCalendarWithReminder(scheduleType) {
+        const preset = buildReminderPreset(scheduleType);
+        localStorage.setItem('pendingReminderPreset', JSON.stringify({
+            source: scheduleType,
+            title: preset.name,
+            repeat: scheduleType === 'feeding' ? 'daily' : 'once',
+            dueDate: scheduleType === 'vaccine' ? '2026-11-15' : '',
+            dueTime: scheduleType === 'feeding' ? '08:00' : '',
+            slot: scheduleType === 'feeding' ? 'morning' : '',
+            groomingKind: scheduleType === 'grooming' ? 'Brushing' : '',
+            openModal: true
+        }));
+        window.location.href = 'calendar.html';
+    }
+
     if (savedPetStr) {
         petData = JSON.parse(savedPetStr);
         petName = petData.name;
@@ -170,13 +204,14 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('vaccineBtn').addEventListener('click', () => vaccineModal.style.display = 'flex');
     const closeVaccineModal = () => vaccineModal.style.display = 'none';
     document.getElementById('closeVaccineBtn').addEventListener('click', closeVaccineModal);
-    document.getElementById('remindMeBtn').addEventListener('click', closeVaccineModal);
+    document.getElementById('remindMeBtn').addEventListener('click', () => openCalendarWithReminder('vaccine'));
     document.getElementById('gotItBtn').addEventListener('click', closeVaccineModal);
 
     const feedingModal = document.getElementById('feedingModal');
     document.getElementById('feedingBtn').addEventListener('click', () => feedingModal.style.display = 'flex');
     const closeFeedingModal = () => feedingModal.style.display = 'none';
     document.getElementById('closeFeedingBtn').addEventListener('click', closeFeedingModal);
+    document.getElementById('feedingRemindBtn').addEventListener('click', () => openCalendarWithReminder('feeding'));
     document.getElementById('feedingGotItBtn').addEventListener('click', closeFeedingModal);
 
     const groomingModal = document.getElementById('groomingModal');
@@ -184,7 +219,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (groomingBtn) groomingBtn.addEventListener('click', () => groomingModal.style.display = 'flex');
     const closeGroomingModal = () => { if (groomingModal) groomingModal.style.display = 'none'; }
     document.getElementById('closeGroomingBtn').addEventListener('click', closeGroomingModal);
-    document.getElementById('addToCalendarBtn').addEventListener('click', () => window.location.href = "calendar.html");
+    document.getElementById('groomingRemindBtn').addEventListener('click', () => openCalendarWithReminder('grooming'));
+    document.getElementById('groomingGotItBtn').addEventListener('click', closeGroomingModal);
 
     const editModal = document.getElementById('editModal');
     
