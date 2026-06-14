@@ -182,6 +182,8 @@ body {
     margin-top: 30px; 
     padding-top: 20px; 
     border-top: 1px solid #f0f0f0; 
+    position: absolute;
+    bottom: 0;
 }
 
 .footer p { 
@@ -295,6 +297,7 @@ body {
     padding: clamp(10px, 6vw, 60px);
     max-width: 1000px;
     margin: 0 auto;
+    min-height: 100vh;
 }
 
 /* HOME */
@@ -647,19 +650,6 @@ body {
     line-height: 1.4;
 }
 
-.streak-pill {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    min-width: 146px;
-    padding: 16px 24px;
-    color: #ffffff;
-    background: linear-gradient(135deg, #ff8357, #ff4d4d);
-    border-radius: 999px;
-    font-size: 13px;
-    font-weight: 700;
-}
-
 .calendar-card,
 .care-card {
     background: #ffffff;
@@ -942,6 +932,7 @@ body {
     background: #fffdf6;
     border-radius: 16px;
     box-shadow: 0 12px 24px rgba(74, 86, 72, 0.12);
+    padding: 10px;
 }
 
 .faq-question {
@@ -2001,6 +1992,7 @@ body {
 }
 
 @media (max-width: 720px) {
+    /* responsive navigaion */
     .top-nav {
         padding: 20px;
     }
@@ -2048,6 +2040,301 @@ body {
     .main-content {
         display: flex;
         flex-direction: column;
+    }
+
+    /* resposive home page */
+
+    .modal-content {
+        min-height: 100vh;
+        border-radius: 0;
+    }
+
+    #addPetModal {
+        height: 100vh;
+    }
+
+    /* responsive pet detail */
+
+    .action-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content:center;
+    }
+
+    .action-card {
+        padding: 20px 15px;
+        min-width: 100%;
+        min-height: 200px;
+    }
+
+    /* responsive vaccine */
+    #vaccineModal .modal-icon {
+        height:30px;
+        font-size: 15px;
+    }
+
+    #vaccineModal .modal-icon {
+        height:30px;
+        font-size: 15px;
+    }
+
+    .schedule-item {
+        border-radius: 40px;
+        padding: 10px 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .dot {
+        width: 6px;
+        height: 5px;
+    }
+
+    .schedule-right {
+        align-items: center;
+        gap: 20px;
+        text-align: left;
+    }
+
+    .schedule-date p:last-child {
+        font-size: 12px;
+        color: var(--text-dark);
+        font-weight: 500;
+    }
+
+    .status-badge {
+        padding: 6px 8px;
+        border-radius: 14px;
+        font-size: 12px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    /* responsive feeding schedule */
+
+    .feeding-card {
+        border: 1px solid red;
+        flex-direction: column;
+        padding: 18px 25px;
+        border-radius: 100px;
+        margin-bottom: 15px;
+        align-items: flex-start;
+    }
+
+    .feeding-card-left {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .feeding-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+    }
+
+    .icon-sun {
+        background: #9ab49d;
+        color: #354e39;
+    }
+
+    .icon-moon {
+        background: #eae3cd;
+        color: #5a523d;
+    }
+
+    .feeding-info h4 {
+        font-size: 16px;
+        color: var(--text-dark);
+        margin-bottom: 4px;
+    }
+
+    .feeding-info p {
+        font-size: 12px;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .feeding-card-right {
+        display: flex;
+        flex-direction: row;
+        font-weight: 700;
+        gap: 16px;
+        margin-left: 55px;
+        margin-top: 8px;
+    }
+
+    .feeding-card-right i {
+        font-size: 16px;
+    }
+
+    .feeding-card-right span {
+        font-size: 12px;
+    }
+
+    /*responsive delete pet */
+    #deleteModal .modal-content{
+        border: 1px solid red;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /* responsive tutorial */
+    .tut-modal-content {
+        border: 1px solid red;
+        width: min(820px, calc(100vw - 40px));
+        padding: 30px 20px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+        overflow: scroll;
+    }
+
+    .tut-close-btn {
+        position: absolute;
+        top: 10px;
+        right: 22px;
+        background: transparent;
+        border: none;
+        font-size: 15px;
+    }
+
+    .tut-body {
+        display: flex;
+        border: 1px solid blue;
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .tut-left {
+        border: 1px solid green;
+        flex: 0 0 300px;
+        background: #e8e4db;
+        border-radius: 16px;
+        padding: 24px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .tut-preview-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        margin-bottom: 4px;
+    }
+
+    .tut-preview-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .tut-row-arrow { 
+        margin-left: auto; 
+        font-size: 11px; 
+    }
+
+    .tut-preview-spacer {
+        flex: 1;
+        background: #dedad1;
+        border-radius: 10px;
+        min-height: 80px;
+    }
+
+    .tut-right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 8px 0;
+    }
+
+    .tut-step-label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: #8e6c71;
+        margin-bottom: 12px;
+    }
+
+    .tut-title {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--text-dark);
+        line-height: 1.25;
+        margin-bottom: 18px;
+    }
+
+    .tut-desc {
+        font-size: 14px;
+        color: var(--text-muted);
+        line-height: 1.7;
+    }
+
+    .tut-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .tut-dots {
+        display: flex;
+        gap: 7px;
         align-items: center;
     }
+
+    .tut-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #d0cdc5;
+        transition: background 0.2s;
+    }
+
+    .tut-dot-active {
+        width: 24px;
+        border-radius: 4px;
+        background: var(--primary-green);
+    }
+
+    .tut-btn-ghost {
+        background: transparent;
+        border: none;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-muted);
+        cursor: pointer;
+        padding: 10px 4px;
+        transition: color 0.2s;
+    }
+
+    .tut-btn-primary {
+        background: var(--primary-green);
+        color: #fff;
+        border: none;
+        border-radius: 25px;
+        padding: 12px 32px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: opacity 0.2s;
+    }
+
 }
