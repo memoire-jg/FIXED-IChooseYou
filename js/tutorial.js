@@ -261,6 +261,16 @@ function startTutorial() {
 function renderStep() {
     const step = currentSteps[currentStepIndex];
     const targetElement = document.querySelector(step.element);
+
+    // buat buka navbarnya untuk tutorial button logout
+    if (step.element.includes('logoutBtn')) {
+        const navLinks = document.getElementById('navLinks');
+        if (navLinks) navLinks.classList.add('show');
+    } else {
+        // Tutup lagi kalau step lain
+        const navLinks = document.getElementById('navLinks');
+        if (navLinks) navLinks.classList.remove('show');
+    }
     
     if (!targetElement) {
         console.warn(`Target missing: ${step.element}. Skipping step.`);
