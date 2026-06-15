@@ -775,6 +775,52 @@ body {
     background: #f5e9bd;
 }
 
+.care-icon.other {
+    color: #5d5d5d;
+    background: #e3e3e3;
+}
+
+.reminder-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: currentColor;
+    display: block;
+}
+
+.calendar-dots {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    max-width: 26px;
+}
+
+.calendar-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: block;
+}
+
+.calendar-dot.vaccine {
+    background: #5e8c61;
+}
+
+.calendar-dot.feeding {
+    background: #d5a83f;
+}
+
+.calendar-dot.grooming {
+    background: #c27a92;
+}
+
+.calendar-dot.other {
+    background: #6f6f6f;
+}
+
 .care-item h3 {
     color: var(--text-dark);
     font-size: 13px;
@@ -1812,6 +1858,27 @@ body {
 .delete-event-btn:hover {
     background: #d9534f;
     color: white;
+}
+
+.delete-all-btn {
+    margin-top: 12px;
+    background: #d9d9d9;
+    color: #5f5f5f;
+}
+
+.delete-all-btn:hover {
+    background: #d9534f;
+    color: white;
+}
+
+.tutorial-highlight-logout {
+    z-index: 10002 !important;
+    box-shadow: 0 0 0 10px rgba(240, 221, 151, 0.72), 0 8px 24px rgba(0, 0, 0, 0.18) !important;
+    border-radius: 999px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    background: #f0dd97 !important;
+    color: #4b4422 !important;
 }
 
 @media (max-width: 768px) {

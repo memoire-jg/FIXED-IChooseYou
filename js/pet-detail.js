@@ -136,15 +136,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const presetMap = {
             vaccine: {
                 name: `Vaccine Schedule - ${petName}`,
-                eventType: 'checkup'
+                source: 'vaccine'
             },
             feeding: {
                 name: `Feeding Schedule - ${petName}`,
-                eventType: 'food'
+                source: 'feeding'
             },
             grooming: {
                 name: `Grooming Schedule - ${petName}`,
-                eventType: 'grooming'
+                source: 'grooming'
             }
         };
 
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
             source: scheduleType,
             title: preset.name,
             repeat: scheduleType === 'feeding' ? 'daily' : 'once',
-            dueDate: scheduleType === 'vaccine' ? '2026-11-15' : '',
+            dueDate: scheduleType === 'vaccine' ? '2026-11-15' : new Date().toISOString().split('T')[0],
             dueTime: scheduleType === 'feeding' ? '08:00' : '',
             slot: scheduleType === 'feeding' ? 'morning' : '',
             groomingKind: scheduleType === 'grooming' ? 'Brushing' : '',
