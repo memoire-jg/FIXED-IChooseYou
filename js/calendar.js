@@ -31,6 +31,7 @@ const cancelDeleteAllRemindersBtn = document.getElementById("cancelDeleteAllRemi
 const confirmDeleteAllRemindersBtn = document.getElementById("confirmDeleteAllRemindersBtn");
 const deleteReminderName = document.getElementById("deleteReminderName");
 let pendingDeleteId = null;
+let notificationAudioContext = null;
 
 function showToast(message, type = "success", duration = 3000) {
     const existing = document.getElementById("appToast");
@@ -46,6 +47,108 @@ function showToast(message, type = "success", duration = 3000) {
         toast.classList.remove("show");
         setTimeout(() => toast.remove(), 300);
     }, duration);
+}
+
+function requestNotificationAccess() {
+    if (!("Notification" in window)) return;
+    if (Notification.permission === "default") {
+        Notification.requestPermission().catch(() => {});
+    }
+}
+
+function playReminderSound() {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return;
+
+    if (!notificationAudioContext) {
+        notificationAudioContext = new AudioContextClass();
+    }
+
+    const ctx = notificationAudioContext;
+    if (ctx.state === "suspended") {
+        ctx.resume().catch(() => {});
+    }
+
+    const now = ctx.currentTime;
+    const oscillator = ctx.createOscillator();
+    const gainNode = ctx.createGain();
+
+    oscillator.type = "sine";
+    oscillator.frequency.setValueAtTime(880, now);
+    oscillator.frequency.exponentialRampToValueAtTime(660, now + 0.18);
+    gainNode.gain.setValueAtTime(0.0001, now);
+    gainNode.gain.exponentialRampToValueAtTime(0.08, now + 0.02);
+    gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.25);
+
+    oscillator.connect(gainNode);
+    gainNode.connect(ctx.destination);
+    oscillator.start(now);
+    oscillator.stop(now + 0.28);
+}
+
+function notifyReminder(reminder, date) {
+    const messageDate = date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+    const body = `${reminder.title} is due now${reminder.dueTime ? ` at ${formatReminderTime(reminder.dueTime)}` : ""}.`;
+
+    if ("Notification" in window && Notification.permission === "granted") {
+        new Notification("Pet reminder", {
+            body: `${body} (${messageDate})`
+        });
+    }
+
+    playReminderSound();
+    showToast(`${reminder.title} is due now`, "success", 5000);
+}
+
+function getOccurrenceKey(reminder, date) {
+    return `${reminder.id}-${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+}
+
+function getReminderDateTimes(reminder, rangeStart, rangeEnd) {
+    return getReminderOccurrences(reminder, rangeStart, rangeEnd).map(item => {
+        const due = new Date(item.date);
+        if (reminder.dueTime) {
+            const [hours, minutes] = reminder.dueTime.split(":").map(n => parseInt(n, 10));
+            if (!Number.isNaN(hours) && !Number.isNaN(minutes)) {
+                due.setHours(hours, minutes, 0, 0);
+            }
+        } else {
+            due.setHours(9, 0, 0, 0);
+        }
+        return { ...item, due };
+    });
+}
+
+function checkReminderNotifications() {
+    const now = new Date();
+    const reminders = getReminders().map(normalizeReminder);
+    const checkedKey = "petReminderNotified";
+    const notified = JSON.parse(localStorage.getItem(checkedKey) || "{}");
+    let changed = false;
+
+    reminders.forEach(reminder => {
+        const rangeStart = startOfMonth(now);
+        const rangeEnd = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59, 999);
+        getReminderDateTimes(reminder, rangeStart, rangeEnd).forEach(item => {
+            if (item.due <= now) {
+                const key = getOccurrenceKey(reminder, item.due);
+                if (!notified[key]) {
+                    notified[key] = true;
+                    changed = true;
+                    notifyReminder(reminder, item.due);
+                }
+            }
+        });
+    });
+
+    if (changed) {
+        localStorage.setItem(checkedKey, JSON.stringify(notified));
+    }
+}
+
+function startReminderPolling() {
+    checkReminderNotifications();
+    setInterval(checkReminderNotifications, 30000);
 }
 
 function getReminders() {
@@ -455,6 +558,8 @@ if (saveReminderBtn) {
         renderCalendar();
         closeReminderModal();
         showToast("Reminder saved successfully");
+        requestNotificationAccess();
+        checkReminderNotifications();
     });
 }
 
@@ -485,6 +590,8 @@ nextMonthBtn.addEventListener("click", () => {
 });
 
 renderCalendar();
+requestNotificationAccess();
+startReminderPolling();
 
 const pendingReminderPreset = getPendingReminderPreset();
 if (pendingReminderPreset) {
