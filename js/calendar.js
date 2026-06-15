@@ -10,7 +10,8 @@ const addEventMonthLabel = document.getElementById("addEventMonthLabel");
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
 
-navToggle.addEventListener('click', () => {
+navToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
     navLinks.classList.toggle('show');
 });
 

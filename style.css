@@ -31,6 +31,8 @@
 body {
     background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .page-background {
@@ -179,11 +181,9 @@ body {
 
 .footer { 
     text-align: center; 
-    margin-top: 30px; 
+    margin-top: auto; 
     padding-top: 20px; 
     border-top: 1px solid #f0f0f0; 
-    position: absolute;
-    bottom: 0;
 }
 
 .footer p { 
@@ -851,6 +851,7 @@ body {
     width: min(760px, calc(100% - 32px));
     margin: 0 auto;
     padding: 62px 0;
+    flex:1;
 }
 
 .faq-intro {
@@ -2191,95 +2192,46 @@ body {
     }
 
     /* responsive tutorial */
+    #tutorialModal {
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 15px;
+        overflow-y: auto;
+    }
+    
     .tut-modal-content {
-        border: 1px solid red;
-        width: min(820px, calc(100vw - 40px));
+        width: min(820px, calc(100vw - 30px));
         padding: 30px 20px;
         position: relative;
         display: flex;
         flex-direction: column;
-        gap: 28px;
-        overflow: scroll;
+        gap: 16px;
+        margin: 20px 0;
     }
 
     .tut-close-btn {
-        position: absolute;
         top: 10px;
         right: 22px;
-        background: transparent;
-        border: none;
         font-size: 15px;
     }
 
     .tut-body {
-        display: flex;
-        border: 1px solid blue;
-        align-items: stretch;
         flex-direction: column;
+        gap: 10px;
     }
 
     .tut-left {
-        border: 1px solid green;
-        flex: 0 0 300px;
-        background: #e8e4db;
-        border-radius: 16px;
-        padding: 24px 18px;
-        display: flex;
-        flex-direction: column;
         gap: 12px;
     }
 
-    .tut-preview-avatar {
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        margin-bottom: 4px;
-    }
-
-    .tut-preview-row {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 12px 14px;
-        border-radius: 12px;
-        font-size: 14px;
-        font-weight: 500;
-    }
-
-    .tut-row-arrow { 
-        margin-left: auto; 
-        font-size: 11px; 
-    }
-
-    .tut-preview-spacer {
-        flex: 1;
-        background: #dedad1;
-        border-radius: 10px;
-        min-height: 80px;
-    }
-
-    .tut-right {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 8px 0;
-    }
-
     .tut-step-label {
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        color: #8e6c71;
-        margin-bottom: 12px;
+        font-size: 10px;
+        margin-bottom: 8px;
     }
 
     .tut-title {
-        font-size: 28px;
-        font-weight: 700;
-        color: var(--text-dark);
-        line-height: 1.25;
-        margin-bottom: 18px;
+        font-size: 20px;
+        margin-bottom:8px;
     }
 
     .tut-desc {
@@ -2288,53 +2240,12 @@ body {
         line-height: 1.7;
     }
 
-    .tut-footer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .tut-dots {
-        display: flex;
-        gap: 7px;
-        align-items: center;
-    }
-
-    .tut-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: #d0cdc5;
-        transition: background 0.2s;
-    }
-
-    .tut-dot-active {
-        width: 24px;
-        border-radius: 4px;
-        background: var(--primary-green);
-    }
-
     .tut-btn-ghost {
-        background: transparent;
-        border: none;
-        font-size: 14px;
-        font-weight: 500;
-        color: var(--text-muted);
-        cursor: pointer;
-        padding: 10px 4px;
-        transition: color 0.2s;
+        display: none;
     }
 
     .tut-btn-primary {
-        background: var(--primary-green);
-        color: #fff;
-        border: none;
-        border-radius: 25px;
-        padding: 12px 32px;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: opacity 0.2s;
+        padding: 8px 20px;
     }
 
 }
