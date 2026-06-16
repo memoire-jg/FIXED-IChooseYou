@@ -165,7 +165,7 @@ petGrid.addEventListener('click', function(e) {
 
 document.getElementById('logoutBtn').addEventListener('click', function(e) {
     e.preventDefault();
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 });
 
 function showToast(message, type = 'success', duration = 3000) {
