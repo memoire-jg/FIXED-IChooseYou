@@ -50,6 +50,6 @@ document.getElementById('registerForm').addEventListener('submit', function(even
     if (isValid) {
         localStorage.setItem("petUsername", fullName.value.trim());
         localStorage.setItem('pendingToast', 'Register successful!');
-        window.location.href = "login.html";
+        window.location.href = "index.html";
     }
 });
