@@ -633,7 +633,7 @@ body {
 
 .month-title h1 {
     color: var(--primary-green);
-    font-size: 34px;
+    font-size: clamp(22px, 5vw, 34px);
     line-height: 1.05;
 }
 
@@ -857,31 +857,89 @@ body {
     background-color: rgb(39, 88, 57);
 }
 
+/* Tablet: stack the two columns */
 @media (max-width: 900px) {
     .calendar-page {
         grid-template-columns: 1fr;
         gap: 24px;
+        padding: 42px 0 50px;
     }
     .care-card {
         min-height: auto;
     }
 }
 
+/* Large phones */
 @media (max-width: 720px) {
     .calendar-page {
         width: min(100% - 32px, 1120px);
-        padding-top: 42px;
+        padding-top: 32px;
     }
     .month-banner {
         grid-template-columns: auto 1fr auto;
+        padding: 18px;
+        gap: 12px;
+        min-height: auto;
     }
     .month-banner p,
     .streak-pill {
         grid-column: 1 / -1;
     }
+    .calendar-card {
+        padding: 16px;
+    }
     .date-box {
         min-height: 58px;
         padding: 8px;
+    }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+    .calendar-page {
+        width: min(100% - 24px, 1120px);
+        padding-top: 24px;
+        gap: 18px;
+    }
+    .weekday-row,
+    .date-grid {
+        gap: 6px;
+    }
+    .date-box {
+        min-height: 42px;
+        padding: 5px;
+        font-size: 10px;
+        border-radius: 8px;
+    }
+    .date-box i {
+        right: 6px;
+        bottom: 6px;
+        font-size: 12px;
+    }
+    .calendar-dots {
+        right: 4px;
+        bottom: 4px;
+        max-width: 18px;
+    }
+    .calendar-dot {
+        width: 6px;
+        height: 6px;
+    }
+    .care-card {
+        padding: 18px 14px;
+    }
+    .care-item {
+        gap: 10px;
+        padding: 10px;
+        min-height: auto;
+    }
+    .care-icon {
+        width: 32px;
+        height: 32px;
+    }
+    .add-event-btn {
+        min-height: 40px;
+        font-size: 12px;
     }
 }
 
@@ -2112,7 +2170,7 @@ body {
 
     /* resposive home page */
 
-    .modal-content {
+    .modal-content{
         min-height: 100vh;
         border-radius: 0;
     }
@@ -2185,10 +2243,9 @@ body {
     /* responsive feeding schedule */
 
     .feeding-card {
-        border: 1px solid red;
         flex-direction: column;
         padding: 18px 25px;
-        border-radius: 100px;
+        border-radius: 45px;
         margin-bottom: 15px;
         align-items: flex-start;
     }
@@ -2313,6 +2370,52 @@ body {
 
     .tut-btn-primary {
         padding: 8px 20px;
+    }
+
+    /* responsive delete reminders */
+    #deleteAllRemindersModal, #deleteReminderModal{
+        align-items: center;
+    }
+
+    #deleteAllRemindersModal .modal-content, #deleteReminderModal .modal-content{
+        display:flex;
+        justify-content: center;
+        flex-direction: column;
+        border: 1px solid blue;
+        border-radius: none;
+        padding: 15px 20px;
+        height: 100vh;
+    }
+
+    /*responsive form reminder */
+    #reminderForm .form-row{
+        gap: 8px;
+    }
+
+    #reminderForm .form-row .input-group{
+        min-width: 0;
+    }
+
+    #reminderForm .form-row .input-group .input-wrapper{
+        flex:1;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    #reminderForm .form-row .input-group .input-wrapper input{
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        padding: 8px 10px;
+    }
+
+    .form-row {
+        display: flex;
+        gap: 20px;
+    }
+
+    .form-row .input-group {
+        flex: 1;
     }
 
 }
