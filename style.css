@@ -2313,6 +2313,11 @@ body {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        min-height: 0;
+        width: 90%;;
+        max-height: 350px;
+        border-radius: 30px;
+        padding: 15px 20px;
     }
 
     /* responsive tutorial */
@@ -2381,10 +2386,11 @@ body {
         display:flex;
         justify-content: center;
         flex-direction: column;
-        border: 1px solid blue;
-        border-radius: none;
+        border-radius: 30px;
         padding: 15px 20px;
-        height: 100vh;
+        min-height: 0;
+        width: 90%;;
+        max-height: 350px;
     }
 
     /*responsive form reminder */
