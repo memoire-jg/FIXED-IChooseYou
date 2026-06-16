@@ -31,6 +31,8 @@
 body {
     background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .page-background {
@@ -179,7 +181,7 @@ body {
 
 .footer { 
     text-align: center; 
-    margin-top: 30px; 
+    margin-top: auto; 
     padding-top: 20px; 
     border-top: 1px solid #f0f0f0; 
 }
@@ -211,6 +213,7 @@ body {
     background-attachment: fixed;
 }
 
+/* NAVIGATION */
 .top-nav {
     display: flex;
     justify-content: space-between;
@@ -218,6 +221,7 @@ body {
     padding: 20px 60px;
     background: var(--nav-bg);
     box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    position: relative; 
 }
 
 .nav-logo {
@@ -227,6 +231,19 @@ body {
     font-size: 22px;
     font-weight: 700;
     color: var(--primary-green);
+}
+
+.logout-mobile {
+    display: none;
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--text-dark);
+    cursor: pointer;
 }
 
 .nav-links {
@@ -277,11 +294,13 @@ body {
 .main-content {
     flex: 1;
     width: 100%;
-    padding: 60px;
+    padding: clamp(10px, 6vw, 60px);
     max-width: 1000px;
     margin: 0 auto;
+    min-height: 100vh;
 }
 
+/* HOME */
 .welcome-section {
     margin-bottom: 40px;
 }
@@ -318,14 +337,17 @@ body {
 }
 
 .pet-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 30px;
 }
 
 .pet-card {
     border-radius: 20px;
-    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    max-width: 272px;
+    padding: clamp(15px, 7vw, 25px);
     position: relative;
     overflow: hidden;
     cursor: pointer;
@@ -414,7 +436,6 @@ body {
     gap: 15px;
     position: relative;
     z-index: 2;
-    margin-top: 20px; 
 }
 
 .stat-box {
@@ -612,7 +633,7 @@ body {
 
 .month-title h1 {
     color: var(--primary-green);
-    font-size: 34px;
+    font-size: clamp(22px, 5vw, 34px);
     line-height: 1.05;
 }
 
@@ -627,19 +648,6 @@ body {
     color: var(--primary-green);
     font-size: 13px;
     line-height: 1.4;
-}
-
-.streak-pill {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    min-width: 146px;
-    padding: 16px 24px;
-    color: #ffffff;
-    background: linear-gradient(135deg, #ff8357, #ff4d4d);
-    border-radius: 999px;
-    font-size: 13px;
-    font-weight: 700;
 }
 
 .calendar-card,
@@ -775,6 +783,52 @@ body {
     background: #f5e9bd;
 }
 
+.care-icon.other {
+    color: #5d5d5d;
+    background: #e3e3e3;
+}
+
+.reminder-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: currentColor;
+    display: block;
+}
+
+.calendar-dots {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    max-width: 26px;
+}
+
+.calendar-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: block;
+}
+
+.calendar-dot.vaccine {
+    background: #5e8c61;
+}
+
+.calendar-dot.feeding {
+    background: #d5a83f;
+}
+
+.calendar-dot.grooming {
+    background: #c27a92;
+}
+
+.calendar-dot.other {
+    background: #6f6f6f;
+}
+
 .care-item h3 {
     color: var(--text-dark);
     font-size: 13px;
@@ -803,31 +857,89 @@ body {
     background-color: rgb(39, 88, 57);
 }
 
+/* Tablet: stack the two columns */
 @media (max-width: 900px) {
     .calendar-page {
         grid-template-columns: 1fr;
         gap: 24px;
+        padding: 42px 0 50px;
     }
     .care-card {
         min-height: auto;
     }
 }
 
+/* Large phones */
 @media (max-width: 720px) {
     .calendar-page {
         width: min(100% - 32px, 1120px);
-        padding-top: 42px;
+        padding-top: 32px;
     }
     .month-banner {
         grid-template-columns: auto 1fr auto;
+        padding: 18px;
+        gap: 12px;
+        min-height: auto;
     }
     .month-banner p,
     .streak-pill {
         grid-column: 1 / -1;
     }
+    .calendar-card {
+        padding: 16px;
+    }
     .date-box {
         min-height: 58px;
         padding: 8px;
+    }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+    .calendar-page {
+        width: min(100% - 24px, 1120px);
+        padding-top: 24px;
+        gap: 18px;
+    }
+    .weekday-row,
+    .date-grid {
+        gap: 6px;
+    }
+    .date-box {
+        min-height: 42px;
+        padding: 5px;
+        font-size: 10px;
+        border-radius: 8px;
+    }
+    .date-box i {
+        right: 6px;
+        bottom: 6px;
+        font-size: 12px;
+    }
+    .calendar-dots {
+        right: 4px;
+        bottom: 4px;
+        max-width: 18px;
+    }
+    .calendar-dot {
+        width: 6px;
+        height: 6px;
+    }
+    .care-card {
+        padding: 18px 14px;
+    }
+    .care-item {
+        gap: 10px;
+        padding: 10px;
+        min-height: auto;
+    }
+    .care-icon {
+        width: 32px;
+        height: 32px;
+    }
+    .add-event-btn {
+        min-height: 40px;
+        font-size: 12px;
     }
 }
 
@@ -843,6 +955,7 @@ body {
     width: min(760px, calc(100% - 32px));
     margin: 0 auto;
     padding: 62px 0;
+    flex:1;
 }
 
 .faq-intro {
@@ -924,6 +1037,7 @@ body {
     background: #fffdf6;
     border-radius: 16px;
     box-shadow: 0 12px 24px rgba(74, 86, 72, 0.12);
+    padding: 10px;
 }
 
 .faq-question {
@@ -1006,11 +1120,14 @@ body {
 
 .modal-content {
     background: var(--main-bg);
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
     border-radius: 24px;
     padding: 35px 40px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     position: relative;
+    max-height: 90%;
+    overflow-y: auto;
 }
 
 .modal-header {
@@ -1064,6 +1181,23 @@ body {
     color: var(--text-muted);
     font-size: 14px;
     margin-bottom: 30px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 40px;
+    align-items: center;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .input-group {
+    flex: 1;
 }
 
 .modal-footer {
@@ -1814,6 +1948,27 @@ body {
     color: white;
 }
 
+.delete-all-btn {
+    margin-top: 12px;
+    background: #d9d9d9;
+    color: #5f5f5f;
+}
+
+.delete-all-btn:hover {
+    background: #d9534f;
+    color: white;
+}
+
+.tutorial-highlight-logout {
+    z-index: 10002 !important;
+    box-shadow: 0 0 0 10px rgba(240, 221, 151, 0.72), 0 8px 24px rgba(0, 0, 0, 0.18) !important;
+    border-radius: 999px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    background: #f0dd97 !important;
+    color: #4b4422 !important;
+}
+
 @media (max-width: 768px) {
     .delete-event-btn { 
         opacity: 1; 
@@ -1960,4 +2115,307 @@ body {
     border-radius: 20px !important;
     box-shadow: 0 0 0 10px rgba(162, 171, 132, 0.65), 0 6px 22px rgba(0, 0, 0, 0.18) !important;
     transition: box-shadow 0.2s ease, border-radius 0.2s ease !important;
+}
+
+@media (max-width: 720px) {
+    /* responsive navigaion */
+    .top-nav {
+        padding: 20px;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--nav-bg);
+        padding: 20px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        gap: 20px;
+        z-index: 100;
+    }
+
+    .nav-links.show {
+        display: flex; 
+    }
+
+    .logout-mobile {
+        display: block;
+        border-top: 1px solid #cfc9c9df;
+        padding-top: 15px; 
+    }
+
+    .logout-mobile a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-dark);
+        font-weight: 600;
+    }
+
+    .nav-logout{
+        display: none;
+    }
+
+    .main-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* resposive home page */
+
+    .modal-content{
+        min-height: 100vh;
+        border-radius: 0;
+    }
+
+    #addPetModal {
+        height: 100vh;
+    }
+
+    /* responsive pet detail */
+
+    .action-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content:center;
+    }
+
+    .action-card {
+        padding: 20px 15px;
+        min-width: 100%;
+        min-height: 200px;
+    }
+
+    /* responsive vaccine */
+    #vaccineModal .modal-icon {
+        height:30px;
+        font-size: 15px;
+    }
+
+    #vaccineModal .modal-icon {
+        height:30px;
+        font-size: 15px;
+    }
+
+    .schedule-item {
+        border-radius: 40px;
+        padding: 10px 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .dot {
+        width: 6px;
+        height: 5px;
+    }
+
+    .schedule-right {
+        align-items: center;
+        gap: 20px;
+        text-align: left;
+    }
+
+    .schedule-date p:last-child {
+        font-size: 12px;
+        color: var(--text-dark);
+        font-weight: 500;
+    }
+
+    .status-badge {
+        padding: 6px 8px;
+        border-radius: 14px;
+        font-size: 12px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    /* responsive feeding schedule */
+
+    .feeding-card {
+        flex-direction: column;
+        padding: 18px 25px;
+        border-radius: 45px;
+        margin-bottom: 15px;
+        align-items: flex-start;
+    }
+
+    .feeding-card-left {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .feeding-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+    }
+
+    .icon-sun {
+        background: #9ab49d;
+        color: #354e39;
+    }
+
+    .icon-moon {
+        background: #eae3cd;
+        color: #5a523d;
+    }
+
+    .feeding-info h4 {
+        font-size: 16px;
+        color: var(--text-dark);
+        margin-bottom: 4px;
+    }
+
+    .feeding-info p {
+        font-size: 12px;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .feeding-card-right {
+        display: flex;
+        flex-direction: row;
+        font-weight: 700;
+        gap: 16px;
+        margin-left: 55px;
+        margin-top: 8px;
+    }
+
+    .feeding-card-right i {
+        font-size: 16px;
+    }
+
+    .feeding-card-right span {
+        font-size: 12px;
+    }
+
+    /*responsive delete pet */
+    #deleteModal .modal-content{
+        border: 1px solid red;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /* responsive tutorial */
+    #tutorialModal {
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 15px;
+        overflow-y: auto;
+    }
+    
+    .tut-modal-content {
+        width: min(820px, calc(100vw - 30px));
+        padding: 30px 20px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin: 20px 0;
+    }
+
+    .tut-close-btn {
+        top: 10px;
+        right: 22px;
+        font-size: 15px;
+    }
+
+    .tut-body {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .tut-left {
+        gap: 12px;
+    }
+
+    .tut-step-label {
+        font-size: 10px;
+        margin-bottom: 8px;
+    }
+
+    .tut-title {
+        font-size: 20px;
+        margin-bottom:8px;
+    }
+
+    .tut-desc {
+        font-size: 14px;
+        color: var(--text-muted);
+        line-height: 1.7;
+    }
+
+    .tut-btn-ghost {
+        display: none;
+    }
+
+    .tut-btn-primary {
+        padding: 8px 20px;
+    }
+
+    /* responsive delete reminders */
+    #deleteAllRemindersModal, #deleteReminderModal{
+        align-items: center;
+    }
+
+    #deleteAllRemindersModal .modal-content, #deleteReminderModal .modal-content{
+        display:flex;
+        justify-content: center;
+        flex-direction: column;
+        border: 1px solid blue;
+        border-radius: none;
+        padding: 15px 20px;
+        height: 100vh;
+    }
+
+    /*responsive form reminder */
+    #reminderForm .form-row{
+        gap: 8px;
+    }
+
+    #reminderForm .form-row .input-group{
+        min-width: 0;
+    }
+
+    #reminderForm .form-row .input-group .input-wrapper{
+        flex:1;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    #reminderForm .form-row .input-group .input-wrapper input{
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        padding: 8px 10px;
+    }
+
+    .form-row {
+        display: flex;
+        gap: 20px;
+    }
+
+    .form-row .input-group {
+        flex: 1;
+    }
+
 }

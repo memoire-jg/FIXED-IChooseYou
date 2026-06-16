@@ -14,11 +14,19 @@
             <i class="fa-solid fa-paw"></i>
             <span>I Choose You</span>
         </div>
-        <ul class="nav-links">
-            <li><a href="#" class="active">Home</a></li>
+        
+        <button class="nav-toggle" id="navToggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="home.html" class="active">Home</a></li>
             <li><a href="calendar.html">Calendar</a></li>
             <li><a href="faq.html">FAQ</a></li>
             <li><a href="#">Tutorial</a></li>
+            <li class="logout-mobile">
+                <a href="login.html" id="logoutBtn">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+            </li>
         </ul>
         <div class="nav-logout">
             <a href="login.html" id="logoutBtn">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
@@ -107,7 +115,7 @@
                     <div id="vaccineDynamicList"></div>
 
                     <div class="modal-footer" style="border-top: 1px solid #eaeaea; padding-top: 20px; margin-top: 20px;">
-                        <button type="button" class="btn-text" id="remindMeBtn">Remind Me Later</button>
+                        <button type="button" class="btn-text" id="remindMeBtn">Add a Reminder</button>
                         <button type="button" class="btn-save" id="gotItBtn">Got it</button>
                     </div>
                 </div>
@@ -160,7 +168,10 @@
                         </ul>
                     </div>
 
-                    <button type="button" class="btn-save btn-full-width" id="feedingGotItBtn">Got it</button>
+                    <div class="modal-footer" style="border-top: 1px solid #eaeaea; padding-top: 20px; margin-top: 20px;">
+                        <button type="button" class="btn-text" id="feedingRemindBtn">Add a Reminder</button>
+                        <button type="button" class="btn-save" id="feedingGotItBtn">Got it</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -192,8 +203,9 @@
                 <!-- Dynamic List Container -->
                 <div class="grooming-list" id="groomingDynamicList"></div>
 
-                <div class="modal-footer-full">
-                    <button class="btn-save btn-full-width" id="addToCalendarBtn">Add to My Calendar</button>
+                <div class="modal-footer" style="border-top: 1px solid #eaeaea; padding-top: 20px; margin-top: 20px;">
+                    <button type="button" class="btn-text" id="groomingRemindBtn">Add a Reminder</button>
+                    <button type="button" class="btn-save" id="groomingGotItBtn">Got it</button>
                 </div>
                 
             </div>

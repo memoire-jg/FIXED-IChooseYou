@@ -15,14 +15,20 @@
             <i class="fa-solid fa-paw"></i>
             <span>I Choose You</span>
         </div>
+        
+        <button class="nav-toggle" id="navToggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
 
-        <ul class="nav-links">
+        <ul class="nav-links" id="navLinks">
             <li><a href="home.html">Home</a></li>
             <li><a href="calendar.html" class="active">Calendar</a></li>
             <li><a href="faq.html">FAQ</a></li>
             <li><a href="#">Tutorial</a></li>
+            <li class="logout-mobile">
+                <a href="login.html" id="logoutBtn">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+            </li>
         </ul>
-
         <div class="nav-logout">
             <a href="login.html" id="logoutBtn">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
         </div>
@@ -36,14 +42,14 @@
                 </button>
 
                 <div class="month-title">
-                    <h1 id="monthYearDisplay">May<br>2026</h1>
+                    <h1 id="monthYearDisplay">Current Month</h1>
                 </div>
 
                 <button type="button" class="month-arrow" id="nextMonthBtn" aria-label="Next month">
                     <i class="fa-solid fa-chevron-right"></i>
                 </button>
 
-                <p>Keep track of your furry friend's schedule.</p>
+                <p>Keep track of your furry friend's reminders.</p>
                 <i class="fa-solid fa-paw" style="font-size: 80px; opacity: 0.50; color: currentColor;"></i>
             </div>
 
@@ -69,94 +75,154 @@
                 
             </div>
 
-            <button type="button" class="add-event-btn" id="openAddEventBtn">
-                <i class="fa-solid fa-plus"></i> Add Event
+            <button type="button" class="add-event-btn" id="openReminderFormBtn">
+                <i class="fa-solid fa-plus"></i> Add Reminder
+            </button>
+
+            <button type="button" class="add-event-btn delete-all-btn" id="deleteAllRemindersBtn">
+                <i class="fa-solid fa-trash"></i> Delete All
             </button>
         </aside>
-
-        <div id="addEventModal" class="modal-overlay">
+        <div id="remindersModal" class="modal-overlay">
             <div class="modal-content add-event-modal-content">
-                
                 <div class="edit-modal-header">
-                    <h2>Add New Event</h2>
-                    <button class="close-modal-btn" id="closeAddEventBtn">
+                    <h2>Add Reminder</h2>
+                    <button class="close-modal-btn" id="closeRemindersBtn">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
-                
+
                 <div class="modal-body edit-modal-body">
-                    <form id="addEventForm">
+                    <form id="reminderForm">
                         <div class="input-group">
-                            <label>Event Name</label>
+                            <label>Reminder Source</label>
+                            <div class="animal-type-selector">
+                                <label>
+                                    <input type="radio" name="reminderSource" value="vaccine" checked>
+                                    <span><i class="fa-solid fa-syringe" style="margin-right: 4px;"></i> Vaccine</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="reminderSource" value="feeding">
+                                    <span><i class="fa-solid fa-utensils" style="margin-right: 4px;"></i> Feeding</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="reminderSource" value="grooming">
+                                    <span><i class="fa-solid fa-scissors" style="margin-right: 4px;"></i> Grooming</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="reminderSource" value="other">
+                                    <span><i class="fa-solid fa-ellipsis" style="margin-right: 4px;"></i> Other</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Reminder Title</label>
                             <div class="input-wrapper">
                                 <i class="fa-solid fa-pen icon"></i>
-                                <input type="text" id="newEventName" placeholder="e.g., Vet Checkup, Buy Food..." required>
+                                <input type="text" id="reminderTitle" placeholder="Reminder name">
                             </div>
+                            <small class="error-message" id="reminderTitleError"></small>
                         </div>
 
                         <div class="form-row">
                             <div class="input-group">
-                                <label id="addEventMonthLabel">Date (May 2026)</label>
+                                <label>Due Date</label>
                                 <div class="input-wrapper">
-                                    <select id="newEventDate" class="custom-select">   
-                                    </select>
+                                    <input type="date" id="reminderDueDate">
                                 </div>
+                                <small class="error-message" id="reminderDueDateError"></small>
                             </div>
                             <div class="input-group">
                                 <label>Time</label>
                                 <div class="input-wrapper">
-                                    <input type="time" id="newEventTime" required>
+                                    <input type="time" id="reminderDueTime">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="input-group" style="margin-top: 5px;">
-                            <label>Event Category</label>
+                        <div class="input-group">
+                            <label>Repeat</label>
+                            <div class="input-wrapper">
+                                <select id="reminderRepeat" class="custom-select">
+                                    <option value="once">One time</option>
+                                    <option value="daily">Daily</option>
+                                    <option value="weekly">Weekly</option>
+                                    <option value="monthly">Monthly</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-group" id="reminderSlotWrap" style="display:none;">
+                            <label>Feeding Slot</label>
                             <div class="animal-type-selector">
                                 <label>
-                                    <input type="radio" name="eventType" value="checkup" checked>
-                                    <span><i class="fa-solid fa-stethoscope" style="margin-right: 4px;"></i> Checkup</span>
+                                    <input type="radio" name="feedingSlot" value="morning" checked>
+                                    <span>Morning</span>
                                 </label>
                                 <label>
-                                    <input type="radio" name="eventType" value="grooming">
-                                    <span><i class="fa-solid fa-scissors" style="margin-right: 4px;"></i> Grooming</span>
+                                    <input type="radio" name="feedingSlot" value="evening">
+                                    <span>Evening</span>
                                 </label>
-                                <label>
-                                    <input type="radio" name="eventType" value="food">
-                                    <span><i class="fa-solid fa-bowl-food" style="margin-right: 4px;"></i> Food</span>
-                                </label>
+                            </div>
+                        </div>
+
+                        <div class="input-group" id="groomingKindWrap" style="display:none;">
+                            <label>Grooming Type</label>
+                            <div class="input-wrapper">
+                                <select id="groomingKind" class="custom-select">
+                                    <option value="Brushing">Brushing</option>
+                                    <option value="Bathing">Bathing</option>
+                                    <option value="Nail Trimming">Nail Trimming</option>
+                                    <option value="Teeth Cleaning">Teeth Cleaning</option>
+                                </select>
                             </div>
                         </div>
                     </form>
                 </div>
-                
+
                 <div class="edit-modal-footer">
-                    <button type="button" class="btn-cancel" id="cancelAddEventBtn">Cancel</button>
-                    <button type="button" class="btn-save" id="saveAddEventBtn">Save Event</button>
+                    <button type="button" class="btn-cancel" id="cancelReminderFormBtn">Cancel</button>
+                    <button type="button" class="btn-save" id="saveReminderBtn">Got it</button>
                 </div>
-                
             </div>
         </div>
+
     </main>
 
-        <!-- Delete Event Confirmation Modal -->
-    <div id="deleteEventModal" class="modal-overlay">
+    <div id="deleteReminderModal" class="modal-overlay">
         <div class="modal-content" style="max-width: 420px; text-align: center; padding: 40px;">
             <div class="modal-icon" style="background: #ffebeb; margin: 0 auto 18px auto;">
                 <i class="fa-solid fa-trash" style="color: #d9534f;"></i>
             </div>
-            <h2 style="font-size: 20px; margin-bottom: 10px;">Delete Event?</h2>
+            <h2 style="font-size: 20px; margin-bottom: 10px;">Delete Reminder?</h2>
             <p style="color: var(--text-muted); font-size: 14px; line-height: 1.6; margin-bottom: 28px;">
-                Are you sure you want to delete <strong id="deleteEventName"></strong>? 
+                Are you sure you want to delete <strong id="deleteReminderName"></strong>?
                 This action cannot be undone.
             </p>
             <div style="display: flex; gap: 12px; justify-content: center;">
-                <button class="btn-cancel" id="cancelDeleteEventBtn">Cancel</button>
-                <button class="btn-save" id="confirmDeleteEventBtn" 
-                    style="background: #d9534f; border-color: #d9534f;">Delete</button>
+                <button class="btn-cancel" id="cancelDeleteReminderBtn">Cancel</button>
+                <button class="btn-save" id="confirmDeleteReminderBtn" style="background: #d9534f; border-color: #d9534f;">Delete</button>
             </div>
         </div>
     </div>
+
+    <div id="deleteAllRemindersModal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 420px; text-align: center; padding: 40px;">
+            <div class="modal-icon" style="background: #ffebeb; margin: 0 auto 18px auto;">
+                <i class="fa-solid fa-trash" style="color: #d9534f;"></i>
+            </div>
+            <h2 style="font-size: 20px; margin-bottom: 10px;">Delete All Reminders?</h2>
+            <p style="color: var(--text-muted); font-size: 14px; line-height: 1.6; margin-bottom: 28px;">
+                This will remove every reminder. This action cannot be undone.
+            </p>
+            <div style="display: flex; gap: 12px; justify-content: center;">
+                <button class="btn-cancel" id="cancelDeleteAllRemindersBtn">Cancel</button>
+                <button class="btn-save" id="confirmDeleteAllRemindersBtn" style="background: #d9534f; border-color: #d9534f;">Delete All</button>
+            </div>
+        </div>
+    </div>
+
     <footer class="site-footer">
         <div class="footer-content">
             <div class="footer-brand">I Choose You</div>

@@ -261,6 +261,16 @@ function startTutorial() {
 function renderStep() {
     const step = currentSteps[currentStepIndex];
     const targetElement = document.querySelector(step.element);
+
+    // buat buka navbarnya untuk tutorial button logout
+    if (step.element.includes('logoutBtn')) {
+        const navLinks = document.getElementById('navLinks');
+        if (navLinks) navLinks.classList.add('show');
+    } else {
+        // Tutup lagi kalau step lain
+        const navLinks = document.getElementById('navLinks');
+        if (navLinks) navLinks.classList.remove('show');
+    }
     
     if (!targetElement) {
         console.warn(`Target missing: ${step.element}. Skipping step.`);
@@ -278,6 +288,9 @@ function renderStep() {
     
     // Inject class styles securely
     targetElement.classList.add('tutorial-highlight');
+    if (step.element === '#logoutBtn') {
+        targetElement.classList.add('tutorial-highlight-logout');
+    }
     
     repositionCurrentTooltip();
     
@@ -331,6 +344,7 @@ function prevStep() {
 function clearHighlights() {
     document.querySelectorAll('.tutorial-highlight').forEach(el => {
         el.classList.remove('tutorial-highlight');
+        el.classList.remove('tutorial-highlight-logout');
         // Clean up fallback runtime bindings
         if (el.dataset.origPosition) el.style.position = el.dataset.origPosition === 'static' ? '' : el.dataset.origPosition;
         if (el.dataset.origZIndex) el.style.zIndex = el.dataset.origZIndex === 'auto' ? '' : el.dataset.origZIndex;

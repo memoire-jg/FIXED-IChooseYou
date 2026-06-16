@@ -1,6 +1,12 @@
 const searchInput = document.getElementById('faqSearch');
 const categoryButtons = document.querySelectorAll('.category-btn');
 const faqQuestions = document.querySelectorAll('.faq-question');
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+
+navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+});
 
 let activeCategory = 'all';
 
