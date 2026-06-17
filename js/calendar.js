@@ -7,10 +7,12 @@ const addEventMonthLabel = document.getElementById("addEventMonthLabel");
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
 
-navToggle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    navLinks.classList.toggle('show');
-});
+if (navToggle && navLinks) {
+    navToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navLinks.classList.toggle('show');
+    });
+}
 
 const openReminderFormBtn = document.getElementById("openReminderFormBtn");
 
@@ -425,7 +427,7 @@ function renderUpcomingSchedule() {
         item.className = "care-item";
         const sourceColor = reminder.source === "feeding" ? "yellow" : reminder.source === "grooming" ? "pink" : reminder.source === "other" ? "other" : "green";
         const metaParts = [reminderTypeLabel(reminder.source), reminderSubtypeLabel(reminder), reminder.repeat === "once" ? "One time" : reminder.repeat.charAt(0).toUpperCase() + reminder.repeat.slice(1)].filter(Boolean);
-        const meta = metaParts.join(" · ");
+        const meta = metaParts.join(" - ");
         item.innerHTML = `
             <span class="care-icon ${sourceColor}">
                 <span class="reminder-dot"></span>

@@ -163,9 +163,11 @@ petGrid.addEventListener('click', function(e) {
     }
 });
 
-document.getElementById('logoutBtn').addEventListener('click', function(e) {
-    e.preventDefault();
-    window.location.href = "login.html";
+document.querySelectorAll('.logoutBtn').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.location.href = "login.html";
+    });
 });
 
 function showToast(message, type = 'success', duration = 3000) {

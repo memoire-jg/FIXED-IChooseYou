@@ -4,9 +4,11 @@ const faqQuestions = document.querySelectorAll('.faq-question');
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
 
-navToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('show');
-});
+if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+    });
+}
 
 let activeCategory = 'all';
 

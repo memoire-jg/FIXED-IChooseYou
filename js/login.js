@@ -27,7 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-document.getElementById('loginForm').addEventListener('submit', function(event) {
+const loginForm = document.getElementById('loginForm');
+if (loginForm) loginForm.addEventListener('submit', function(event) {
     event.preventDefault();
 
     const email = document.getElementById('email');
