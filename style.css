@@ -1128,6 +1128,12 @@ body {
     position: relative;
     max-height: 90%;
     overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style:none;
+}
+
+.modal-content::webkit-scrollbar{
+    display:none;
 }
 
 .modal-header {
