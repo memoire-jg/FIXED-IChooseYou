@@ -205,7 +205,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Modal Triggers
     document.getElementById('backBtn').addEventListener('click', () => window.location.href = "home.html");
-    document.getElementById('logoutBtn').addEventListener('click', (e) => { e.preventDefault(); window.location.href = "index.html"; });
+    document.querySelectorAll('.logoutBtn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = "index.html";
+        });
+    });
 
     const vaccineModal = document.getElementById('vaccineModal');
     document.getElementById('vaccineBtn').addEventListener('click', () => vaccineModal.style.display = 'flex');
