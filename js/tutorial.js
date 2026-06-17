@@ -169,7 +169,7 @@ const getNavbarSteps = () => {
         });
     }
 
-    if (document.getElementById('logoutBtn')) {
+        if (document.querySelector('.logoutBtn')) {
         steps.push({
             element: '#logoutBtn',
             title: 'Secure Logout',

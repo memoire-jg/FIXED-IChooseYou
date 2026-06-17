@@ -163,9 +163,17 @@ petGrid.addEventListener('click', function(e) {
     }
 });
 
+<<<<<<< HEAD
 document.getElementById('logoutBtn').addEventListener('click', function(e) {
     e.preventDefault();
     window.location.href = "index.html";
+=======
+document.querySelectorAll('.logoutBtn').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.location.href = "login.html";
+    });
+>>>>>>> 7b3175d5f9df3f2e0f3b0c93330a39fd283a3ed9
 });
 
 function showToast(message, type = 'success', duration = 3000) {
