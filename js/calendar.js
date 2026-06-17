@@ -254,10 +254,10 @@ function reminderTypeLabel(type) {
 }
 
 function reminderSubtypeLabel(reminder) {
-    if (reminder.source === "feeding") return `Feeding - ${reminder.slot === "evening" ? "Evening" : "Morning"}`;
-    if (reminder.source === "grooming") return `Grooming - ${reminder.groomingKind || "Brushing"}`;
-    if (reminder.source === "other") return "Other";
-    return "Vaccine";
+    if (reminder.source === "feeding") return reminder.slot === "evening" ? "Evening" : "Morning";
+    if (reminder.source === "grooming") return reminder.groomingKind || "Brushing";
+    if (reminder.source === "other") return "";
+    return "";
 }
 
 function formatReminderDate(dateValue) {
@@ -424,7 +424,8 @@ function renderUpcomingSchedule() {
         const item = document.createElement("article");
         item.className = "care-item";
         const sourceColor = reminder.source === "feeding" ? "yellow" : reminder.source === "grooming" ? "pink" : reminder.source === "other" ? "other" : "green";
-        const meta = [reminderTypeLabel(reminder.source), reminderSubtypeLabel(reminder), reminder.repeat === "once" ? "One time" : reminder.repeat.charAt(0).toUpperCase() + reminder.repeat.slice(1)].join(" · ");
+        const metaParts = [reminderTypeLabel(reminder.source), reminderSubtypeLabel(reminder), reminder.repeat === "once" ? "One time" : reminder.repeat.charAt(0).toUpperCase() + reminder.repeat.slice(1)].filter(Boolean);
+        const meta = metaParts.join(" · ");
         item.innerHTML = `
             <span class="care-icon ${sourceColor}">
                 <span class="reminder-dot"></span>
