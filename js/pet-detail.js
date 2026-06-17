@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (document.getElementById('feedingAdviceText')) document.getElementById('feedingAdviceText').innerText = advice.feedingAdvice;
         if (document.getElementById('groomingAdviceText')) document.getElementById('groomingAdviceText').innerText = advice.groomingAdvice;
 
-        renderVaccigigitnes(advice.vaccines);
+        renderVaccines(advice.vaccines);
         renderFeeding(advice.feeding);
         renderGrooming(advice.grooming);
     }
