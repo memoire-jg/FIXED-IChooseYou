@@ -483,13 +483,18 @@ function resetReminderForm() {
 
 function toggleReminderFields() {
     const selectedSource = document.querySelector('input[name="reminderSource"]:checked')?.value || "vaccine";
+
     reminderSlotWrap.style.display = selectedSource === "feeding" ? "block" : "none";
     groomingKindWrap.style.display = selectedSource === "grooming" ? "block" : "none";
+
     if (selectedSource === "feeding") {
-        reminderRepeatInput.value = "daily";
-        if (!reminderDueTimeInput.value) reminderDueTimeInput.value = "08:00";
+        if (!reminderDueTimeInput.value) {
+            reminderDueTimeInput.value = "08:00";
+        }
     } else if (selectedSource === "grooming") {
-        if (reminderRepeatInput.value === "once") reminderRepeatInput.value = "weekly";
+        if (reminderRepeatInput.value === "once") {
+            reminderRepeatInput.value = "weekly";
+        }
     }
 }
 
@@ -606,7 +611,6 @@ if (saveReminderBtn) {
 
         if (source === "feeding") {
             reminder.slot = document.querySelector('input[name="feedingSlot"]:checked')?.value || "morning";
-            reminder.repeat = "daily";
             reminder.dueTime = dueTime || (reminder.slot === "morning" ? "08:00" : "18:00");
         }
 
