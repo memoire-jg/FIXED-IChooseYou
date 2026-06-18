@@ -82,7 +82,6 @@
             </div>
         </section>
 
-        <!-- VACCINE MODAL -->
         <div id="vaccineModal" class="modal-overlay">
             <div class="modal-content vaccine-modal-content">
                 <div class="modal-header">
@@ -111,7 +110,6 @@
                         </div>
                     </div>
 
-                    <!-- Dynamic List Container -->
                     <div id="vaccineDynamicList"></div>
 
                     <div class="modal-footer" style="border-top: 1px solid #eaeaea; padding-top: 20px; margin-top: 20px;">
@@ -122,7 +120,6 @@
             </div>
         </div>
 
-        <!-- FEEDING MODAL -->
         <div id="feedingModal" class="modal-overlay">
             <div class="modal-content feeding-modal-content">
                 <div class="modal-header-centered">
@@ -147,7 +144,6 @@
                         </div>
                     </div>
 
-                    <!-- Dynamic List Container -->
                     <div id="feedingDynamicList"></div>
 
                     <div class="tips-box">
@@ -176,7 +172,6 @@
             </div>
         </div>
 
-        <!-- GROOMING MODAL -->
         <div id="groomingModal" class="modal-overlay">
             <div class="modal-content grooming-modal-content">
                 
@@ -200,7 +195,6 @@
                     </div>
                 </div>
 
-                <!-- Dynamic List Container -->
                 <div class="grooming-list" id="groomingDynamicList"></div>
 
                 <div class="modal-footer" style="border-top: 1px solid #eaeaea; padding-top: 20px; margin-top: 20px;">
@@ -211,7 +205,6 @@
             </div>
         </div>
 
-        <!-- EDIT MODAL -->
         <div id="editModal" class="modal-overlay">
             <div class="modal-content edit-modal-content">
                 
@@ -239,23 +232,30 @@
                             </div>
                         </div>
 
-                        <div class="form-row">
-                            <div class="input-group">
-                                <label>Pet Type</label>
-                                <div class="input-wrapper">
-                                    <select id="editPetType" class="custom-select">
-                                        <option value="Dog" selected>Dog</option>
-                                        <option value="Cat">Cat</option>
-                                        <option value="Fish">Fish</option>
-                                        <option value="Bird">Bird</option>
-                                        <option value="Bunny">Bunny</option>
-                                    </select>
-                                </div>
+                        <div class="input-group">
+                            <label>Pet Type</label>
+                            <div class="input-wrapper">
+                                <select id="editPetType" class="custom-select">
+                                    <option value="Dog" selected>Dog</option>
+                                    <option value="Cat">Cat</option>
+                                    <option value="Fish">Fish</option>
+                                    <option value="Bird">Bird</option>
+                                    <option value="Bunny">Bunny</option>
+                                </select>
                             </div>
+                        </div>
+                        
+                        <div class="form-row">
                             <div class="input-group">
                                 <label>Weight (kg)</label>
                                 <div class="input-wrapper">
                                     <input type="text" id="editPetWeight" value="3 kg">
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label>Age (Years)</label>
+                                <div class="input-wrapper">
+                                    <input type="text" id="editPetAge" placeholder="e.g. 2, 4.5...">
                                 </div>
                             </div>
                         </div>
@@ -272,7 +272,6 @@
 
     </main>
 
-    <!-- Delete Confirmation Modal -->
     <div id="deleteModal" class="modal-overlay">
         <div class="modal-content" style="max-width: 420px; text-align: center; padding: 40px;">
             <div class="modal-icon" style="background: #ffebeb; margin: 0 auto 18px auto;">

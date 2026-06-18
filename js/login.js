@@ -58,8 +58,12 @@ if (loginForm) loginForm.addEventListener('submit', function(event) {
         showError(email, 'Please enter a valid email address.');
     }
 
-    if (password.value.trim() === '') {
-        showError(password, 'Please enter your password.');
+    if (password.value.length < 8) {
+        showError(password, 'Password must be at least 8 characters long.');
+    }
+    const passwordComplexity = /^(?=.*[A-Za-z])(?=.*\d).+$/;
+    if (password.value.length >= 8 && !passwordComplexity.test(password.value)) {
+        showError(password, 'Password must contain at least one letter and one number.');
     }
 
     if (isValid) {
