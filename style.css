@@ -297,7 +297,6 @@ body {
     padding: clamp(10px, 6vw, 60px);
     max-width: 1000px;
     margin: 0 auto;
-    min-height: 100vh;
 }
 
 /* HOME */
@@ -618,6 +617,7 @@ body {
     gap: 62px;
     margin: 0 auto;
     padding: 62px 0 70px;
+    flex: 1;
 }
 
 .month-banner {
@@ -2175,7 +2175,6 @@ body {
     }
 
     /* resposive home page */
-
     .modal-content{
         min-height: 100vh;
         border-radius: 0;
@@ -2186,6 +2185,10 @@ body {
     }
 
     /* responsive pet detail */
+
+    .pet-grid {
+        justify-content: center;
+    }
 
     .action-grid {
         display: flex;
