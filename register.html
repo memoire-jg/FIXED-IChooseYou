@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | I Choose You</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="page-background">
+        <div class="auth-card">
+            
+            <div class="header">
+                <i class="fa-solid fa-paw paw-logo"></i>
+                <h1>Create Account</h1>
+                <p>Join I Choose You to connect with your perfect companion.</p>
+            </div>
+
+            <form id="registerForm" novalidate>
+                <div class="input-group">
+                    <label for="fullName">Full Name</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-user icon"></i>
+                        <input type="text" id="fullName" placeholder="Jane Doe">
+                    </div>
+                    <small class="error-message"></small>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-envelope icon"></i>
+                        <input type="email" id="email" placeholder="jane@example.com">
+                    </div>
+                    <small class="error-message"></small>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock icon"></i>
+                        <input type="password" id="password" placeholder="••••••••">
+                    </div>
+                    <small class="error-message"></small>
+                </div>
+
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock-rotate icon"></i>
+                        <input type="password" id="confirmPassword" placeholder="••••••••">
+                    </div>
+                    <small class="error-message"></small>
+                </div>
+
+                <button type="submit" class="auth-btn">
+                    Register <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <div class="footer">
+                <p>Already have an account? <a href="index.html">Login</a></p>
+            </div>
+
+        </div>
+    </div>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">I Choose You</div>
+            
+            <div class="footer-copyright">
+                &copy; 2026 I Choose You. All rights reserved.
+            </div>
+            
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+    <script src="js/register.js"></script>
+</body>
+</html>

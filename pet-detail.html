@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Detail | I Choose You</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-layout">
+    <nav class="top-nav">
+        <div class="nav-logo">
+            <i class="fa-solid fa-paw"></i>
+            <span>I Choose You</span>
+        </div>
+        
+        <button class="nav-toggle" id="navToggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="home.html" class="active">Home</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="#">Tutorial</a></li>
+            <li class="logout-mobile">
+                <a href="index.html" class="logoutBtn">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+            </li>
+        </ul>
+        <div class="nav-logout">
+            <a href="index.html" class="logoutBtn">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="back-nav">
+            <button id="backBtn" class="back-btn">
+                <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
+            </button>
+        </div>
+        
+        <section class="pet-profile-header">
+            <div class="pet-profile-img">
+                <img id="detailImage" src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=150&q=80" alt="Pet Image">
+            </div>
+            <div class="pet-profile-info">
+                <h1 id="detailName">Loading...</h1>
+                <span class="pet-type-badge">
+                    <i id="detailIcon" class="fa-solid fa-paw"></i> <span id="detailSpecies">Pet</span>
+                </span>
+            </div>
+        </section>
+        
+        <div class="divider"></div>
+        
+        <section class="action-grid">
+            <div class="action-card" id="vaccineBtn">
+                <i class="fa-solid fa-syringe action-icon"></i>
+                <p>Vaccine Schedule</p>
+            </div>
+            <div class="action-card" id="feedingBtn">
+                <i class="fa-solid fa-utensils action-icon"></i>
+                <p>Feeding Schedule</p>
+            </div>
+            <div class="action-card" id="groomingBtn">
+                <i class="fa-solid fa-scissors action-icon"></i>
+                <p>Grooming Schedule</p>
+            </div>
+            <div class="action-card" id="editBtn">
+                <i class="fa-solid fa-pen action-icon"></i>
+                <p>Edit Pet Data</p>
+            </div>
+            <div class="action-card" id="tutorialBtn">
+                <i class="fa-solid fa-circle-question action-icon"></i>
+                <p>Tutorial</p>
+                <small>How to use this page</small>
+            </div>
+            <div class="action-card delete-card" id="deleteBtn">
+                <i class="fa-solid fa-trash action-icon"></i>
+                <p>Delete Pet</p>
+            </div>
+        </section>
+
+        <!-- VACCINE MODAL -->
+        <div id="vaccineModal" class="modal-overlay">
+            <div class="modal-content vaccine-modal-content">
+                <div class="modal-header">
+                    <div style="display: flex; gap: 15px; align-items: center;">
+                        <div class="modal-icon">
+                            <i class="fa-solid fa-syringe"></i>
+                        </div>
+                        <div>
+                            <h2 style="color: var(--text-dark); font-size: 22px; margin-bottom: 4px;" id="vaccineModalTitle">Vaccine Schedule</h2>
+                            <p style="color: var(--text-muted); font-size: 14px;">Recommended care for your companion.</p>
+                        </div>
+                    </div>
+                    <button class="close-modal-btn" id="closeVaccineBtn">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                
+                <div class="modal-body" style="margin-top: 25px;">
+                    <div class="info-box">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-info"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>Expert Guideline</h3>
+                            <p id="vaccineAdviceText">Loading advice...</p>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic List Container -->
+                    <div id="vaccineDynamicList"></div>
+
+                    <div class="modal-footer" style="border-top: 1px solid #eaeaea; padding-top: 20px; margin-top: 20px;">
+                        <button type="button" class="btn-text" id="remindMeBtn">Add a Reminder</button>
+                        <button type="button" class="btn-save" id="gotItBtn">Got it</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FEEDING MODAL -->
+        <div id="feedingModal" class="modal-overlay">
+            <div class="modal-content feeding-modal-content">
+                <div class="modal-header-centered">
+                    <button class="close-modal-btn" id="closeFeedingBtn" style="position: absolute; right: 25px; top: 25px;">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <div class="modal-icon badge-pink-light" style="margin: 0 auto 15px auto;">
+                        <i class="fa-solid fa-paw" style="color: #9c6c74;"></i>
+                    </div>
+                    <h2>Feeding Schedule</h2>
+                    <p class="modal-subtitle" id="feedingModalSubtitle">Recommended plan</p>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="info-box" style="margin-bottom: 20px;">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-info"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>Expert Guideline</h3>
+                            <p id="feedingAdviceText">Loading advice...</p>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic List Container -->
+                    <div id="feedingDynamicList"></div>
+
+                    <div class="tips-box">
+                        <h4 class="tips-title"><i class="fa-solid fa-apple-whole"></i> Healthy Snack Tips</h4>
+                        <ul class="tips-list">
+                            <li>
+                                <i class="fa-solid fa-circle-check"></i> 
+                                <span><strong>Carrots & Green Beans:</strong> Great low-calorie, crunchy options.</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-circle-check"></i> 
+                                <span><strong>Apple Slices:</strong> A sweet treat (ensure all seeds and core are removed).</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-circle-check"></i> 
+                                <span><strong>Rule of Thumb:</strong> Treats should make up no more than 10% of daily calories.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="modal-footer" style="border-top: 1px solid #eaeaea; padding-top: 20px; margin-top: 20px;">
+                        <button type="button" class="btn-text" id="feedingRemindBtn">Add a Reminder</button>
+                        <button type="button" class="btn-save" id="feedingGotItBtn">Got it</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GROOMING MODAL -->
+        <div id="groomingModal" class="modal-overlay">
+            <div class="modal-content grooming-modal-content">
+                
+                <div class="modal-header-flex">
+                    <span class="pet-breed badge-pink">Care Routine</span>
+                    <button class="close-modal-btn" id="closeGroomingBtn">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                
+                <h2 class="grooming-title">Grooming Schedule</h2>
+                <p class="modal-subtitle">Recommended routine to keep your friend happy and healthy.</p>
+
+                <div class="info-box" style="margin: 15px 0 25px 0;">
+                    <div class="info-icon">
+                        <i class="fa-solid fa-info"></i>
+                    </div>
+                    <div class="info-text">
+                        <h3>Expert Guideline</h3>
+                        <p id="groomingAdviceText">Loading advice...</p>
+                    </div>
+                </div>
+
+                <!-- Dynamic List Container -->
+                <div class="grooming-list" id="groomingDynamicList"></div>
+
+                <div class="modal-footer" style="border-top: 1px solid #eaeaea; padding-top: 20px; margin-top: 20px;">
+                    <button type="button" class="btn-text" id="groomingRemindBtn">Add a Reminder</button>
+                    <button type="button" class="btn-save" id="groomingGotItBtn">Got it</button>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- EDIT MODAL -->
+        <div id="editModal" class="modal-overlay">
+            <div class="modal-content edit-modal-content">
+                
+                <div class="edit-modal-header">
+                    <h2>Edit Pet Profile</h2>
+                    <button class="close-modal-btn" id="closeEditBtn">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                
+                <div class="modal-body edit-modal-body">
+                    <div class="photo-upload-section">
+                        <div class="photo-preview">
+                            <img id="editPetImage" src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=150&q=80" alt="Pet Profile">
+                        </div>
+                        <p class="photo-hint">Tap to change photo</p>
+                    </div>
+
+                    <form id="editPetForm">
+                        <div class="input-group">
+                            <label>Pet Name</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-paw icon"></i>
+                                <input type="text" id="editPetName" value="Luna" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label>Pet Type</label>
+                                <div class="input-wrapper">
+                                    <select id="editPetType" class="custom-select">
+                                        <option value="Dog" selected>Dog</option>
+                                        <option value="Cat">Cat</option>
+                                        <option value="Fish">Fish</option>
+                                        <option value="Bird">Bird</option>
+                                        <option value="Bunny">Bunny</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label>Weight (kg)</label>
+                                <div class="input-wrapper">
+                                    <input type="text" id="editPetWeight" value="3 kg">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="edit-modal-footer">
+                    <button type="button" class="btn-cancel" id="cancelEditBtn">Cancel</button>
+                    <button type="button" class="btn-save" id="saveEditBtn">Save Changes</button>
+                </div>
+                
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 420px; text-align: center; padding: 40px;">
+            <div class="modal-icon" style="background: #ffebeb; margin: 0 auto 18px auto;">
+                <i class="fa-solid fa-trash" style="color: #d9534f;"></i>
+            </div>
+            <h2 style="font-size: 20px; margin-bottom: 10px;">Delete Pet?</h2>
+            <p style="color: var(--text-muted); font-size: 14px; line-height: 1.6; margin-bottom: 28px;">
+                Are you sure you want to delete <strong id="deleteModalPetName"></strong>? 
+                This action cannot be undone.
+            </p>
+            <div style="display: flex; gap: 12px; justify-content: center;">
+                <button class="btn-cancel" id="cancelDeleteBtn">Cancel</button>
+                <button class="btn-save" id="confirmDeleteBtn" 
+                    style="background: #d9534f; border-color: #d9534f;">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">I Choose You</div>
+            
+            <div class="footer-copyright">
+                &copy; 2026 I Choose You. All rights reserved.
+            </div>
+            
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+    <script src="js/pet-detail.js"></script>
+    <script src="js/tutorial.js"></script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | I Choose You</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Ensure search icon + input sit inline correctly */
+        .faq-search {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .faq-search i {
+            flex-shrink: 0;
+            line-height: 1;
+        }
+        .faq-search input {
+            flex: 1;
+            min-width: 0;
+        }
+    </style>
+</head>
+<body class="dashboard-layout">
+
+    <nav class="top-nav">
+        <div class="nav-logo">
+            <i class="fa-solid fa-paw"></i>
+            <span>I Choose You</span>
+        </div>
+        
+        <button class="nav-toggle" id="navToggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="faq.html" class="active">FAQ</a></li>
+            <li><a href="#">Tutorial</a></li>
+            <li class="logout-mobile">
+                <a href="index.html" class="logoutBtn">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+            </li>
+        </ul>
+        <div class="nav-logout">
+            <a href="index.html" class="logoutBtn">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+        </div>
+    </nav>
+
+    <main class="faq-page">
+        <section class="faq-intro">
+            <h1>Frequently Asked Questions</h1>
+            <p>Find gentle guidance and answers to help you care for your new companion.</p>
+
+            <div class="faq-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="search" id="faqSearch" placeholder="Search questions...">
+            </div>
+
+            <div class="faq-categories">
+                <button type="button" class="category-btn active" data-category="all">All</button>
+                <button type="button" class="category-btn" data-category="cat">Cat</button>
+                <button type="button" class="category-btn" data-category="dog">Dog</button>
+                <button type="button" class="category-btn" data-category="fish">Fish</button>
+                <button type="button" class="category-btn" data-category="bird">Bird</button>
+                <button type="button" class="category-btn" data-category="bunny">Bunny</button>
+            </div>
+        </section>
+
+        <section class="faq-list">
+
+            <!-- Cat FAQs -->
+            <div class="faq-item" data-category="cat">
+                <button type="button" class="faq-question">
+                    <span>How often should I feed my cat?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <p class="faq-answer">Most adult cats do well with two measured meals a day. Kittens usually need smaller meals more often.</p>
+            </div>
+
+            <div class="faq-item" data-category="cat">
+                <button type="button" class="faq-question">
+                    <span>How do I introduce a new cat to my home?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <p class="faq-answer">Start with one quiet room, let your cat explore slowly, and keep food, water, litter, and hiding spots easy to reach.</p>
+            </div>
+
+            <div class="faq-item" data-category="cat">
+                <button type="button" class="faq-question">
+                    <span>Why is my cat scratching the furniture?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <p class="faq-answer">Scratching is natural. Offer sturdy scratchers near favorite furniture and reward your cat when they use them.</p>
+            </div>
+
+            <!-- Dog FAQs -->
+            <div class="faq-item" data-category="dog">
+                <button type="button" class="faq-question">
+                    <span>What is the best dog breed for first-time owners?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <p class="faq-answer">Friendly and easy-to-train breeds like Golden Retrievers, Labradors, Poodles, and Cavalier King Charles Spaniels are popular choices.</p>
+            </div>
+
+            <div class="faq-item" data-category="dog">
+                <button type="button" class="faq-question">
+                    <span>How often should I walk my dog?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <p class="faq-answer">Most dogs need at least 1–2 walks daily plus playtime and mental stimulation.</p>
+            </div>
+
+            <div class="faq-item" data-category="dog">
+                <button type="button" class="faq-question">
+                    <span>What supplies do I need before bringing a dog home?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <p class="faq-answer">Food, water bowls, leash, collar, bed, toys, grooming tools, and a crate are common essentials.</p>
+            </div>
+
+            <!-- Fish FAQs -->
+            <div class="faq-item" data-category="fish">
+                <button type="button" class="faq-question">
+                    <span>What fish are easiest for beginners?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <p class="faq-answer">Betta fish, guppies, mollies, and goldfish are commonly recommended for new fish owners.</p>
+            </div>
+
+            <div class="faq-item" data-category="fish">
+                <button type="button" class="faq-question">
+                    <span>How often should I clean a fish tank?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <p class="faq-answer">Partial water changes are usually done weekly, while full deep cleaning should be limited to avoid harming beneficial bacteria.</p>
+            </div>
+
+            <div class="faq-item" data-category="fish">
+                <button type="button" class="faq-question">
+                    <span>Can I put different fish species together?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <p class="faq-answer">Some species are compatible, but others may fight or require different water conditions. Research before mixing fish.</p>
+            </div>
+
+            <!-- Bird FAQs -->
+            <div class="faq-item" data-category="bird">
+                <button type="button" class="faq-question">
+                    <span>What bird is best for beginners?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <p class="faq-answer">Budgies (parakeets) and cockatiels are beginner-friendly due to their manageable size and social nature.</p>
+            </div>
+
+            <div class="faq-item" data-category="bird">
+                <button type="button" class="faq-question">
+                    <span>Do birds need daily interaction?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <p class="faq-answer">Yes, pet birds need social interaction, mental stimulation, and time outside the cage regularly.</p>
+            </div>
+
+            <div class="faq-item" data-category="bird">
+                <button type="button" class="faq-question">
+                    <span>What should birds eat?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <p class="faq-answer">A balanced diet usually includes pellets, seeds, fresh fruits, and vegetables depending on the species.</p>
+            </div>
+
+            <!-- Bunny FAQs -->
+            <div class="faq-item" data-category="bunny">
+                <button type="button" class="faq-question">
+                    <span>Can rabbits be litter trained?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <p class="faq-answer">Yes, rabbits are generally easy to litter train with patience and consistency.</p>
+            </div>
+
+            <div class="faq-item" data-category="bunny">
+                <button type="button" class="faq-question">
+                    <span>What do rabbits eat daily?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <p class="faq-answer">Hay should make up most of their diet, along with fresh vegetables and a small amount of pellets.</p>
+            </div>
+
+            <div class="faq-item" data-category="bunny">
+                <button type="button" class="faq-question">
+                    <span>Do rabbits need a cage all the time?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <p class="faq-answer">Rabbits need space to exercise daily and should not stay confined in a cage 24/7.</p>
+            </div>
+
+        </section>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">I Choose You</div>
+            
+            <div class="footer-copyright">
+                &copy; 2026 I Choose You. All rights reserved.
+            </div>
+            
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+    <script src="js/faq.js"></script>
+    <script src="js/tutorial.js"></script>
+</body>
+</html>
