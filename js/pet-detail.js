@@ -5,7 +5,6 @@ navToggle.addEventListener('click', () => {
     navLinks.classList.toggle('show');
 });
 
-// ── Data & Guidelines ──────────────────────────────────────────────
 const speciesCareGuidelines = {
     'Dog': {
         feedingAdvice: "Routine meals twice a day: once in the morning and once in the evening.",
@@ -94,7 +93,6 @@ const speciesCareGuidelines = {
     }
 };
 
-// ── Image Helper ─────────────────────────────────────────────────
 function getDefaultImg(species) {
     const imgs = {
         'Dog':   'https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=150&q=80',
@@ -106,7 +104,6 @@ function getDefaultImg(species) {
     return imgs[species] || imgs['Dog'];
 }
 
-// ── Toast helper ─────────────────────────────────────────────────
 function showToast(message, type = 'success', duration = 3000) {
     const existing = document.getElementById('appToast');
     if (existing) existing.remove();
@@ -128,7 +125,6 @@ function showToast(message, type = 'success', duration = 3000) {
     }, duration);
 }
 
-// ── Main Logic ───────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function() {
     const savedPetStr = localStorage.getItem('selectedPet');
     let petName = 'Luna'; 
@@ -136,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let petSpecies = 'Dog';
     let petBreed = '';
     let petWeight = '';
+    let petAge = ''; 
     let petImgSrc = '';
     let petData = null;
 
@@ -180,8 +177,8 @@ document.addEventListener('DOMContentLoaded', function() {
         petSpecies = petData.species;
         petBreed = petData.breed || '';
         petWeight = petData.weight || '';
+        petAge = petData.age || ''; 
         
-        // Make sure we have an image, or fall back to default
         petImgSrc = petData.imgSrc || getDefaultImg(petSpecies);
         
         document.getElementById('detailName').innerText = petData.name;
@@ -203,7 +200,6 @@ document.addEventListener('DOMContentLoaded', function() {
         renderGrooming(advice.grooming);
     }
 
-    // Modal Triggers
     document.getElementById('backBtn').addEventListener('click', () => window.location.href = "home.html");
     document.querySelectorAll('.logoutBtn').forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -240,6 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('editPetName').value = petName;
         document.getElementById('editPetType').value = petSpecies;
         document.getElementById('editPetWeight').value = petWeight;
+        document.getElementById('editPetAge').value = petAge; 
         document.getElementById('editPetImage').src = petImgSrc; 
         
         editModal.style.display = 'flex';
@@ -249,7 +246,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('closeEditBtn').addEventListener('click', closeEditModal);
     document.getElementById('cancelEditBtn').addEventListener('click', closeEditModal);
     
-    // --- NEW: Live Image Swapping in the Modal ---
     document.getElementById('editPetType').addEventListener('change', (e) => {
         const tempSpecies = e.target.value;
         document.getElementById('editPetImage').src = getDefaultImg(tempSpecies);
@@ -259,23 +255,23 @@ document.addEventListener('DOMContentLoaded', function() {
         petName = document.getElementById('editPetName').value || petName;
         petSpecies = document.getElementById('editPetType').value;
         petWeight = document.getElementById('editPetWeight').value;
+        petAge = document.getElementById('editPetAge').value; 
 
-        // Forcefully grab the new image based on the chosen species
         petImgSrc = getDefaultImg(petSpecies);
 
         if (petData) {
             petData.name = petName;
             petData.species = petSpecies;
             petData.weight = petWeight;
-            petData.imgSrc = petImgSrc; // Save the updated image into the object
+            petData.age = petAge; 
+            petData.imgSrc = petImgSrc; 
             localStorage.setItem('selectedPet', JSON.stringify(petData));
         }
 
         let myPets = JSON.parse(localStorage.getItem('myPets')) || [];
-        myPets = myPets.map(p => p.id === petId ? { ...p, name: petName, species: petSpecies, weight: petWeight } : p);
+        myPets = myPets.map(p => p.id === petId ? { ...p, name: petName, species: petSpecies, weight: petWeight, age: petAge } : p);
         localStorage.setItem('myPets', JSON.stringify(myPets));
 
-        // Instantly update the main page
         document.getElementById('detailName').innerText = petName;
         document.getElementById('detailSpecies').innerText = petSpecies;
         document.getElementById('detailImage').src = petImgSrc; 
@@ -310,7 +306,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// ── Dynamic Rendering Functions ──────────────────────────────────
 function renderVaccines(vaccines) {
     const container = document.getElementById('vaccineDynamicList');
     if (!container) return;

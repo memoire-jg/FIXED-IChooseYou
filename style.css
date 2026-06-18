@@ -29,7 +29,13 @@
 }
 
 body {
-    background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+    background-color: #fefdf9;
+    background-image: 
+        radial-gradient(at 0% 0%, #d1ecd6 0px, transparent 55%),
+        radial-gradient(at 100% 0%, #fde199 0px, transparent 50%),
+        radial-gradient(at 100% 100%, #fbcad4 0px, transparent 55%);
+    background-attachment: fixed;
+
     min-height: 100vh;
     display: flex;
     flex-direction: column;
