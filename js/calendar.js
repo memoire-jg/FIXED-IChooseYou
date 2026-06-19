@@ -42,7 +42,9 @@ const cancelDeleteAllRemindersBtn = document.getElementById("cancelDeleteAllRemi
 const confirmDeleteAllRemindersBtn = document.getElementById("confirmDeleteAllRemindersBtn");
 const deleteReminderName = document.getElementById("deleteReminderName");
 let pendingDeleteId = null;
-let notificationAudioContext = null;
+const notificationSound = new Audio("/audio/notification.mp3");
+notificationSound.preload = "auto";
+
 let reminderTimers = [];
 
 function showToast(message, type = "success", duration = 3000) {
@@ -69,33 +71,11 @@ function requestNotificationAccess() {
 }
 
 function playReminderSound() {
-    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContextClass) return;
+    notificationSound.currentTime = 0;
 
-    if (!notificationAudioContext) {
-        notificationAudioContext = new AudioContextClass();
-    }
-
-    const ctx = notificationAudioContext;
-    if (ctx.state === "suspended") {
-        ctx.resume().catch(() => {});
-    }
-
-    const now = ctx.currentTime;
-    const oscillator = ctx.createOscillator();
-    const gainNode = ctx.createGain();
-
-    oscillator.type = "sine";
-    oscillator.frequency.setValueAtTime(880, now);
-    oscillator.frequency.exponentialRampToValueAtTime(660, now + 0.18);
-    gainNode.gain.setValueAtTime(0.0001, now);
-    gainNode.gain.exponentialRampToValueAtTime(0.08, now + 0.02);
-    gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.25);
-
-    oscillator.connect(gainNode);
-    gainNode.connect(ctx.destination);
-    oscillator.start(now);
-    oscillator.stop(now + 0.28);
+    notificationSound.play().catch(error => {
+        console.warn("Unable to play notification sound:", error);
+    });
 }
 
 function notifyReminder(reminder, date) {
