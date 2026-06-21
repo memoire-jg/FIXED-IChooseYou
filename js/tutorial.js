@@ -169,9 +169,9 @@ const getNavbarSteps = () => {
         });
     }
 
-        if (document.querySelector('.logoutBtn')) {
+        if (document.querySelector('.nav-logout .logoutBtn')) {
         steps.push({
-            element: '#logoutBtn',
+            element: '.nav-logout .logoutBtn',
             title: 'Secure Logout',
             intro: 'When you are finished managing your companions, click here to securely sign out of your account session.',
         });
@@ -288,7 +288,7 @@ function renderStep() {
     
     // Inject class styles securely
     targetElement.classList.add('tutorial-highlight');
-    if (step.element === '#logoutBtn') {
+    if (step.element === '.nav-logout .logoutBtn') {
         targetElement.classList.add('tutorial-highlight-logout');
     }
     
