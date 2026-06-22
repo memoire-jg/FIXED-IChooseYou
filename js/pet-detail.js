@@ -23,7 +23,14 @@ const speciesCareGuidelines = {
             { title: "Bathing", freq: "Every 4 to 6 weeks", desc: "Use dog-specific shampoo.", icon: "fa-hands-bubbles", bg: "icon-bg-beige" },
             { title: "Nail Trimming", freq: "Once a month", desc: "Careful not to cut the quick.", icon: "fa-scissors", bg: "icon-bg-pink" },
             { title: "Teeth Cleaning", freq: "Daily", desc: "Use enzymatic toothpaste.", icon: "fa-tooth", bg: "icon-bg-grey" }
+        ],
+        toxicFoods: [
+            { title: "Chocolate", desc: "Contains theobromine, which is highly toxic to dogs and can be fatal." },
+            { title: "Grapes & Raisins", desc: "Can cause sudden kidney failure even in small amounts." },
+            { title: "Onions & Garlic", desc: "Damages red blood cells and can lead to anemia." },
+            { title: "Xylitol", desc: "An artificial sweetener found in gum and candy that causes dangerous drops in blood sugar." }
         ]
+
     },
     'Cat': {
         feedingAdvice: "Routine meals twice a day: once in the morning and once in the evening.",
@@ -40,6 +47,12 @@ const speciesCareGuidelines = {
         grooming: [
             { title: "Brushing", freq: "Every 2 to 3 days", desc: "Reduces hairballs and matting.", icon: "fa-brush", bg: "icon-bg-green" },
             { title: "Nail Trimming", freq: "Every 2 weeks", desc: "Provides relief and protects furniture.", icon: "fa-scissors", bg: "icon-bg-pink" }
+        ],
+        toxicFoods: [
+            { title: "Chocolate", desc: "Contains theobromine and caffeine, both toxic to cats." },
+            { title: "Onions & Garlic", desc: "Destroys red blood cells and can cause serious anemia." },
+            { title: "Grapes & Raisins", desc: "Highly toxic and can lead to kidney failure." },
+            { title: "Raw Fish", desc: "Can deplete vitamin B1 (thiamine), leading to neurological problems." }
         ]
     },
     'Bunny': {
@@ -198,6 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
         renderVaccines(advice.vaccines);
         renderFeeding(advice.feeding);
         renderGrooming(advice.grooming);
+        renderToxicFoods(advice.toxicFoods);
     }
 
     document.getElementById('backBtn').addEventListener('click', () => window.location.href = "home.html");
@@ -381,5 +395,27 @@ function renderGrooming(grooming) {
                     <p class="desc">${g.desc}</p>
                 </div>
             </div>`;
+    });
+}
+
+function renderToxicFoods(toxicFoods) {
+    const warningBox = document.getElementById('warning');
+    if (!warningBox) return;
+
+    if (!toxicFoods || toxicFoods.length === 0) {
+        warningBox.style.display = 'none';
+        return;
+    }
+
+    warningBox.style.display = 'block';
+
+    const list = warningBox.querySelector('.tips-list');
+    list.innerHTML = '';
+    toxicFoods.forEach(item => {
+        list.innerHTML += `
+            <li>
+                <i class="fa-solid fa-circle-xmark"></i>
+                <span><strong>${item.title}:</strong> ${item.desc}</span>
+            </li>`;
     });
 }

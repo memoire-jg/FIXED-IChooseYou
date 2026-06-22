@@ -125,6 +125,39 @@ body {
     background-color: #fdf5f5;
 }
 
+input[type="radio"] {
+    accent-color: var(--primary-green); /* ganti warna sesuai theme */
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    display: inline;
+}
+
+.gender-options {
+    display: flex;
+    gap: 16px;
+}
+
+.gender-options .input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.gender-options .input-wrapper label {
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.gender-options .input-wrapper .fa-mars {
+    color: #33518e;
+}
+
+.gender-options .input-wrapper .fa-venus {
+    color: #8e3380;
+}
+
+
 .error-message {
     display: none;
     color: #d9534f;
@@ -227,7 +260,9 @@ body {
     padding: 20px 60px;
     background: var(--nav-bg);
     box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-    position: relative; 
+    position: sticky; 
+    top: 0;
+    z-index: 999;
 }
 
 .nav-logo {
@@ -389,9 +424,14 @@ body {
 .card-header {
     display: flex;
     align-items: flex-start;
+    justify-content: space-between;
     margin-bottom: 30px;
     position: relative;
     z-index: 2;
+}
+
+.pet-info {
+    flex: 1;
 }
 
 .pet-icon-wrapper {
@@ -1076,8 +1116,16 @@ body {
     padding: 0 26px 22px;
 }
 
+div .faq-answer {
+    flex-direction: column;
+}
+
+div .faq-answer p {
+    margin-bottom: 4px;
+}
+
 .faq-item.open .faq-answer {
-    display: block;
+    display: flex;
 }
 
 .faq-item.open .faq-question i {
@@ -1538,6 +1586,20 @@ body {
     gap: 8px;
     margin-bottom: 15px;
 }
+
+.warning-title {
+    color: #ba6363;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+#warning .tips-list .fa-circle-xmark {
+    color: #a05857;
+}
+
 
 .tips-list {
     list-style: none;

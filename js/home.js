@@ -12,9 +12,9 @@ if (usernameElement) {
 }
 
 const defaultPets = [
-    { id: 1, name: 'Luna', species: 'Dog', breed: 'Golden Retriever', weight: '25', age: '2', nextMeal: '5:00 PM' },
-    { id: 2, name: 'Bubbles', species: 'Fish', breed: 'Betta Fish', weight: '0.1', age: '1', nextMeal: '78°F' },
-    { id: 3, name: 'Milo', species: 'Cat', breed: 'Domestic Shorthair', weight: '4.5', age: '3', nextMeal: '6:00 PM' }
+    { id: 1, name: 'Luna', species: 'Dog', breed: 'Golden Retriever', weight: '25', age: '2', nextMeal: '5:00 PM', gender: 'Female' },
+    { id: 2, name: 'Bubbles', species: 'Fish', breed: 'Betta Fish', weight: '0.1', age: '1', nextMeal: '78°F', gender: 'Male' },
+    { id: 3, name: 'Milo', species: 'Cat', breed: 'Domestic Shorthair', weight: '4.5', age: '3', nextMeal: '6:00 PM', gender: 'Male' }
 ];
 
 let myPets = JSON.parse(localStorage.getItem('myPets'));
@@ -51,6 +51,9 @@ function renderPets() {
     petGrid.innerHTML = '';
     myPets.forEach(pet => {
         const style = getPetStyle(pet.species);
+        const genderIcon = pet.gender === 'Male' ? 'fa-mars' : pet.gender === 'Female' ? 'fa-venus' : 'fa-paw';
+        const genderColor = pet.gender === 'Male' ? '#33518e' : pet.gender === 'Female' ? '#8e3380' : '#6f6666';
+
         const cardHTML = `
             <div class="pet-card ${style.color}" data-id="${pet.id}" style="cursor: pointer;">
                 <div class="card-shape"></div>
@@ -61,6 +64,9 @@ function renderPets() {
                     <div class="pet-info">
                         <h2>${pet.name}</h2>
                         <span class="pet-breed ${style.badge}">${pet.breed}</span>
+                    </div>
+                    <div>
+                        <i class="fa-solid ${genderIcon}" style="color: ${genderColor}; font-size: 1.2rem;"></i>
                     </div>
                 </div>
                 
@@ -119,6 +125,8 @@ addPetForm.addEventListener('submit', function(e) {
     const newBreed = document.getElementById('newPetBreed').value || newSpecies;
     const newWeight = document.getElementById('newPetWeight').value;
     const newAge = document.getElementById('newPetAge').value;
+    const newGender = document.querySelector('input[name="petGender"]:checked')?.value || '';
+
 
     const newPet = {
         id: Date.now(),
@@ -127,6 +135,7 @@ addPetForm.addEventListener('submit', function(e) {
         breed: newBreed,
         weight: newWeight,
         age: newAge,
+        gender: newGender,
         nextMeal: 'Pending',
         status: 'New Arrival'
     };
@@ -153,6 +162,7 @@ petGrid.addEventListener('click', function(e) {
                 breed: pet.breed,
                 weight: pet.weight,
                 age: pet.age,
+                gender: pet.gender,
                 iconClass: `fa-solid ${style.icon}`,
                 species: pet.species,
                 imgSrc: getDefaultImg(pet.species)
